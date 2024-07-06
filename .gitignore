@@ -32,7 +32,7 @@ yarn-error.log*
 .env
 
 # npm
-.npmrc
+# .npmrc
 
 # vercel
 .vercel
