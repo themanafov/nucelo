@@ -1,0 +1,40 @@
+.ProseMirror:focus {
+  @apply outline-none;
+}
+
+.ProseMirror {
+  @apply min-h-full;
+}
+
+.ProseMirror p:first-child {
+  @apply mt-0;
+}
+
+.ProseMirror .image-placeholder {
+  @apply relative max-w-[700px] max-md:w-full rounded-md bg-gray-3;
+
+  & img {
+    @apply h-auto opacity-50;
+  }
+}
+
+.tiptap .is-empty::before {
+  @apply pointer-events-none absolute float-left text-gray-1 content-[attr(data-placeholder)];
+}
+
+ul[data-type="taskList"] li > label {
+  @apply select-none;
+}
+
+ul[data-type="taskList"] li > label input[type="checkbox"] {
+  @apply relative top-1 m-0 mr-1.5 flex h-4 w-4 cursor-pointer appearance-none items-center justify-center rounded-md border border-transparent bg-gray-2 transition-colors marker:list-none;
+
+  &:checked {
+    background-color: var(--blue);
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+  }
+}
+
+ul[data-type="taskList"] li[data-checked="true"] > div > p {
+  @apply text-gray-4 line-through decoration-2;
+}

@@ -1,0 +1,76 @@
+.prose {
+  @apply min-w-full text-secondary prose-headings:mb-4 prose-headings:mt-8 prose-headings:font-normal prose-h1:text-xl prose-h2:text-lg prose-h3:text-base prose-code:before:hidden prose-code:after:hidden prose-hr:my-4;
+}
+
+.prose a {
+  @apply cursor-pointer font-normal text-secondary underline-offset-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-gray-2 italic;
+}
+
+.prose pre {
+  @apply rounded-lg border border-gray-2 bg-gray-3 text-secondary;
+}
+
+.prose pre code {
+  @apply border-0 bg-inherit p-0 text-secondary;
+}
+
+.prose code {
+  @apply rounded-lg border border-gray-2 bg-gray-3 px-1 py-0.5 font-normal text-secondary;
+}
+
+.prose ul {
+  @apply list-outside list-disc text-secondary marker:text-gray-1;
+}
+
+.prose ul > li {
+  @apply mt-2 leading-6;
+}
+
+.prose ol {
+  @apply list-outside list-decimal text-secondary marker:text-gray-1;
+}
+
+.prose ol > li {
+  @apply list-outside list-decimal leading-6 text-secondary marker:text-gray-1;
+}
+
+.prose ul[class="contains-task-list"] li[class="task-list-item"] {
+  @apply list-none [&_p]:my-0;
+}
+
+.prose ul[class="contains-task-list"] {
+  @apply my-4 pl-0;
+}
+
+.prose ul[class="contains-task-list"] > li > p {
+  @apply flex;
+}
+
+.prose ul[class="contains-task-list"] > li > p > input[type="checkbox"] {
+  @apply relative top-[2.5px] m-0 mr-1.5 flex h-4 w-4 appearance-none items-center justify-center rounded-md border border-transparent bg-gray-2 transition-colors marker:list-none;
+}
+
+.prose
+  ul[class="contains-task-list"]
+  > li
+  > p
+  > input[type="checkbox"]:checked {
+  background-color: var(--blue);
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+}
+
+.prose hr {
+  @apply border-gray-2;
+}
+
+.prose img {
+  @apply rounded-md border border-gray-3 first:mt-0;
+}
+
+.prose ul[class="contains-task-list"] > li > p {
+  @apply has-[:checked]:text-gray-4 has-[:checked]:line-through has-[:checked]:decoration-2;
+}
