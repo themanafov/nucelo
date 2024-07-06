@@ -71,7 +71,7 @@ export default function AuthForm() {
       <div>
         <Button
           size="wide"
-          disabled={!!isLoading}
+          disabled
           onClick={() => {
             setIsLoading("google");
             signIn("google");
