@@ -56,4 +56,26 @@ export const marketingConfig: MarketingConfig = {
       icon: "postscv",
     },
   ],
+  previews: [
+    {
+      title: "Articles",
+      image: "/_static/previews/articles.png",
+    },
+    {
+      title: "Editor",
+      image: "/_static/previews/editor.png",
+    },
+    {
+      title: "Projects",
+      image: "/_static/previews/projects.png",
+    },
+    {
+      title: "Bookmarks",
+      image: "/_static/previews/bookmarks.png",
+    },
+    {
+      title: "Analytics",
+      image: "/_static/previews/analytics.png",
+    },
+  ],
 } as const;

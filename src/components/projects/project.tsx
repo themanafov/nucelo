@@ -19,10 +19,9 @@ interface Props {
     | "views"
     | "published"
   >;
-  reversed?: boolean;
 }
 
-export default function Project({ project, admin, reversed }: Props) {
+export default function Project({ project, admin }: Props) {
   const isPublished = project.published;
   return (
     <div className="-mx-2 flex relative min-h-5  max-md:h-auto group items-center justify-between rounded-md  p-2 text-sm transition-colors  hover:bg-gray-3 max-md:flex-col max-md:items-start">
@@ -32,16 +31,10 @@ export default function Project({ project, admin, reversed }: Props) {
         aria-label={`${project.title}`}
       />
       <div
-        className={cn(
-          "flex-1 flex gap-1   items-start max-md:flex-col ",
-          reversed ? "flex-row-reverse" : "",
-        )}
+        className="flex-1 flex gap-1   items-start max-md:flex-col"
       >
         <span
-          className={cn(
-            "w-10 text-gray-4 truncate group-hover:text-secondary transition-colors",
-            reversed ? "text-right max-md:text-left" : "text-left",
-          )}
+          className="w-10 text-gray-4 truncate group-hover:text-secondary transition-colors text-left"
         >
           {project.year}
         </span>
@@ -54,9 +47,9 @@ export default function Project({ project, admin, reversed }: Props) {
       </div>
 
       <div className="max-md:w-full max-md:mt-2 flex items-center justify-end z-10">
-        <div className="flex items-center gap-1 font-normal">
+        <div className="flex items-center gap-1">
           {project?.password && (
-            <Badge className="h-4 py-2 px-1 hover:bg-gray-2 flex items-center gap-1 cursor-default">
+            <Badge className="h-4 py-2 px-1 hover:bg-gray-2 flex font-normal items-center gap-1 cursor-default">
               <Icons.locked size={14} /> Locked
             </Badge>
           )}
@@ -65,7 +58,7 @@ export default function Project({ project, admin, reversed }: Props) {
               <Link
                 href={`/projects?published=${isPublished ? "true" : "false"}`}
               >
-                <Badge className="h-4 py-2 px-1 hover:bg-gray-2">
+                <Badge className="h-4 py-2 px-1 hover:bg-gray-2 font-normal">
                   {isPublished ? "Public" : "Draft"}
                 </Badge>
               </Link>

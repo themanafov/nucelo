@@ -8,20 +8,19 @@ export default async function SiteHeader() {
       <div className="flex  items-center gap-2">
         <Icons.logo size={30} />
       </div>
-      <nav className="flex items-center gap-4 ">
+      <nav className="flex items-center gap-2 ">
         <NavButton
-          variant="text"
+          href={siteConfig.links.github}
+          aria-label="Github"
+          target="_blank"
+          icon="github"
+          size="icon"
+        />
+        <NavButton
           href={siteConfig.links.login}
           aria-label="Sign in Nucelo"
         >
           Log in
-        </NavButton>
-        <NavButton
-          href={siteConfig.links.signup}
-          aria-label="Sign up Nucelo"
-          size="sm"
-        >
-          Start writing
         </NavButton>
       </nav>
     </header>

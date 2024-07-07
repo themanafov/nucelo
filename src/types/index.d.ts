@@ -1,12 +1,15 @@
 import { Icons } from "@/components/shared/icons";
 import { Bookmark, Collection } from "@prisma/client";
 
+
+export type Icon = keyof typeof Icons;
+
 export type NavItem = {
   title: string;
   href: string;
 };
 export type MainNavItem = {
-  icon: keyof typeof Icons;
+  icon: Icon;
 } & NavItem;
 
 export type PostFilter = {
@@ -43,6 +46,7 @@ export type SiteConfig = {
     app: string;
     github: string;
     help: string;
+    demo: string;
   };
 };
 
@@ -52,13 +56,13 @@ export type UserPageConfig = {
 
 export type Feature = {
   title: string;
-  icon: keyof typeof Icons;
+  icon: Icon;
   description: string;
 };
 
 export type PlanFeature = {
   name: string;
-  icon: keyof typeof Icons;
+  icon: Icon;
 };
 export type Plan = {
   title: "Free" | "Pro";
@@ -77,13 +81,19 @@ export type Plan = {
 export type Link = {
   name: string;
   href: string;
-  icon: keyof typeof Icons;
+  icon: Icon;
 };
 
+export type Preview = {
+  title: string;
+  icon?: Icon;
+  image: string;
+}
 export type MarketingConfig = {
   features: Feature[];
   plans: Plan[];
   links: Link[];
+  previews: Preview[]
 };
 
 export type UserSubscriptionPlan = Plan &
@@ -97,7 +107,7 @@ export type social = {
   platform: "Github" | "Linkedin" | "Twitter" | "Dribbble" | "Email";
   username: string | null;
   url: string;
-  icon: keyof typeof Icons;
+  icon: Icon;
 };
 
 export type Period = keyof Plan["price"];

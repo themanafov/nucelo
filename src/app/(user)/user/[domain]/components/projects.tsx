@@ -23,7 +23,7 @@ export default function Projects({ projects }: { projects: ProjectProps[] }) {
       </dt>
       <dd className="section-content">
         {projects.map((project) => (
-          <Project project={project} key={project.id} reversed />
+          <Project project={project} key={project.id} />
         ))}
       </dd>
     </dl>
