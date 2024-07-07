@@ -47,7 +47,7 @@ export default function Project({ project, admin, reversed }: Props) {
         </span>
         <div className="w-full  flex flex-1 flex-col">
           {project?.password && (
-            <Icons.locked size={15} className="max-md:mb-1" />
+            <Icons.locked size={15} className="mb-1" />
           )}
           <h3>
             <Balancer>{project.title}</Balancer>
