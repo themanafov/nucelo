@@ -45,38 +45,41 @@ export default function Project({ project, admin, reversed }: Props) {
         >
           {project.year}
         </span>
-        <div className="w-full  flex flex-1 flex-col">
-          {project?.password && (
-            <Icons.locked size={15} className="mb-1" />
-          )}
+        <div className="w-full  flex flex-1  flex-col">
           <h3>
             <Balancer>{project.title}</Balancer>
           </h3>
-
           <p className="text-gray-4 text-xs">{project?.description}</p>
         </div>
       </div>
 
-      {admin && (
-        <div className="max-md:w-full max-md:mt-2 flex items-center justify-end z-10">
-          <div className="flex items-center gap-1">
-            <Link
-              href={`/projects?published=${isPublished ? "true" : "false"}`}
-            >
-              <Badge className="h-4 py-2 px-1 hover:bg-gray-2 font-normal ">
-                {isPublished ? "Public" : "Draft"}
-              </Badge>
-            </Link>
+      <div className="max-md:w-full max-md:mt-2 flex items-center justify-end z-10">
+        <div className="flex items-center gap-1 font-normal">
+          {project?.password && (
+            <Badge className="h-4 py-2 px-1 hover:bg-gray-2 flex items-center gap-1 cursor-default">
+              <Icons.locked size={14} /> Locked
+            </Badge>
+          )}
+          {admin && (
+            <>
+              <Link
+                href={`/projects?published=${isPublished ? "true" : "false"}`}
+              >
+                <Badge className="h-4 py-2 px-1 hover:bg-gray-2">
+                  {isPublished ? "Public" : "Draft"}
+                </Badge>
+              </Link>
 
-            <AnalyticsBadge
-              href={`/projects/${project.id}/analytics`}
-              value={project.views}
-              published={project.published}
-              index="views"
-            />
-          </div>
+              <AnalyticsBadge
+                href={`/projects/${project.id}/analytics`}
+                value={project.views}
+                published={project.published}
+                index="views"
+              />
+            </>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
