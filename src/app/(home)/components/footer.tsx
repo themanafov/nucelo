@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 
 export default function Footer() {
   return (
-    <footer className="flex items-center justify-between py-4 pt-32">
+    <footer className="flex items-center justify-between py-4 pt-32 max-md:flex-col max-md:gap-3">
       <div className="text-xs text-gray-4">
         © 2024 nucelo.com. All rights reserved.
       </div>
