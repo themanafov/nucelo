@@ -41,6 +41,7 @@ export default function Privacy() {
           </div>
         </section>
       </div>
+      <p className="text-gray-4 mt-2 text-sm">Last updated: {siteConfig.privacy.lastUpdated}</p>
     </div>
   );
 }
