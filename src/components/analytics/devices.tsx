@@ -33,7 +33,7 @@ export default function Devices() {
       activeTab={tab}
     >
       <BarList
-        title="Devices"
+        title={tab}
         data={data?.map((d) => {
           return {
             name: d.device || d.os || d.browser,

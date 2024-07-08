@@ -22,7 +22,7 @@ export default function Favicon({
         <Icons.globe
           width={size}
           height={size}
-          className="text-gray-1 relative flex"
+          className="text-gray-1 relative flex z-10"
         />
       </div>
     );
@@ -35,6 +35,7 @@ export default function Favicon({
           : `https://icon.horse/icon/${getDomainFromURL(url)}`
       }
       alt={alt || "icon"}
+      className="z-10"
       width={size}
       height={size}
       onError={() => setErr(true)}

@@ -37,7 +37,7 @@ export default function ViewAllBarlist({
         </DialogHeader>
         <div className="flex flex-col gap-2  max-h-[600px] overflow-y-auto no-scrollbar">
           {data?.map((item) => (
-            <BarListItem item={item} key={item.name} total={data[0].value} />
+            <BarListItem className="hover:bg-gray-2" item={item} key={item.name} total={data[0].value} />
           ))}
         </div>
       </DialogContent>
