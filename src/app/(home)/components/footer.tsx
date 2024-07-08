@@ -2,12 +2,22 @@ import NavButton from "@/components/layout/nav-button";
 import ThemeToggle from "@/components/layout/theme-toggle";
 import { marketingConfig } from "@/config/marketing";
 import { siteConfig } from "@/config/site";
+import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer className="flex items-center justify-between py-4 pt-32 max-md:flex-col max-md:gap-3">
-      <div className="text-xs text-gray-4">
-        © 2024 nucelo.com. All rights reserved.
+      <div className="text-xs text-gray-4 flex gap-2">
+        <p>© 2024 nucelo.com.</p>
+        <span>|</span>
+        <div>
+          <Link
+            href="/privacy"
+            className="text-gray-4 hover:text-secondary transition-colors"
+          >
+            Privacy
+          </Link>
+        </div>
       </div>
       <div className="flex items-center gap-2 text-gray-1">
         {marketingConfig.links.map((link) => (

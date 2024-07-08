@@ -32,6 +32,11 @@ export type NewsletterProps = {
   articleURL: string;
   subId: string;
 };
+
+export type PrivacySection = {
+  title?: string;
+  content: string
+}
 export type SiteConfig = {
   name: string;
   description: string;
@@ -48,6 +53,10 @@ export type SiteConfig = {
     help: string;
     demo: string;
   };
+  privacy: {
+    lastUpdated:  string;
+    sections: PrivacySection[]
+  }
 };
 
 export type UserPageConfig = {

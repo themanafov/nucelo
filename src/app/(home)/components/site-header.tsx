@@ -16,10 +16,7 @@ export default async function SiteHeader() {
           icon="github"
           size="icon"
         />
-        <NavButton
-          href={siteConfig.links.login}
-          aria-label="Sign in Nucelo"
-        >
+        <NavButton href={siteConfig.links.login} aria-label="Sign in Nucelo">
           Log in
         </NavButton>
       </nav>
