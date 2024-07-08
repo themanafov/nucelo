@@ -15,8 +15,8 @@ export default function Privacy() {
         <h1 className="text-xl font-medium">Privacy Policy</h1>
       </div>
       <div className="flex flex-col gap-2">
-        {siteConfig.privacy.sections.map((s) => (
-          <section className="section-container" key={s.title}>
+        {siteConfig.privacy.sections.map((s, i) => (
+          <section className="section-container" key={i}>
             {s.title && (
               <h3 className="section-title text-lg font-medium">{s.title}</h3>
             )}
