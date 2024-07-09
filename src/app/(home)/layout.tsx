@@ -1,3 +1,4 @@
+import ProductHunt from "@/components/shared/product-hunt";
 import Footer from "./components/footer";
 import SiteHeader from "./components/site-header";
 
@@ -13,6 +14,7 @@ export default async function MarketingPageLayout({
       <SiteHeader />
       <main className="pb-10">{children}</main>
       <Footer />
+      <ProductHunt />
     </div>
   );
 }
