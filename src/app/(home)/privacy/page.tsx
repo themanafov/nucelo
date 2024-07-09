@@ -1,6 +1,12 @@
 import NavButton from "@/components/layout/nav-button";
 import { siteConfig } from "@/config/site";
+import { generateSEO } from "@/lib/utils";
 import Link from "next/link";
+
+export const metadata = generateSEO({
+  title: 'Privacy',
+});
+
 
 export default function Privacy() {
   return (
