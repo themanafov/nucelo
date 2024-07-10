@@ -41,7 +41,7 @@ export async function generateMetadata({
     image:
       article.ogImage ||
       `https://nucelo.com/api/og/post?title=${article.title}&username=${user.username || user.name}`,
-    canonical: article.canonicalLink || undefined,
+    canonicalURL: article.canonicalURL || undefined,
     url: user.domain ? `https://${user.domain}${path}` : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}${path}`,
   });
 }

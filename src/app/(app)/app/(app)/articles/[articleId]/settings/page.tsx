@@ -97,14 +97,13 @@ export default async function ArticleSettings({
           folder="og-images"
         />
         <Form
-          title="Canonical link"
-          description="When articles are published on multiple websites, canonical links help search engines prioritize the original source; you can set the canonical link here if your article was first published elsewhere."
-          helpText="Paste the URL to the original story."
+          title="Canonical URL"
+          description="Set the canonical URL here if your article was first published elsewhere."
           endpoint={endpoint}
           inputData={{
-            name: "canonicalLink",
-            placeholder: "Type the canonical URL...",
-            defaultValue: article.canonicalLink || "",
+            name: "canonicalURL",
+            placeholder: "https://example.com/post-title",
+            defaultValue: article.canonicalURL || "",
           }}
           required={false}
         />
