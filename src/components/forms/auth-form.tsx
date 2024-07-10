@@ -71,18 +71,18 @@ export default function AuthForm() {
       <div>
         <Button
           size="wide"
-          disabled
+          disabled={!!isLoading}
           onClick={() => {
-            setIsLoading("google");
-            signIn("google");
+            setIsLoading("github");
+            signIn("github");
           }}
         >
-          {isLoading === "google" ? (
+          {isLoading === "github" ? (
             <Icons.spinner size={18} className="animate-spin" />
           ) : (
-            <Icons.google />
+            <Icons.github size={18} />
           )}
-          Continue with Google
+          Continue with Github
         </Button>
       </div>
     </div>
