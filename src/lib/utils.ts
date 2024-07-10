@@ -224,7 +224,7 @@ export function generateSEO({
     ),
     ...(canonical && {
       alternates: {
-        canonical: "./",
+        canonical: url,
       },
     }),
     ...(noIndex && {

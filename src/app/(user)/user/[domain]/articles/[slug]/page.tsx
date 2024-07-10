@@ -34,12 +34,15 @@ export async function generateMetadata({
     return notFound();
   }
 
+  const path = `/articles/${article.slug}`
   return generateSEO({
     title: article.title,
     description: article.seoDescription || undefined,
     image:
       article.ogImage ||
       `https://nucelo.com/api/og/post?title=${article.title}&username=${user.username || user.name}`,
+    url: user.domain ? `https://${user.domain}${path}` : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}${path}`,
+    canonical: true,
   });
 }
 
