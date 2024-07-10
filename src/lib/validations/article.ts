@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { URLRegex } from "../constants";
 
 export const articleCreateSchema = z.object({
   title: z.string().min(1),
@@ -14,4 +15,5 @@ export const articlePatchSchema = z.object({
   ogImage: z.string().url().nullable().optional(),
   published: z.boolean().optional(),
   publishedAt: z.string().date().optional(),
+  canonicalLink: z.string().url().nullable().optional(),
 });

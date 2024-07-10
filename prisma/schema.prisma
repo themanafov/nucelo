@@ -124,7 +124,7 @@ model Article {
   publishedAt    DateTime @default(now())
   authorId       String
   author         User     @relation(fields: [authorId], references: [id])
-
+  canonicalLink String?
 
   @@unique([authorId, slug])
   @@map(name: "articles")

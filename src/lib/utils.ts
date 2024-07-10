@@ -170,7 +170,7 @@ export function generateSEO({
   url = siteConfig.url,
   template,
   noIndex = false,
-  canonical = false,
+  canonical,
 }: {
   title?: string;
   template?: string | null;
@@ -181,7 +181,7 @@ export function generateSEO({
   icons?: Metadata["icons"];
   url?: string;
   noIndex?: boolean;
-  canonical?: boolean;
+  canonical?: string;
 } = {}): Metadata {
   return {
     ...(template
@@ -222,11 +222,9 @@ export function generateSEO({
     metadataBase: url ? new URL(url) : new URL(
       `https://${process.env.NEXT_PUBLIC_APP_DOMAIN as string}`,
     ),
-    ...(canonical && {
-      alternates: {
-        canonical: url,
-      },
-    }),
+    alternates: {
+      canonical: canonical || url,
+    },
     ...(noIndex && {
       robots: {
         index: false,
