@@ -68,7 +68,21 @@ export default function AuthForm() {
         <div className="absolute w-full block border-t border-gray-2" />
         <span className="bg-primary z-10 px-2 text-xs text-gray-4">OR</span>
       </div>
-      <div>
+      <div className="flex gap-2">
+      <Button
+          size="wide"
+          disabled={!!isLoading}
+          onClick={() => {
+            setIsLoading("google");
+            signIn("google");
+          }}
+        >
+          {isLoading === "google" ? (
+            <Icons.spinner size={18} className="animate-spin" />
+          ) : (
+            <Icons.google size={18} />
+          )}
+        </Button>
         <Button
           size="wide"
           disabled={!!isLoading}
@@ -82,7 +96,6 @@ export default function AuthForm() {
           ) : (
             <Icons.github size={18} />
           )}
-          Continue with Github
         </Button>
       </div>
     </div>
