@@ -76,42 +76,49 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   if (!project) {
     return notFound();
   }
+  const Content = (
+    <AppShell>
+    <NavButton
+      variant="text"
+      className="flex-row-reverse"
+      href="/projects"
+      icon="arrowLeft"
+      aria-label="Back to Projects"
+    >
+      Back to Projects
+    </NavButton>
+    <AppHeader
+      title={project.title}
+      className="flex-row items-center justify-normal gap-1"
+    >
+      {project.url && (
+        <Link
+          href={project.url}
+          className="text-gray-4 hover:text-secondary transition-colors"
+          target="_blank"
+          aria-label={`Go to ${project.title}`}
+        >
+          <Icons.arrowUpRight size={18} />
+        </Link>
+      )}
+    </AppHeader>
+    <div className="w-full flex-1 text-sm text-gray-4 flex items-center justify-between mb-4">
+      <p>{project.description}</p>
+      <Badge className="text-secondary bg-inherit font-medium ">
+        {project.year}
+      </Badge>
+    </div>
+    <MDX source={project.content} />
+  </AppShell>
+  )
 
-  return (
+  if(project.password) {
+    return (
     <Protection project={project} user={user}>
-      <AppShell>
-        <NavButton
-          variant="text"
-          className="flex-row-reverse"
-          href="/projects"
-          icon="arrowLeft"
-          aria-label="Back to Projects"
-        >
-          Back to Projects
-        </NavButton>
-        <AppHeader
-          title={project.title}
-          className="flex-row items-center justify-normal gap-1"
-        >
-          {project.url && (
-            <Link
-              href={project.url}
-              className="text-gray-4 hover:text-secondary transition-colors"
-              target="_blank"
-              aria-label={`Go to ${project.title}`}
-            >
-              <Icons.arrowUpRight size={18} />
-            </Link>
-          )}
-        </AppHeader>
-        <div className="w-full flex-1 text-sm text-gray-4 flex items-center justify-between mb-4">
-          <p>{project.description}</p>
-          <Badge className="text-secondary bg-inherit font-medium ">
-            {project.year}
-          </Badge>
-        </div>
-        <MDX source={project.content} />
-      </AppShell>
+      {Content}
     </Protection>
-  );
+    )
+  }
+
+  return Content
 }

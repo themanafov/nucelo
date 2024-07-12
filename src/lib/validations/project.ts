@@ -25,5 +25,5 @@ export const projectPatchSchema = z.object({
   url: z.string().url().optional(),
   ogImage: z.string().url().nullable().optional(),
   published: z.boolean().optional(),
-  password: z.string().optional(),
+  password: z.string().nullable().optional(),
 });
