@@ -19,10 +19,10 @@ export const projectPatchSchema = z.object({
     .min(2000)
     .max(new Date().getFullYear() + 20)
     .optional(),
-  description: z.string().max(60).optional(),
-  seoTitle: z.string().max(60).optional(),
-  seoDescription: z.string().max(160).optional(),
-  url: z.string().url().optional(),
+  description: z.string().max(60).nullable().optional(),
+  seoTitle: z.string().max(60).nullable().optional(),
+  seoDescription: z.string().max(160).nullable().optional(),
+  url: z.string().url().nullable().optional(),
   ogImage: z.string().url().nullable().optional(),
   published: z.boolean().optional(),
   password: z.string().nullable().optional(),
