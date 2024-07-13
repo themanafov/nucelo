@@ -75,11 +75,14 @@ export default function UploadAvatar({ defaultValue, name }: Props) {
           onChange={onChange}
         />
         <Avatar
-          className="min-md:self-end flex  size-28 cursor-pointer items-center justify-center rounded-full border border-gray-3 "
+          className="relative min-md:self-end flex group size-28 cursor-pointer items-center justify-center rounded-full border border-gray-3 "
           onClick={() => inputRef.current?.click()}
         >
           <AvatarImage src={defaultValue} alt={`${name} Profile Picture`} />
           <AvatarFallback>{name && getInitials(name)}</AvatarFallback>
+          <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity bg-gray-2 backdrop-blur-xl   p-2 rounded-full">
+            <Icons.upload size={20} />
+          </div>
         </Avatar>
       </div>
       <footer className="flex h-auto flex-row items-center justify-between border-t border-gray-2 bg-gray-3 px-4 py-2">
