@@ -52,7 +52,6 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
             icon="arrowUpRight"
           />
         )}
-
         <span className="flex h-4.5 w-max flex-row items-center gap-1 self-end rounded-md text-xs text-gray-4">
           {saving ? (
             <>
@@ -62,7 +61,6 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
             <>Saved</>
           )}
         </span>
-
         <PublishButton
           post={post}
           type={type}

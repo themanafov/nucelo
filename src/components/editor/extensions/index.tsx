@@ -31,13 +31,13 @@ export const TiptapExtensions = [
     bulletList: {
       HTMLAttributes: {
         class:
-          "list-disc list-outside leading-3 -mt-2 text-secondary marker:text-gray-1",
+          "list-disc list-outside leading-3 mt-4 mb-4.4  [&_li]:leading-6 [&_li]:mt-2 text-secondary marker:text-gray-1",
       },
     },
     orderedList: {
       HTMLAttributes: {
         class:
-          "list-decimal list-outside leading-3 -mt-2 text-secondary marker:text-gray-1",
+          "list-decimal list-outside leading-3 mt-4 mb-4.4 [&_li]:leading-6 [&_li]:mt-2 text-secondary marker:text-gray-1",
       },
     },
     listItem: {
@@ -47,7 +47,7 @@ export const TiptapExtensions = [
     },
     blockquote: {
       HTMLAttributes: {
-        class: " border-l-4 border-gray-2 italic",
+        class: " border-l-4 border-gray-2 italic font-medium",
       },
     },
     codeBlock: {
