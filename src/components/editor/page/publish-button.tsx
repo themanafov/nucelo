@@ -117,7 +117,6 @@ export default function PublishButton({
                       </>
                     )}
                   </Button>
-                  ``
                 </TooltipTrigger>
                 {!post.published && (
                   <TooltipContent>
