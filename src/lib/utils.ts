@@ -7,6 +7,8 @@ import { NextRequest } from "next/server";
 import { twMerge } from "tailwind-merge";
 import { PropertyProps } from "./analytics";
 import { URLRegex, analyticsEndpoint } from "./constants";
+import slug from 'slugify'
+
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -119,6 +121,17 @@ export function getEndpoint(
   }
 
   return analyticsEndpoint[source].primary;
+}
+
+export function slugify(title?: string) {
+  if(title) {
+    return slug(title, {
+      strict: true,
+      lower: true,
+    })
+  }
+
+  return undefined
 }
 
 export function generateSEO({

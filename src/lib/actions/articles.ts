@@ -6,7 +6,7 @@ import * as z from "zod";
 import { db } from "../db";
 import { getSubscribersByUserId } from "../fetchers/subscribers";
 import { resend } from "../resend";
-import { formatDate } from "../utils";
+import { formatDate, slugify } from "../utils";
 import {
   articleCreateSchema,
   articlePatchSchema,
@@ -38,10 +38,11 @@ export async function updateArticle(
       authorId: user.id,
     },
     data: {
-      ...data,
+      slug: data.slug || slugify(data.title),
       publishedAt: data.publishedAt
-        ? new Date(data.publishedAt).toISOString()
-        : undefined,
+      ? new Date(data.publishedAt).toISOString()
+      : undefined,
+      ...data,
     },
   });
 }
