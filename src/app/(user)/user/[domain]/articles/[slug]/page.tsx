@@ -84,7 +84,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       </NavButton>
       <AppHeader
         title={article?.title as string}
-        className="gap-2 [&_.title]:text-xl flex-col items-start mb-4"
+        className="gap-2 flex-col items-start mb-4"
       >
         <div className="w-full flex flex-row justify-between items-center gap-2 text-sm text-gray-4">
           <span>
