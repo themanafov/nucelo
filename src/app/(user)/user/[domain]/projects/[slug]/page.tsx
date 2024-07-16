@@ -78,15 +78,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
   const Content = (
     <AppShell>
-    <NavButton
-      variant="text"
-      className="flex-row-reverse"
-      href="/projects"
-      icon="arrowLeft"
-      aria-label="Back to Projects"
-    >
-      Back to Projects
-    </NavButton>
+      <GoBack />
     <AppHeader
       title={project.title}
       className="flex-row items-center justify-normal gap-1"
@@ -109,6 +101,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </Badge>
     </div>
     <MDX source={project.content} />
+    <div className="mt-5 max-md:hidden">
+      <GoBack />
+    </div>
   </AppShell>
   )
 
@@ -121,4 +116,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return Content
+}
+
+
+
+function GoBack() {
+  return (
+    <NavButton
+      variant="text"
+      className="flex-row-reverse"
+      href="/projects"
+      icon="arrowLeft"
+      aria-label="Back to Projects"
+    >
+      Back to Projects
+    </NavButton>
+  )
 }

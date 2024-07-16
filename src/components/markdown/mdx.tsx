@@ -23,7 +23,7 @@ const mdxComponents: MDXComponents = {
         width={0}
         height={0}
         sizes="100vw"
-        className="w-max max-md:w-full"
+        className="w-full h-auto"
         priority
       />
     );

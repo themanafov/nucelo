@@ -73,15 +73,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
   return (
     <AppShell>
-      <NavButton
-        variant="text"
-        className="flex-row-reverse"
-        href="/articles"
-        icon="arrowLeft"
-        aria-label="Back to Articles"
-      >
-        Back to Articles
-      </NavButton>
+      <GoBack />
       <AppHeader
         title={article?.title as string}
         className="gap-2 flex-col items-start mb-4"
@@ -98,6 +90,24 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </AppHeader>
       <MDX source={article.content} />
+      <div className="mt-5 max-md:hidden">
+        <GoBack />
+      </div>
     </AppShell>
   );
+}
+
+
+function GoBack() {
+  return (
+    <NavButton
+      variant="text"
+      className="flex-row-reverse"
+      href="/articles"
+      icon="arrowLeft"
+      aria-label="Back to Articles"
+    >
+      Back to Articles
+    </NavButton>
+  )
 }
