@@ -35,18 +35,16 @@ export async function generateMetadata({
   if (!project) {
     return notFound();
   }
-  if (project.password) {
-    return {
-      title: project.title,
-    };
-  }
+
   const path = `/projects/${project.slug}`
   return generateSEO({
     title: project.title,
-    description: project.seoDescription || project.description || undefined,
+    ...(!project.password && {
+      description: project.seoDescription || project.description || undefined,
+    }),
     image:
       project.ogImage ||
-      `https://nucelo.com/api/og/post?title=${project.title}&username=${user.username || user.name}`,
+      `https://nucelo.com/api/og/post?title=${project.title}&username=${user.username || user.name}${project.password ? '&locked=true' : ""}`,
     url: user.domain ? `https://${user.domain}${path}` : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}${path}`,
   });
 }
