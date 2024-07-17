@@ -1,11 +1,11 @@
+import { generateSEO } from "@/lib/utils";
 import Footer from "./components/footer";
 import SiteHeader from "./components/site-header";
-import { generateSEO } from "@/lib/utils";
 
 export const dynamic = "force-static";
 
 export const metadata = generateSEO({
-  template: "Nucelo"
+  template: "Nucelo",
 });
 
 export default async function MarketingPageLayout({

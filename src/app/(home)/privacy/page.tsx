@@ -4,9 +4,8 @@ import { generateSEO } from "@/lib/utils";
 import Link from "next/link";
 
 export const metadata = generateSEO({
-  title: 'Privacy',
+  title: "Privacy",
 });
-
 
 export default function Privacy() {
   return (
@@ -47,7 +46,9 @@ export default function Privacy() {
           </div>
         </section>
       </div>
-      <p className="text-gray-4 mt-2 text-sm">Last updated: {siteConfig.privacy.lastUpdated}</p>
+      <p className="text-gray-4 mt-2 text-sm">
+        Last updated: {siteConfig.privacy.lastUpdated}
+      </p>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { formatDate, generateSEO } from "@/lib/utils";
 import moment from "moment";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import readingTime from 'reading-time'
+import readingTime from "reading-time";
 export const revalidate = 60;
 
 interface ArticlePageProps {
@@ -33,8 +33,8 @@ export async function generateMetadata({
   if (!article) {
     return notFound();
   }
-  
-  const path = `/articles/${article.slug}`
+
+  const path = `/articles/${article.slug}`;
   return generateSEO({
     title: article.title,
     description: article.seoDescription || undefined,
@@ -42,7 +42,9 @@ export async function generateMetadata({
       article.ogImage ||
       `https://nucelo.com/api/og/post?title=${article.title}&username=${user.username || user.name}`,
     canonicalURL: article.canonicalURL || undefined,
-    url: user.domain ? `https://${user.domain}${path}` : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}${path}`,
+    url: user.domain
+      ? `https://${user.domain}${path}`
+      : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}${path}`,
   });
 }
 
@@ -97,7 +99,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   );
 }
 
-
 function GoBack() {
   return (
     <NavButton
@@ -109,5 +110,5 @@ function GoBack() {
     >
       Back to Articles
     </NavButton>
-  )
+  );
 }

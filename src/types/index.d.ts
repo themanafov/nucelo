@@ -1,7 +1,6 @@
 import { Icons } from "@/components/shared/icons";
 import { Bookmark, Collection } from "@prisma/client";
 
-
 export type Icon = keyof typeof Icons;
 
 export type NavItem = {
@@ -35,8 +34,8 @@ export type NewsletterProps = {
 
 export type PrivacySection = {
   title?: string;
-  content: string
-}
+  content: string;
+};
 export type SiteConfig = {
   name: string;
   description: string;
@@ -54,9 +53,9 @@ export type SiteConfig = {
     demo: string;
   };
   privacy: {
-    lastUpdated:  string;
-    sections: PrivacySection[]
-  }
+    lastUpdated: string;
+    sections: PrivacySection[];
+  };
 };
 
 export type UserPageConfig = {
@@ -97,12 +96,12 @@ export type Preview = {
   title: string;
   icon?: Icon;
   image: string;
-}
+};
 export type MarketingConfig = {
   features: Feature[];
   plans: Plan[];
   links: Link[];
-  previews: Preview[]
+  previews: Preview[];
 };
 
 export type UserSubscriptionPlan = Plan &

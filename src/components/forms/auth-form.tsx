@@ -69,7 +69,7 @@ export default function AuthForm() {
         <span className="bg-primary z-10 px-2 text-xs text-gray-4">OR</span>
       </div>
       <div className="flex gap-2">
-      <Button
+        <Button
           size="wide"
           disabled={!!isLoading}
           onClick={() => {

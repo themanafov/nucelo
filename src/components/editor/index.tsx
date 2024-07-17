@@ -2,6 +2,7 @@
 
 import "@/styles/editor.css";
 import { EditorContent, useEditor } from "@tiptap/react";
+import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { useDebouncedCallback } from "use-debounce";
@@ -9,7 +10,6 @@ import { toast } from "../ui/use-toast";
 import BubbleMenu from "./components/bubble-menu";
 import { TiptapExtensions } from "./extensions";
 import { handleImagePaste } from "./extensions/upload-image";
-import { useRouter } from "next/navigation";
 interface Props {
   endpoint: string;
   method: "PUT" | "PATCH";
@@ -35,7 +35,7 @@ export default function Editor({
       debouncedUpdates({ editor: e.editor });
     },
   });
-  const router = useRouter()
+  const router = useRouter();
   const debouncedUpdates = useDebouncedCallback(
     async ({ editor, title }: { editor: any; title?: string }) => {
       setSaving(true);
@@ -55,7 +55,7 @@ export default function Editor({
           description: err,
         });
       }
-      router.refresh()
+      router.refresh();
       setTimeout(() => {
         setSaving(false);
       }, 700);

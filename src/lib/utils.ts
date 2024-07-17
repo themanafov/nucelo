@@ -4,11 +4,10 @@ import { Article, Project } from "@prisma/client";
 import clsx, { ClassValue } from "clsx";
 import { Metadata } from "next";
 import { NextRequest } from "next/server";
+import slug from "slugify";
 import { twMerge } from "tailwind-merge";
 import { PropertyProps } from "./analytics";
 import { URLRegex, analyticsEndpoint } from "./constants";
-import slug from 'slugify'
-
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -124,14 +123,14 @@ export function getEndpoint(
 }
 
 export function slugify(title?: string) {
-  if(title) {
+  if (title) {
     return slug(title, {
       strict: true,
       lower: true,
-    })
+    });
   }
 
-  return undefined
+  return undefined;
 }
 
 export function generateSEO({
@@ -232,9 +231,9 @@ export function generateSEO({
       ],
     },
     icons,
-    metadataBase: url ? new URL(url) : new URL(
-      `https://${process.env.NEXT_PUBLIC_APP_DOMAIN as string}`,
-    ),
+    metadataBase: url
+      ? new URL(url)
+      : new URL(`https://${process.env.NEXT_PUBLIC_APP_DOMAIN as string}`),
     alternates: {
       canonical: canonicalURL || url,
     },

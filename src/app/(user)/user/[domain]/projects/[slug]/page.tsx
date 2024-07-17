@@ -36,7 +36,7 @@ export async function generateMetadata({
     return notFound();
   }
 
-  const path = `/projects/${project.slug}`
+  const path = `/projects/${project.slug}`;
   return generateSEO({
     title: project.title,
     ...(!project.password && {
@@ -44,8 +44,10 @@ export async function generateMetadata({
     }),
     image:
       project.ogImage ||
-      `https://nucelo.com/api/og/post?title=${project.title}&username=${user.username || user.name}${project.password ? '&locked=true' : ""}`,
-    url: user.domain ? `https://${user.domain}${path}` : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}${path}`,
+      `https://nucelo.com/api/og/post?title=${project.title}&username=${user.username || user.name}${project.password ? "&locked=true" : ""}`,
+    url: user.domain
+      ? `https://${user.domain}${path}`
+      : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}${path}`,
   });
 }
 
@@ -77,46 +79,44 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const Content = (
     <AppShell>
       <GoBack />
-    <AppHeader
-      title={project.title}
-      className="flex-row items-center justify-normal gap-1"
-    >
-      {project.url && (
-        <Link
-          href={project.url}
-          className="text-gray-4 hover:text-secondary transition-colors"
-          target="_blank"
-          aria-label={`Go to ${project.title}`}
-        >
-          <Icons.arrowUpRight size={18} />
-        </Link>
-      )}
-    </AppHeader>
-    <div className="w-full flex-1 text-sm text-gray-4 flex items-center justify-between mb-4">
-      <p>{project.description}</p>
-      <Badge className="text-secondary bg-inherit font-medium ">
-        {project.year}
-      </Badge>
-    </div>
-    <MDX source={project.content} />
-    <div className="mt-5 max-md:hidden">
-      <GoBack />
-    </div>
-  </AppShell>
-  )
+      <AppHeader
+        title={project.title}
+        className="flex-row items-center justify-normal gap-1"
+      >
+        {project.url && (
+          <Link
+            href={project.url}
+            className="text-gray-4 hover:text-secondary transition-colors"
+            target="_blank"
+            aria-label={`Go to ${project.title}`}
+          >
+            <Icons.arrowUpRight size={18} />
+          </Link>
+        )}
+      </AppHeader>
+      <div className="w-full flex-1 text-sm text-gray-4 flex items-center justify-between mb-4">
+        <p>{project.description}</p>
+        <Badge className="text-secondary bg-inherit font-medium ">
+          {project.year}
+        </Badge>
+      </div>
+      <MDX source={project.content} />
+      <div className="mt-5 max-md:hidden">
+        <GoBack />
+      </div>
+    </AppShell>
+  );
 
-  if(project.password) {
+  if (project.password) {
     return (
-    <Protection project={project} user={user}>
-      {Content}
-    </Protection>
-    )
+      <Protection project={project} user={user}>
+        {Content}
+      </Protection>
+    );
   }
 
-  return Content
+  return Content;
 }
-
-
 
 function GoBack() {
   return (
@@ -129,5 +129,5 @@ function GoBack() {
     >
       Back to Projects
     </NavButton>
-  )
+  );
 }

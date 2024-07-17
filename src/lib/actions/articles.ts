@@ -40,8 +40,8 @@ export async function updateArticle(
     data: {
       slug: data.slug || slugify(data.title),
       publishedAt: data.publishedAt
-      ? new Date(data.publishedAt).toISOString()
-      : undefined,
+        ? new Date(data.publishedAt).toISOString()
+        : undefined,
       ...data,
     },
   });

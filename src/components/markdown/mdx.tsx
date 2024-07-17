@@ -37,11 +37,9 @@ const mdxComponents: MDXComponents = {
   },
 };
 
-const ErrorComponent = ({error}: {error: Error}) => {
-  return (
-    <MDX source={error.message} />  
-  )
-}
+const ErrorComponent = ({ error }: { error: Error }) => {
+  return <MDX source={error.message} />;
+};
 
 export default async function MDX({
   source,

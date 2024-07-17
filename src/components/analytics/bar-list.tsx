@@ -54,13 +54,24 @@ export default function BarList({ data, title, loading }: Props) {
   );
 }
 
-export const BarListItem = ({ item, total, className }: { item: Bar; total: number; className?: string }) => {
+export const BarListItem = ({
+  item,
+  total,
+  className,
+}: {
+  item: Bar;
+  total: number;
+  className?: string;
+}) => {
   return (
     <Comp
       as={item.href ? "Link" : "div"}
       href={item.href}
       target="_blank"
-      className={cn("relative flex min-h-[30px] h-4.5 w-full  items-center justify-between overflow-hidden rounded-md  px-2 py-1 transition-colors hover:bg-gray-3", className)}
+      className={cn(
+        "relative flex min-h-[30px] h-4.5 w-full  items-center justify-between overflow-hidden rounded-md  px-2 py-1 transition-colors hover:bg-gray-3",
+        className,
+      )}
     >
       <div className="flex flex-1 items-center gap-2">
         <span

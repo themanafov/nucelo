@@ -68,7 +68,11 @@ export default function Form({
         },
         body: JSON.stringify({
           [(textareaData?.name || inputData?.name) as string]:
-            inputData?.type === "number" ? Number(value) : value.toString().trim().length ? value : null,
+            inputData?.type === "number"
+              ? Number(value)
+              : value.toString().trim().length
+                ? value
+                : null,
         }),
       });
       if (!res.ok) {
