@@ -143,13 +143,14 @@ export default function AppCommand({ user }: { user: User }) {
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         {groups.map(({ heading, items, icon }) => (
-          <CommandGroup heading={heading}>
-            {items.map(({ command, children, className }) => {
+          <CommandGroup heading={heading} key={heading}>
+            {items.map(({ command, children, className }, i) => {
               const Icon = icon ? Icons[icon] : () => null;
               return (
                 <CommandItem
                   onSelect={() => runCommand(command)}
                   className={className}
+                  key={i}
                 >
                   {icon && <Icon size={18} />} {children}
                 </CommandItem>
