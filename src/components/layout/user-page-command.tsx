@@ -51,6 +51,7 @@ export default function UserPageCommand({ user }: { user: User }) {
     },
     [setOpen],
   );
+  const ThemeIcon = Icons[theme === "dark" ? "sun" : "moon"];
 
   return (
     <ClientOnly>
@@ -102,7 +103,8 @@ export default function UserPageCommand({ user }: { user: User }) {
                 runCommand(() => setTheme(theme === "dark" ? "light" : "dark"))
               }
             >
-              <Icons.sun size={18} /> Change Theme
+              <ThemeIcon size={18} /> Switch to{" "}
+              {theme === "dark" ? "light" : "dark"}
             </CommandItem>
           </CommandGroup>
         </CommandList>
