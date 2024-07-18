@@ -1,6 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/config/site";
+import useAppCommand from "@/hooks/use-app-command";
 import { getInitials } from "@/lib/utils";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
@@ -22,6 +23,7 @@ interface Props {
 }
 
 export default function UserNav({ user, segment }: Props) {
+  const setOpen = useAppCommand((state) => state.setOpen);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -50,6 +52,9 @@ export default function UserNav({ user, segment }: Props) {
           >
             <Icons.arrowUpRight size={15} /> Your page
           </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setOpen(true)}>
+          <Icons.command size={15} /> Command menu
         </DropdownMenuItem>
         <ThemeToggle />
 

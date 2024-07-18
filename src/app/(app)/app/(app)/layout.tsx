@@ -1,3 +1,4 @@
+import AppCommand from "@/components/layout/app-command";
 import AppNav from "@/components/layout/app-nav";
 import { appConfig } from "@/config/app";
 import { getUser } from "@/lib/fetchers/users";
@@ -25,6 +26,7 @@ export default async function AppLayout({
         <AppNav links={appConfig.mainNav} user={user} />
       </header>
       <main className="w-full">{children}</main>
+      <AppCommand user={user} />
     </div>
   );
 }
