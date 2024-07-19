@@ -11,23 +11,8 @@ export default function NewArticle() {
   const router = useRouter();
   async function onClick() {
     startTransition(async () => {
-      const res = await fetch("/api/articles", {
-        method: "POST",
-        body: JSON.stringify({
-          title: "Untitled article",
-          content: "My new article",
-        }),
-      });
-
-      if (!res?.ok) {
-        const body = await res.text();
-
-        toast({
-          title: "Something went wrong.",
-          description: body,
-        });
-      } else {
-        const article = await res.json();
+      const article = await createArticle();
+      if (article) {
         router.push(`/articles/${article.id}`);
         router.refresh();
       }
@@ -46,4 +31,26 @@ export default function NewArticle() {
       article
     </Button>
   );
+}
+
+export async function createArticle() {
+  const res = await fetch("/api/articles", {
+    method: "POST",
+    body: JSON.stringify({
+      title: "Untitled article",
+      content: "My new article",
+    }),
+  });
+
+  if (!res?.ok) {
+    const body = await res.text();
+
+    toast({
+      title: "Something went wrong.",
+      description: body,
+    });
+    return null;
+  } else {
+    return await res.json();
+  }
 }

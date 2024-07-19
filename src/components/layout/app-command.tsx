@@ -5,7 +5,9 @@ import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
-import { ReactNode, useCallback, useEffect } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
+import { createArticle } from "../articles/article-create-button";
+import { createProject } from "../projects/project-create-button";
 import { Icons } from "../shared/icons";
 import {
   CommandDialog,
@@ -31,7 +33,30 @@ type Item = {
 export default function AppCommand({ user }: { user: User }) {
   const { isOpen, toggle, setOpen } = useAppCommand();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<"article" | "project" | null>(
+    null,
+  );
   const { setTheme, theme } = useTheme();
+
+  const newArticle = async () => {
+    setIsLoading("article");
+    const article = await createArticle();
+    setIsLoading(null);
+    if (article) {
+      router.push(`/articles/${article.id}`);
+      router.refresh();
+    }
+  };
+
+  const newProject = async () => {
+    setIsLoading("project");
+    const project = await createProject();
+    setIsLoading(null);
+    if (project) {
+      router.push(`/projects/${project.id}`);
+      router.refresh();
+    }
+  };
 
   useEffect(() => {
     const keyDown = (e: KeyboardEvent) => {
@@ -52,16 +77,43 @@ export default function AppCommand({ user }: { user: User }) {
   }, [isOpen, setOpen, toggle]);
 
   const runCommand = useCallback(
-    (command: () => unknown) => {
-      command();
+    async (command: () => Promise<unknown> | unknown) => {
+      await command();
       setOpen(false);
     },
     [setOpen],
   );
 
   const ThemeIcon = Icons[theme === "dark" ? "sun" : "moon"];
+  const PlusIcon = ({ type }: { type: "article" | "project" }) =>
+    isLoading === type ? (
+      <Icons.spinner size={18} className="animate-spin text-gray-4" />
+    ) : (
+      <Icons.plus size={18} />
+    );
 
   const groups: Group[] = [
+    {
+      heading: "Quick actions",
+      items: [
+        {
+          command: newArticle,
+          children: (
+            <>
+              <PlusIcon type="article" /> New article
+            </>
+          ),
+        },
+        {
+          command: newProject,
+          children: (
+            <>
+              <PlusIcon type="project" /> New project
+            </>
+          ),
+        },
+      ],
+    },
     {
       heading: "Navigation",
       icon: "arrowRight",
