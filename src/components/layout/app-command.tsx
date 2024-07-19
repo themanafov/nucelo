@@ -85,7 +85,7 @@ export default function AppCommand({ user }: { user: User }) {
   );
 
   const ThemeIcon = Icons[theme === "dark" ? "sun" : "moon"];
-  const PlusIcon = ({ type }: { type: "article" | "project" }) =>
+  const PlusIcon = ({ type }: { type?: "article" | "project" }) =>
     isLoading === type ? (
       <Icons.spinner size={18} className="animate-spin text-gray-4" />
     ) : (
@@ -109,6 +109,30 @@ export default function AppCommand({ user }: { user: User }) {
           children: (
             <>
               <PlusIcon type="project" /> New project
+            </>
+          ),
+        },
+        {
+          command: () => router.push("/bookmarks?action=newBookmark"),
+          children: (
+            <>
+              <PlusIcon /> New bookmark
+            </>
+          ),
+        },
+        {
+          command: () => router.push("/bookmarks?action=newCollection"),
+          children: (
+            <>
+              <PlusIcon /> New collection
+            </>
+          ),
+        },
+        {
+          command: () => router.push("/bookmarks?action=manageCollections"),
+          children: (
+            <>
+              <Icons.collection size={18} /> Manage collections
             </>
           ),
         },

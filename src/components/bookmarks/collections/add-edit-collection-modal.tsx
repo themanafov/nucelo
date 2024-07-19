@@ -15,7 +15,7 @@ import { collectionSchema } from "@/lib/validations/bookmark";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Collection } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -24,15 +24,23 @@ type CollectionFormData = z.infer<typeof collectionSchema>;
 export default function AddEditCollectionModal({
   collection,
   edit,
+  open = false,
 }: {
   collection?: Collection;
   edit?: boolean;
+  open?: boolean;
 }) {
   const [showAddEditCollectionModal, setShowAddEditCollectionModal] =
-    useState<boolean>(false);
+    useState<boolean>(open);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (!showAddEditCollectionModal && open) {
+      router.push("/bookmarks");
+    }
+  }, [showAddEditCollectionModal, open]);
 
   const { title, endpoint, method, successMessage, buttonText } =
     useMemo(() => {

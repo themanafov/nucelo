@@ -5,7 +5,7 @@ import { bookmarkFormSchema } from "@/lib/validations/bookmark";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Bookmark as BookmarkType, Collection } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
 import { Icons } from "../shared/icons";
@@ -38,15 +38,24 @@ export default function AddEditBookmarkModal({
   collections,
   bookmark,
   edit,
+  open = false,
 }: {
   collections?: Collection[];
   bookmark?: Bookmark;
   edit?: boolean;
+  open?: boolean;
 }) {
   const [showAddEditBookmarkModal, setShowAddEditBookmarkModal] =
-    useState<boolean>(false);
+    useState<boolean>(open);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (!showAddEditBookmarkModal && open) {
+      router.push("/bookmarks");
+    }
+  }, [showAddEditBookmarkModal, open]);
+
   const { title, endpoint, method, successMessage } = useMemo(() => {
     if (edit && bookmark) {
       return {

@@ -10,7 +10,9 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Bookmark, Collection } from "@prisma/client";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Action } from "../add-bookmark-or-collection";
 import CollectionOperations from "./collection-operations";
 
 type CollectionWithBookmarks = Collection & {
@@ -22,8 +24,17 @@ export default function CollectionsModal({
 }: {
   collections: CollectionWithBookmarks[];
 }) {
+  const action = (useSearchParams().get("action") as Action) || "";
   const [showCollectionsModal, setShowCollectionsModal] =
-    useState<boolean>(false);
+    useState<boolean>(!!action);
+
+  useEffect(() => {
+    if (action === "manageCollections") {
+      setShowCollectionsModal(true);
+    } else {
+      setShowCollectionsModal(false);
+    }
+  }, [action]);
 
   return (
     <Dialog open={showCollectionsModal} onOpenChange={setShowCollectionsModal}>
