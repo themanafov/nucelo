@@ -17,6 +17,7 @@ import {
   CommandItem,
   CommandList,
 } from "../ui/command";
+import { appConfig } from "@/config/app";
 
 type Group = {
   heading: string;
@@ -141,24 +142,12 @@ export default function AppCommand({ user }: { user: User }) {
     {
       heading: "Navigation",
       icon: "arrowRight",
-      items: [
-        {
-          command: () => router.push("/articles"),
-          children: "Go to Articles",
-        },
-        {
-          command: () => router.push("/projects"),
-          children: "Go to Projects",
-        },
-        {
-          command: () => router.push("/bookmarks"),
-          children: "Go to Bookmarks",
-        },
-        {
-          command: () => router.push("/analytics"),
-          children: "Go to Analytics",
-        },
-      ],
+      items: appConfig.mainNav.map(l => {
+        return {
+          command: () => router.push(l.href),
+          children: `Go to ${l.title}`
+        }
+      })
     },
     {
       heading: "General",
