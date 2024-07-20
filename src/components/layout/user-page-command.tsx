@@ -73,6 +73,16 @@ export default function UserPageCommand({ user }: { user: User }) {
               );
             })}
           </CommandGroup>
+          <CommandGroup heading="General">
+            <CommandItem
+              onSelect={() =>
+                runCommand(() => setTheme(theme === "dark" ? "light" : "dark"))
+              }
+            >
+              <ThemeIcon size={18} /> Switch to{" "}
+              {theme === "dark" ? "light" : "dark"}
+            </CommandItem>
+          </CommandGroup>
           {links.some((link) => link.username) && (
             <CommandGroup heading="Connect">
               {links.map((link) => {
@@ -97,16 +107,6 @@ export default function UserPageCommand({ user }: { user: User }) {
               })}
             </CommandGroup>
           )}
-          <CommandGroup heading="General">
-            <CommandItem
-              onSelect={() =>
-                runCommand(() => setTheme(theme === "dark" ? "light" : "dark"))
-              }
-            >
-              <ThemeIcon size={18} /> Switch to{" "}
-              {theme === "dark" ? "light" : "dark"}
-            </CommandItem>
-          </CommandGroup>
         </CommandList>
       </CommandDialog>
       {pathname !== "/" && (
