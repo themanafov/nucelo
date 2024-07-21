@@ -59,7 +59,7 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
               .catch((err) =>
                 toast({ title: "Something went wrong", description: err }),
               )
-          : toast({ title: "You must publish this article to copy URL" }),
+          : toast({ title: `You must publish this ${type.slice(0, -1)} to copy URL` }),
     },
   ];
 
