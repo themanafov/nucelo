@@ -30,9 +30,6 @@ export default async function ArticleAnalytics({ params }: Props) {
     return <Upgrade className="relative py-10" />;
   }
 
-  if (!article.published && article.views === 0) {
-    redirect(`/projects/${article.id}`);
-  }
   return (
     <Suspense fallback={<AnalyticsSkeleton />}>
       <Analytics

@@ -109,20 +109,6 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
               })}
             </DropdownMenuContent>
           </DropdownMenu>
-          {/* <NavButton
-            href={`/${type}/${post.id}/settings`}
-            icon="settings"
-            size="icon"
-            aria-label={`Go to ${type.slice(0, -1)} settings`}
-          />
-          {(post.published || post.views > 0) && (
-            <NavButton
-              href={`/${type}/${post.id}/analytics`}
-              icon="areaChart"
-              size="icon"
-              aria-label={`Go to ${type.slice(0, -1)} analytics`}
-            />
-          )} */}
         </div>
         {post.published && (
           <NavButton

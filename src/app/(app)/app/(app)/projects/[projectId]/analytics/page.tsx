@@ -24,12 +24,9 @@ export default async function ProjectAnalytics({
   if (!project) {
     return notFound();
   }
+  
   if (!plan.isPro) {
     return <Upgrade className="relative py-10" />;
-  }
-
-  if (!project.published && project.views === 0) {
-    redirect(`/projects/${project.id}`);
   }
 
   return (
