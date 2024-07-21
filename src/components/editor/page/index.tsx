@@ -86,9 +86,8 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
             <DropdownMenuContent align="start" className="text-gray-4">
               {actions.map(({ title, href, icon, command }) => {
                 const Icon = Icons[icon];
-
                 return (
-                  <DropdownMenuItem className="hover:text-secondary" asChild>
+                  <DropdownMenuItem className="hover:text-secondary" key={icon} asChild>
                     {href && !command ? (
                       <Link href={href}>
                         <Icon size={16} />
