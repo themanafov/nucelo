@@ -32,9 +32,9 @@ export default function Bookmark({
       <Favicon url={bookmark.url} alt={`${bookmark.title} Favicon`} size={20} />
       <div className="flex w-full gap-2  max-md:items-start max-md:gap-1 max-md:mt-1">
         <div className="flex-1  flex items-center  gap-2 max-md:flex-col max-md:items-start max-md:gap-0">
-          <h3>
+          <h5>
             <Balancer>{bookmark.title}</Balancer>
-          </h3>
+          </h5>
           <p className="text-gray-4 text-xs">
             {getDomainFromURL(bookmark.url)}
           </p>

@@ -34,9 +34,9 @@ export default function Project({ project, admin }: Props) {
           {project.year}
         </span>
         <div className="w-full  flex flex-1  flex-col">
-          <h3>
+          <h5>
             <Balancer>{project.title}</Balancer>
-          </h3>
+          </h5>
           <p className="text-gray-4 text-xs">{project?.description}</p>
         </div>
       </div>

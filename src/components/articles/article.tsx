@@ -32,9 +32,9 @@ export default async function Article({ article, admin }: Props) {
         <span className="block text-gray-4 w-24 group-hover:text-secondary transition-colors">
           {formatDate(article.publishedAt)}
         </span>
-        <h3>
+        <h5>
           <Balancer>{article.title}</Balancer>
-        </h3>
+        </h5>
       </div>
       {admin && (
         <div className="flex max-md:mt-2 justify-end max-md:w-full ">
