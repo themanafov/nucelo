@@ -28,7 +28,7 @@ export default async function ProjectSettings({
   const endpoint = `projects/${project.id}`;
   return (
     <AppShell>
-      <AppHeader className="justify-start">
+      <AppHeader className="justify-start text-lg font-medium">
         <NavButton
           href={`/${endpoint}`}
           icon="arrowLeft"

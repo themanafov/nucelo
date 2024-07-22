@@ -10,7 +10,7 @@ export default function AppHeader({ title, children, className }: Props) {
     <div
       className={cn("flex flex-row items-center justify-between", className)}
     >
-      <div className="title text-lg font-medium ">{title}</div>
+      {title && <h3 className="title text-lg font-medium ">{title}</h3>}
       {children}
     </div>
   );

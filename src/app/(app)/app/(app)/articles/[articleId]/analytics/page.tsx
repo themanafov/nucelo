@@ -4,7 +4,7 @@ import Upgrade from "@/components/shared/upgrade";
 import { getArticleById } from "@/lib/fetchers/articles";
 import { getUserSubscriptionPlan } from "@/lib/subscription";
 import { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {

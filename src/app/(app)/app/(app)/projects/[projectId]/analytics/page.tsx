@@ -4,7 +4,7 @@ import Upgrade from "@/components/shared/upgrade";
 import { getProjectById } from "@/lib/fetchers/projects";
 import { getUserSubscriptionPlan } from "@/lib/subscription";
 import { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default async function ProjectAnalytics({
   if (!project) {
     return notFound();
   }
-  
+
   if (!plan.isPro) {
     return <Upgrade className="relative py-10" />;
   }

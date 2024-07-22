@@ -59,7 +59,9 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
               .catch((err) =>
                 toast({ title: "Something went wrong", description: err }),
               )
-          : toast({ title: `You must publish this ${type.slice(0, -1)} to copy URL` }),
+          : toast({
+              title: `You must publish this ${type.slice(0, -1)} to copy URL`,
+            }),
     },
   ];
 
@@ -87,7 +89,11 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
               {actions.map(({ title, href, icon, command }) => {
                 const Icon = Icons[icon];
                 return (
-                  <DropdownMenuItem className="hover:text-secondary" key={icon} asChild>
+                  <DropdownMenuItem
+                    className="hover:text-secondary"
+                    key={icon}
+                    asChild
+                  >
                     {href && !command ? (
                       <Link href={href}>
                         <Icon size={16} />

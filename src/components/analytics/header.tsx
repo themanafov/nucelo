@@ -24,7 +24,13 @@ export default function StatsHeader({
   const router = useRouter();
 
   return (
-    <AppHeader title={title} className={cn("mb-2", className)}>
+    <AppHeader className={cn("mb-2", className)}>
+      <div className="flex items-center gap-2">
+        <Button size="icon" onClick={() => router.back()}>
+          <Icons.arrowLeft size={16} />
+        </Button>
+        <h3 className="title text-lg font-medium">{title}</h3>
+      </div>
       <div className="flex gap-1 items-center">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

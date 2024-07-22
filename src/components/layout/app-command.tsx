@@ -1,4 +1,5 @@
 "use client";
+import { appConfig } from "@/config/app";
 import useAppCommand from "@/hooks/use-app-command";
 import { Icon } from "@/types";
 import { User } from "@prisma/client";
@@ -17,7 +18,6 @@ import {
   CommandItem,
   CommandList,
 } from "../ui/command";
-import { appConfig } from "@/config/app";
 
 type Group = {
   heading: string;
@@ -142,12 +142,12 @@ export default function AppCommand({ user }: { user: User }) {
     {
       heading: "Navigation",
       icon: "arrowRight",
-      items: appConfig.mainNav.map(l => {
+      items: appConfig.mainNav.map((l) => {
         return {
           command: () => router.push(l.href),
-          children: `Go to ${l.title}`
-        }
-      })
+          children: `Go to ${l.title}`,
+        };
+      }),
     },
     {
       heading: "General",
