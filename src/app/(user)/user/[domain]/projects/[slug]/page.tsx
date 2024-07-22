@@ -81,7 +81,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <GoBack />
       <AppHeader
         title={project.title}
-        className="flex-row items-center justify-normal gap-1"
+        className="flex-row items-center justify-normal gap-1  [&_.title]:text-xl"
       >
         {project.url && (
           <Link

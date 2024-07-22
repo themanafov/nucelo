@@ -78,7 +78,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <GoBack />
       <AppHeader
         title={article?.title as string}
-        className="gap-2 flex-col items-start mb-4"
+        className="gap-2 flex-col items-start mb-4 [&_.title]:text-xl"
       >
         <div className="w-full flex flex-row justify-between items-center gap-2 text-sm text-gray-4">
           <div className="flex gap-2 items-center">
