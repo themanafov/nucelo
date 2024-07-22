@@ -1,6 +1,6 @@
 import { INTERVALS } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
 import { AnalyticsContext } from ".";
 import AppHeader from "../layout/header";
@@ -22,13 +22,15 @@ export default function StatsHeader({
 }) {
   const { interval } = useContext(AnalyticsContext);
   const router = useRouter();
-
+  const pathname = usePathname()
   return (
     <AppHeader className={cn("mb-2", className)}>
       <div className="flex items-center gap-2">
-        <Button size="icon" onClick={() => router.back()}>
-          <Icons.arrowLeft size={16} />
-        </Button>
+        {pathname !== '/analytics' && (
+          <Button size="icon" onClick={() => router.back()}>
+            <Icons.arrowLeft size={16} />
+          </Button>
+        )}
         <h3 className="title text-lg font-medium">{title}</h3>
       </div>
       <div className="flex gap-1 items-center">
