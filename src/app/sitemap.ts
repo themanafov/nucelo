@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const url = `https://${host}`;
   const userDomain = `.${process.env.NEXT_PUBLIC_USER_DOMAIN as string}`;
 
-  if (host === process.env.NEXT_PUBLIC_APP_DOMAIN) {
+  if (host.endsWith(process.env.NEXT_PUBLIC_APP_DOMAIN as string) && !host.startsWith("app")) {
     return [
       {
         url,
@@ -28,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const user = await getUserByDomain(domain);
 
   if (!user) {
-    return [];
+    return []
   }
 
   const pages = userPageConfig.pages.map((p) => ({
