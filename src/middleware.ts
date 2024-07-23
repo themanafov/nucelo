@@ -23,7 +23,7 @@ export default async function middleware(req: NextRequest) {
     if (path === "/" && session) {
       return NextResponse.redirect(process.env.NEXT_PUBLIC_APP_URL as string);
     } else if (path === "/" && !session) {
-      return NextResponse.redirect(new URL("/home", req.url));
+      return NextResponse.rewrite(new URL("/home", req.url));
     }
   }
 
