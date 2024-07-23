@@ -4,6 +4,7 @@ import { getProjectsByAuthor } from "@/lib/fetchers/projects";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import { MetadataRoute } from "next";
 import { headers } from "next/headers";
+import { notFound } from "next/navigation";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const headersList = headers();
@@ -28,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const user = await getUserByDomain(domain);
 
   if (!user) {
-    return []
+    return notFound()
   }
 
   const pages = userPageConfig.pages.map((p) => ({
