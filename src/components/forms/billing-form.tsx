@@ -115,7 +115,6 @@ export default function BillingForm({ subscriptionPlan }: Props) {
           <p className="max-md:text-center">
             {subscriptionPlan.status === "cancelled" &&
               "Your plan will expire on "}
-            {subscriptionPlan.status === "expired" && "Expired"}
             {subscriptionPlan.status === "active" && "Your plan renews on "}
             {subscriptionPlan.status !== "expired" && subscriptionPlan.lsCurrentPeriodEnd && (
               <b>
@@ -125,7 +124,9 @@ export default function BillingForm({ subscriptionPlan }: Props) {
           </p>
         ) : (
           <p className="max-md:text-center">
-            Upgrade plan to Pro to use all features.
+            {subscriptionPlan.status === "past_due" && "Past due"}
+            {subscriptionPlan.status === "expired" && "Expired"}
+            {!!subscriptionPlan.status && "Upgrade plan to Pro to use all features."}
           </p>
         )}
 
