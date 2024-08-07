@@ -1,12 +1,14 @@
 import { freePlan, proPlan } from "@/config/subscriptions";
+import { UserSubscriptionPlan } from "@/types";
 import { getSubscription } from "@lemonsqueezy/lemonsqueezy.js";
 import { getServerSession } from "next-auth";
 import authOptions from "./auth";
 import { db } from "./db";
 import { squeezy } from "./squeezy";
-import { UserSubscriptionPlan } from "@/types";
 
-export async function getUserSubscription(userId?: string): Promise<UserSubscriptionPlan> {
+export async function getUserSubscription(
+  userId?: string,
+): Promise<UserSubscriptionPlan> {
   const session = await getServerSession(authOptions);
 
   const user = await db.user.findFirst({
@@ -24,13 +26,13 @@ export async function getUserSubscription(userId?: string): Promise<UserSubscrip
     throw new Error("User not found");
   }
 
-  if(!user.lsId || !user.lsCurrentPeriodEnd || !user.lsVariantId) {
+  if (!user.lsId || !user.lsCurrentPeriodEnd || !user.lsVariantId) {
     return {
       ...freePlan,
       ...user,
       lsCurrentPeriodEnd: null,
       isPro: false,
-    }
+    };
   }
 
   squeezy();
@@ -45,7 +47,7 @@ export async function getUserSubscription(userId?: string): Promise<UserSubscrip
       ...user,
       lsCurrentPeriodEnd: null,
       isPro: false,
-    }
+    };
   }
 
   const {
@@ -59,7 +61,9 @@ export async function getUserSubscription(userId?: string): Promise<UserSubscrip
   const isPro =
     !!user.lsId &&
     user.lsCurrentPeriodEnd &&
-    new Date(user.lsCurrentPeriodEnd).getTime() + 86_400_000 > Date.now() && status !== "expired" && status !== "past_due";
+    new Date(user.lsCurrentPeriodEnd).getTime() + 86_400_000 > Date.now() &&
+    status !== "expired" &&
+    status !== "past_due";
 
   const plan = isPro ? proPlan : freePlan;
   return {

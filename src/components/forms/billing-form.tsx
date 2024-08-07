@@ -116,17 +116,19 @@ export default function BillingForm({ subscriptionPlan }: Props) {
             {subscriptionPlan.status === "cancelled" &&
               "Your plan will expire on "}
             {subscriptionPlan.status === "active" && "Your plan renews on "}
-            {subscriptionPlan.status !== "expired" && subscriptionPlan.lsCurrentPeriodEnd && (
-              <b>
-                {formatDate(new Date(subscriptionPlan.lsCurrentPeriodEnd))}.
-              </b>
-            )}
+            {subscriptionPlan.status !== "expired" &&
+              subscriptionPlan.lsCurrentPeriodEnd && (
+                <b>
+                  {formatDate(new Date(subscriptionPlan.lsCurrentPeriodEnd))}.
+                </b>
+              )}
           </p>
         ) : (
           <p className="max-md:text-center">
             {subscriptionPlan.status === "past_due" && "Past due"}
             {subscriptionPlan.status === "expired" && "Expired"}
-            {!!subscriptionPlan.status && "Upgrade plan to Pro to use all features."}
+            {!!subscriptionPlan.status &&
+              "Upgrade plan to Pro to use all features."}
           </p>
         )}
 
