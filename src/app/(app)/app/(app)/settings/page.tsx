@@ -50,7 +50,7 @@ export default async function Settings() {
         helpText="Please use 32 characters at maximum."
         inputData={{
           name: "title",
-          placeholder: "Design Enginner",
+          placeholder: "Design Engineer",
           defaultValue: user.title ?? "",
           maxLength: 32,
         }}
