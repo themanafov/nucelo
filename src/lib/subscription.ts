@@ -4,8 +4,9 @@ import { getServerSession } from "next-auth";
 import authOptions from "./auth";
 import { db } from "./db";
 import { squeezy } from "./squeezy";
+import { UserSubscriptionPlan } from "@/types";
 
-export async function getUserSubscription(userId?: string) {
+export async function getUserSubscription(userId?: string): Promise<UserSubscriptionPlan> {
   const session = await getServerSession(authOptions);
 
   const user = await db.user.findFirst({
@@ -25,7 +26,9 @@ export async function getUserSubscription(userId?: string) {
 
   if(!user.lsId || !user.lsCurrentPeriodEnd || !user.lsVariantId) {
     return {
+      ...freePlan,
       ...user,
+      lsCurrentPeriodEnd: null,
       isPro: false,
     }
   }
@@ -38,7 +41,9 @@ export async function getUserSubscription(userId?: string) {
 
   if (!subscription?.data) {
     return {
+      ...freePlan,
       ...user,
+      lsCurrentPeriodEnd: null,
       isPro: false,
     }
   }

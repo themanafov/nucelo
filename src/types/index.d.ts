@@ -107,9 +107,9 @@ export type MarketingConfig = {
 
 export type UserSubscriptionPlan = Plan &
   Pick<User, "lsId"> & {
-    lsCurrentPeriodEnd: number;
+    lsCurrentPeriodEnd: number | null;
     isPro: boolean;
-    status: Subscription["data"]["attributes"]["status"];
+    status?: Subscription["data"]["attributes"]["status"];
   };
 
 export type social = {
