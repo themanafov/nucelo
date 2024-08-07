@@ -1,4 +1,5 @@
 import { Icons } from "@/components/shared/icons";
+import { Subscription } from "@lemonsqueezy/lemonsqueezy.js";
 import { Bookmark, Collection } from "@prisma/client";
 
 export type Icon = keyof typeof Icons;
@@ -108,7 +109,7 @@ export type UserSubscriptionPlan = Plan &
   Pick<User, "lsId"> & {
     lsCurrentPeriodEnd: number;
     isPro: boolean;
-    isCanceled?: boolean;
+    status: Subscription["data"]["attributes"]["status"];
   };
 
 export type social = {

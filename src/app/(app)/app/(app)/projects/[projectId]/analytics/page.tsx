@@ -2,7 +2,7 @@ import Analytics from "@/components/analytics";
 import AnalyticsSkeleton from "@/components/analytics/skeleton";
 import Upgrade from "@/components/shared/upgrade";
 import { getProjectById } from "@/lib/fetchers/projects";
-import { getUserSubscriptionPlan } from "@/lib/subscription";
+import { getUserSubscription } from "@/lib/subscription";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -18,7 +18,7 @@ export default async function ProjectAnalytics({
 }) {
   const [project, plan] = await Promise.all([
     getProjectById(params.projectId),
-    getUserSubscriptionPlan(),
+    getUserSubscription(),
   ]);
 
   if (!project) {

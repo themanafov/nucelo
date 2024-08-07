@@ -1,7 +1,7 @@
 import { createSubscriber, isSubscriberExist } from "@/lib/actions/subscribers";
 import { getUserById } from "@/lib/fetchers/users";
 import { rateLimit } from "@/lib/ratelimit";
-import { getUserSubscriptionPlanById } from "@/lib/subscription";
+import { getUserSubscription } from "@/lib/subscription";
 import { NextRequest } from "next/server";
 import * as z from "zod";
 
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     if (!user) {
       return new Response("User not found", { status: 404 });
     }
-    const { isPro } = await getUserSubscriptionPlanById(user.id);
+    const { isPro } = await getUserSubscription(user.id);
 
     if (!isPro || !user.newsletter) {
       return new Response("This user's newsletter function is not active", {

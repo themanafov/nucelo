@@ -42,6 +42,7 @@ export default function BillingForm({ subscriptionPlan }: Props) {
       }
     });
   }
+
   return (
     <div className="flex flex-col  border border-gray-3 divide-y divide-gray-3 rounded-md">
       <div className="grid grid-cols-2 relative max-md:grid-cols-1  divide-gray-3 max-md:divide-y max-md:divide-x-0">
@@ -112,10 +113,15 @@ export default function BillingForm({ subscriptionPlan }: Props) {
       <div className="flex max-md:flex-col max-md:items-stretch gap-3  justify-between items-center p-3 text-xs text-gray-4">
         {subscriptionPlan.isPro ? (
           <p className="max-md:text-center">
-            {subscriptionPlan.isCanceled
-              ? "Your plan will expire on "
-              : "Your plan renews on "}
-            <b>{formatDate(new Date(subscriptionPlan.lsCurrentPeriodEnd))}</b>.
+            {subscriptionPlan.status === "cancelled" &&
+              "Your plan will expire on "}
+            {subscriptionPlan.status === "expired" && "Expired"}
+            {subscriptionPlan.status === "active" && "Your plan renews on "}
+            {subscriptionPlan.status !== "expired" && (
+              <b>
+                {formatDate(new Date(subscriptionPlan.lsCurrentPeriodEnd))}.
+              </b>
+            )}
           </p>
         ) : (
           <p className="max-md:text-center">

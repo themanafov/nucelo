@@ -11,7 +11,7 @@ import { db } from "./db";
 import { getUser } from "./fetchers/users";
 import log from "./log";
 import { resend } from "./resend";
-import { getUserSubscriptionPlanById } from "./subscription";
+import { getUserSubscription } from "./subscription";
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
 const authOptions: NextAuthOptions = {
@@ -137,7 +137,7 @@ export const guard = <T extends z.ZodType, U extends z.ZodType>(
     if (!user) {
       return new Response(null, { status: 401 });
     }
-    const plan = await getUserSubscriptionPlanById(user.id);
+    const plan = await getUserSubscription(user.id);
 
     if (requiredPlan && requiredPlan === "Pro" && !plan.isPro) {
       return new Response("Upgrade plan to Pro", { status: 401 });

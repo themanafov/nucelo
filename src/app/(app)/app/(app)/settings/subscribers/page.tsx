@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/table";
 import { getSubscribersByUserId } from "@/lib/fetchers/subscribers";
 import { getUser } from "@/lib/fetchers/users";
-import { getUserSubscriptionPlan } from "@/lib/subscription";
+import { getUserSubscription } from "@/lib/subscription";
 import { formatDate } from "@/lib/utils";
 import { Subscriber } from "@prisma/client";
 import { Metadata } from "next";
@@ -31,7 +31,7 @@ export default async function Subscribers() {
   }
   const [subscribers, plan] = await Promise.all([
     getSubscribersByUserId(user.id),
-    getUserSubscriptionPlan(),
+    getUserSubscription(),
   ]);
 
   if (!plan.isPro) {

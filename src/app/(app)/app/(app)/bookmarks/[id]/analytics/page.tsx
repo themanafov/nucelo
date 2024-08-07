@@ -2,7 +2,7 @@ import Analytics from "@/components/analytics";
 import AnalyticsSkeleton from "@/components/analytics/skeleton";
 import Upgrade from "@/components/shared/upgrade";
 import { getBookmarkById } from "@/lib/fetchers/bookmarks";
-import { getUserSubscriptionPlan } from "@/lib/subscription";
+import { getUserSubscription } from "@/lib/subscription";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -18,7 +18,7 @@ export default async function BookmarkAnalytics({
 }) {
   const [bookmark, plan] = await Promise.all([
     getBookmarkById(params.id),
-    getUserSubscriptionPlan(),
+    getUserSubscription(),
   ]);
 
   if (!bookmark) {

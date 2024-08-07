@@ -2,7 +2,7 @@ import Analytics from "@/components/analytics";
 import AnalyticsSkeleton from "@/components/analytics/skeleton";
 import Upgrade from "@/components/shared/upgrade";
 import { getArticleById } from "@/lib/fetchers/articles";
-import { getUserSubscriptionPlan } from "@/lib/subscription";
+import { getUserSubscription } from "@/lib/subscription";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -20,7 +20,7 @@ interface Props {
 export default async function ArticleAnalytics({ params }: Props) {
   const [article, plan] = await Promise.all([
     getArticleById(params.articleId),
-    getUserSubscriptionPlan(),
+    getUserSubscription(),
   ]);
 
   if (!article) {

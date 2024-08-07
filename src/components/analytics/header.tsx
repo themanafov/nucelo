@@ -22,11 +22,11 @@ export default function StatsHeader({
 }) {
   const { interval } = useContext(AnalyticsContext);
   const router = useRouter();
-  const pathname = usePathname()
+  const pathname = usePathname();
   return (
     <AppHeader className={cn("mb-2", className)}>
       <div className="flex items-center gap-2">
-        {pathname !== '/analytics' && (
+        {pathname !== "/analytics" && (
           <Button size="icon" onClick={() => router.back()}>
             <Icons.arrowLeft size={16} />
           </Button>

@@ -1,10 +1,10 @@
 import { Badge } from "@/components/ui/badge";
-import { getUserSubscriptionPlanById } from "@/lib/subscription";
+import { getUserSubscription } from "@/lib/subscription";
 import { User } from "@prisma/client";
 import Link from "next/link";
 
 export default async function Watermark({ user }: { user: Pick<User, "id"> }) {
-  const plan = await getUserSubscriptionPlanById(user.id);
+  const plan = await getUserSubscription(user.id);
   if (plan.isPro) {
     return null;
   }
