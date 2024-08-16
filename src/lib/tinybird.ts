@@ -16,7 +16,7 @@ export async function track({
   type,
   slug,
   username,
-  domain = "_root",
+  domain,
 }: {
   req: NextRequest;
   page: string;
@@ -39,7 +39,7 @@ export async function track({
 
     if (process.env.VERCEL === "1") {
       const { success } = await rateLimit.analytics.limit(
-        `track:${ip}:${domain}:${page}`,
+        `track:${ip}:${domain ?? username}:${page}`,
       );
 
       if (!success) {

@@ -23,7 +23,7 @@ export default function Track() {
         type: segment === "bookmarks" ? undefined : segment ?? undefined,
         page: pathname,
         slug: params?.slug ?? undefined,
-        domain: validDomainRegex.test(domain) ? domain : "_root",
+        domain: validDomainRegex.test(domain) ? domain : undefined,
         username: validDomainRegex.test(domain) ? undefined : domain,
       }),
     });
