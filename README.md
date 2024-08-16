@@ -23,6 +23,7 @@ Open source minimal blogging platform.
 - [Tailwind](https://tailwindcss.com) – CSS
 - [Tiptap](https://tiptap.dev) – Content Editor
 - [PlanetScale](https://planetscale.com) – Database
+- [Upstash](https://upstash.com) – Redis
 - [NextAuth](https://next-auth.js.org) – Auth
 - [Tinybird](https://tinybird.com) – Analytics
 - [Lemon Squeezy](https://lemonsqueezy.com) – Payments
