@@ -51,7 +51,7 @@ export async function track({
 
     const user = await getUserViaEdge(
       username,
-      domain === "_root" ? undefined : domain,
+      domain,
     );
     if (!user) {
       return new Response(null, { status: 404 });
@@ -67,7 +67,7 @@ export async function track({
             body: JSON.stringify({
               userId: user.userId || "Unknown",
               timestamp: new Date(Date.now()).toISOString(),
-              domain,
+              domain: domain ?? "_root",
               page,
               ip,
               country: geo?.country || "Unknown",
