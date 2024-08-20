@@ -4,6 +4,7 @@ import * as z from "zod";
 import { db } from "../db";
 import { addDomain, removeDomain } from "../domains";
 import { updateUserSchema } from "../validations/user";
+import { cancelSubscription } from "@lemonsqueezy/lemonsqueezy.js";
 
 type UpdateUserSchema = z.infer<typeof updateUserSchema>;
 
@@ -56,10 +57,13 @@ export async function updateDomain(
   }
 }
 
-export async function deleteUser(userId: string) {
-  await db.user.delete({
-    where: {
-      id: userId,
-    },
-  });
+export async function deleteUser(userId: string, lsId: string | null) {
+  await Promise.all([
+    lsId ? cancelSubscription(lsId) : null,
+    db.user.delete({
+      where: {
+        id: userId,
+      },
+    }),
+  ])
 }

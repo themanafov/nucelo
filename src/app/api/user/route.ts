@@ -21,7 +21,7 @@ export const PATCH = guard(
 
 export const DELETE = guard(async ({ user }) => {
   try {
-    await deleteUser(user.id);
+    await deleteUser(user.id, user.lsId);
     return new Response(null, { status: 200 });
   } catch (err) {
     return new Response(
