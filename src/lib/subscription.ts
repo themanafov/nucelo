@@ -63,7 +63,9 @@ export async function getUserSubscription(
     user.lsCurrentPeriodEnd &&
     new Date(user.lsCurrentPeriodEnd).getTime() + 86_400_000 > Date.now() &&
     status !== "expired" &&
-    status !== "past_due";
+    status !== "past_due" &&
+    status !== "unpaid" &&
+    status !== "paused";
 
   const plan = isPro ? proPlan : freePlan;
   return {
