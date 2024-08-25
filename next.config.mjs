@@ -35,8 +35,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "icon.horse",
-        pathname: "/icon/**",
+        hostname: "icons.duckduckgo.com",
+        pathname: "/ip3/*",
       },
       {
         protocol: "https",

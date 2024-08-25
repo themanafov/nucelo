@@ -32,7 +32,7 @@ export default function Favicon({
       src={
         url.includes("flagcdn")
           ? url
-          : `https://icon.horse/icon/${getDomainFromURL(url)}`
+          : `https://icons.duckduckgo.com/ip3/${getDomainFromURL(url)}.ico`
       }
       alt={alt || "icon"}
       className="z-10"
