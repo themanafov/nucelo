@@ -61,7 +61,7 @@ export async function getUserViaEdge(
     status !== "past_due" &&
     status !== "unpaid" &&
     status !== "paused";
-    
+
   return {
     userId: id,
     isPro,

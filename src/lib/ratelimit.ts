@@ -1,5 +1,5 @@
 import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis"
+import { Redis } from "@upstash/redis";
 
 const redis = Redis.fromEnv();
 

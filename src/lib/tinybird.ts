@@ -49,10 +49,7 @@ export async function track({
       return new Response(null, { status: 200 });
     }
 
-    const user = await getUserViaEdge(
-      username,
-      domain,
-    );
+    const user = await getUserViaEdge(username, domain);
     if (!user) {
       return new Response(null, { status: 404 });
     }

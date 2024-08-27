@@ -1,10 +1,10 @@
 "use server";
+import { cancelSubscription } from "@lemonsqueezy/lemonsqueezy.js";
 import { User } from "@prisma/client";
 import * as z from "zod";
 import { db } from "../db";
 import { addDomain, removeDomain } from "../domains";
 import { updateUserSchema } from "../validations/user";
-import { cancelSubscription } from "@lemonsqueezy/lemonsqueezy.js";
 
 type UpdateUserSchema = z.infer<typeof updateUserSchema>;
 
@@ -65,5 +65,5 @@ export async function deleteUser(userId: string, lsId: string | null) {
         id: userId,
       },
     }),
-  ])
+  ]);
 }
