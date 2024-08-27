@@ -40,6 +40,7 @@ export const analyticsProperties = [
   "browser",
   "referer",
 ] as const;
+
 export type PropertyProps = (typeof analyticsProperties)[number];
 
 export const ZodAnalyticsProperty = z.enum([...analyticsProperties]);
@@ -66,10 +67,18 @@ export const intervalData = {
     granularity: "month",
   },
   all: {
-    startDate: new Date("2023-10-18"),
+    startDate: new Date("2024-07-06"),
     granularity: "month",
   },
 };
+
+export const IntervalZod = z.enum(
+  Object.keys(intervalData) as [keyof typeof intervalData],
+);
+
+export const analyticsSearchParamsSchema = z.object({
+  interval: IntervalZod,
+});
 
 export async function getAnalytics({
   page,

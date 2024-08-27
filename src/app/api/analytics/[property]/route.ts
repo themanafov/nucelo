@@ -1,10 +1,9 @@
 import {
+  analyticsSearchParamsSchema,
   getAnalytics,
-  IntervalProps,
   ZodAnalyticsProperty,
 } from "@/lib/analytics";
 import { guard } from "@/lib/auth";
-import { getSearchParams } from "@/lib/utils";
 import { NextResponse } from "next/server";
 import * as z from "zod";
 
@@ -15,17 +14,17 @@ const routeContextSchema = z.object({
 });
 
 export const GET = guard(
-  async ({ req, user, ctx }) => {
+  async ({
+    user,
+    ctx: {
+      params: { property },
+    },
+    searchParams: { interval },
+  }) => {
     try {
-      const { property } = ctx.params;
-
-      const searchParams: { interval?: IntervalProps } = getSearchParams(
-        req.url,
-      );
-
       const data = await getAnalytics({
         property,
-        interval: searchParams.interval || "7d",
+        interval,
         userId: user.id,
       });
 
@@ -38,6 +37,7 @@ export const GET = guard(
     requiredPlan: "Pro",
     schemas: {
       contextSchema: routeContextSchema,
+      searchParamsSchema: analyticsSearchParamsSchema,
     },
   },
 );

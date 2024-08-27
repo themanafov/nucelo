@@ -1,12 +1,11 @@
 import { verifyArticleAccess } from "@/lib/actions/articles";
 import {
+  analyticsSearchParamsSchema,
   getAnalytics,
-  IntervalProps,
   ZodAnalyticsProperty,
 } from "@/lib/analytics";
 import { guard } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { getSearchParams } from "@/lib/utils";
 import { NextResponse } from "next/server";
 import * as z from "zod";
 
@@ -18,10 +17,14 @@ const routeContextSchema = z.object({
 });
 
 export const GET = guard(
-  async ({ req, user, ctx }) => {
+  async ({
+    user,
+    ctx: {
+      params: { articleId, property },
+    },
+    searchParams: { interval },
+  }) => {
     try {
-      const { articleId, property } = ctx.params;
-
       const article = await db.article.findFirst({
         where: {
           id: articleId,
@@ -38,13 +41,9 @@ export const GET = guard(
         return new Response(null, { status: 403 });
       }
 
-      const searchParams: { interval?: IntervalProps } = getSearchParams(
-        req.url,
-      );
-
       const data = await getAnalytics({
-        property: property,
-        interval: searchParams.interval,
+        property,
+        interval,
         page: `/articles/${article.slug}`,
         userId: user.id,
       });
@@ -58,6 +57,7 @@ export const GET = guard(
     requiredPlan: "Pro",
     schemas: {
       contextSchema: routeContextSchema,
+      searchParamsSchema: analyticsSearchParamsSchema,
     },
   },
 );

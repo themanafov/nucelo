@@ -1,12 +1,11 @@
 import { verifyProjectAccess } from "@/lib/actions/projects";
 import {
+  analyticsSearchParamsSchema,
   getAnalytics,
-  IntervalProps,
   ZodAnalyticsProperty,
 } from "@/lib/analytics";
 import { guard } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { getSearchParams } from "@/lib/utils";
 import { NextResponse } from "next/server";
 import * as z from "zod";
 
@@ -18,13 +17,17 @@ const routeContextSchema = z.object({
 });
 
 export const GET = guard(
-  async ({ req, user, ctx }) => {
+  async ({
+    user,
+    ctx: {
+      params: { projectId, property },
+    },
+    searchParams: { interval },
+  }) => {
     try {
-      const { params } = ctx;
-
       const project = await db.project.findFirst({
         where: {
-          id: params.projectId,
+          id: projectId,
           authorId: user.id,
         },
       });
@@ -38,13 +41,10 @@ export const GET = guard(
       if (!(await verifyProjectAccess(project.id, user.id))) {
         return new Response(null, { status: 403 });
       }
-      const searchParams: { interval?: IntervalProps } = getSearchParams(
-        req.url,
-      );
 
       const data = await getAnalytics({
-        property: params.property,
-        interval: searchParams.interval,
+        property,
+        interval,
         page: `/projects/${project.slug}`,
         userId: user.id,
       });
@@ -58,6 +58,7 @@ export const GET = guard(
     requiredPlan: "Pro",
     schemas: {
       contextSchema: routeContextSchema,
+      searchParamsSchema: analyticsSearchParamsSchema,
     },
   },
 );

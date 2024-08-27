@@ -12,6 +12,7 @@ import { getUser } from "./fetchers/users";
 import log from "./log";
 import { resend } from "./resend";
 import { getUserSubscription } from "./subscription";
+import { getSearchParams } from "./utils";
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
 const authOptions: NextAuthOptions = {
@@ -107,7 +108,11 @@ const authOptions: NextAuthOptions = {
 
 export default authOptions;
 
-export const guard = <T extends z.ZodType, U extends z.ZodType>(
+export const guard = <
+  TBody extends z.ZodType,
+  TContext extends z.ZodType,
+  TParams extends z.ZodType,
+>(
   next: ({
     req,
     user,
@@ -118,8 +123,9 @@ export const guard = <T extends z.ZodType, U extends z.ZodType>(
     req: Request;
     user: User;
     plan: UserSubscriptionPlan;
-    body: z.infer<T>;
-    ctx: z.infer<U>;
+    body: z.infer<TBody>;
+    ctx: z.infer<TContext>;
+    searchParams: z.infer<TParams>;
   }) => Promise<Response | any>,
   {
     requiredPlan,
@@ -127,8 +133,9 @@ export const guard = <T extends z.ZodType, U extends z.ZodType>(
   }: {
     requiredPlan?: Plan["title"];
     schemas?: {
-      bodySchema?: T;
-      contextSchema?: U;
+      bodySchema?: TBody;
+      contextSchema?: TContext;
+      searchParamsSchema?: TParams;
     };
   } = {},
 ) => {
@@ -142,9 +149,13 @@ export const guard = <T extends z.ZodType, U extends z.ZodType>(
     if (requiredPlan && requiredPlan === "Pro" && !plan.isPro) {
       return new Response("Upgrade plan to Pro", { status: 401 });
     }
-    const { bodySchema, contextSchema } = schemas;
+    const { bodySchema, contextSchema, searchParamsSchema } = schemas;
 
-    const validatedData: { bodyData?: any; contextData?: any } = {};
+    const validatedData: {
+      bodyData?: any;
+      contextData?: any;
+      searchParams?: any;
+    } = {};
 
     if (bodySchema) {
       const body = await req.json();
@@ -167,12 +178,23 @@ export const guard = <T extends z.ZodType, U extends z.ZodType>(
       validatedData.contextData = parse.data;
     }
 
+    if (searchParamsSchema) {
+      const parse = searchParamsSchema.safeParse(getSearchParams(req.url));
+      if (!parse.success) {
+        return new Response(parse.error.issues[0].message, {
+          status: 422,
+        });
+      }
+      validatedData.searchParams = parse.data;
+    }
+
     return next({
       req,
       user,
       plan,
       body: validatedData.bodyData,
       ctx: validatedData.contextData,
+      searchParams: validatedData.searchParams,
     });
   };
 };

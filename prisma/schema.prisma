@@ -1,8 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
 }
 
@@ -25,13 +22,12 @@ model Account {
   scope             String?
   id_token          String?  @db.Text
   session_state     String?
-  createdAt         DateTime @default(now()) @map(name: "created_at")
-  updatedAt         DateTime @default(now()) @map(name: "updated_at")
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @default(now()) @map("updated_at")
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
-  @@map(name: "accounts")
+  @@map("accounts")
 }
 
 model Session {
@@ -41,51 +37,44 @@ model Session {
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map(name: "sessions")
+  @@map("sessions")
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  username      String    @unique @default(cuid())
-  title         String?
-  email         String?   @unique
-  domain        String?   @unique
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @default(now()) @map(name: "updated_at")
-  accounts      Account[]
-  sessions      Session[]
-  about         String?   @db.Text()
-  newsletter    Boolean   @default(false)
-
-  articles    Article[]
-  projects    Project[]
-  bookmarks   Bookmark[]
-  subscribers Subscriber[]
-  collections Collection[]
-
-  // SEO
-  seoTitle       String?
-  seoDescription String?
-  ogImage        String?
-
-  // social links
-  twitter      String?
-  postscv      String?
-  readcv       String?
-  github       String?
-  linkedin     String?
-  dribbble     String?
-  contactEmail String?
-
-  // lemon squeezy
-  lsId               String?   @unique // subscription id
+  id                 String       @id @default(cuid())
+  name               String?
+  username           String       @unique @default(cuid())
+  title              String?
+  email              String?      @unique
+  domain             String?      @unique
+  emailVerified      DateTime?
+  image              String?
+  createdAt          DateTime     @default(now()) @map("created_at")
+  updatedAt          DateTime     @default(now()) @map("updated_at")
+  about              String?      @db.Text
+  newsletter         Boolean      @default(false)
+  seoTitle           String?
+  seoDescription     String?
+  ogImage            String?
+  twitter            String?
+  postscv            String?
+  readcv             String?
+  github             String?
+  linkedin           String?
+  dribbble           String?
+  contactEmail       String?
+  lsId               String?      @unique
   lsVariantId        String?
   lsCurrentPeriodEnd DateTime?
+  accounts           Account[]
+  sessions           Session[]
+  articles           Article[]
+  projects           Project[]
+  bookmarks          Bookmark[]
+  subscribers        Subscriber[]
+  collections        Collection[]
 
-  @@map(name: "users")
+  @@map("users")
 }
 
 model VerificationToken {
@@ -94,7 +83,7 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-  @@map(name: "verification_tokens")
+  @@map("verification_tokens")
 }
 
 model Subscriber {
@@ -102,42 +91,42 @@ model Subscriber {
   email     String
   name      String?
   createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId ], references: [id])
   userId    String
+  user      User     @relation(fields: [userId], references: [id])
 
-  @@map(name: "subscribers")
+  @@map("subscribers")
 }
 
 model Article {
-  id             String   @id @default(cuid())
-  title          String
-  content        String?  @db.LongText()
-  published      Boolean  @default(false)
-  slug           String   @default(cuid())
-  views          Int      @default(0)
+  id                   String    @id @default(cuid())
+  title                String
+  content              String?   @db.LongText
+  published            Boolean   @default(false)
+  slug                 String    @default(cuid())
+  views                Int       @default(0)
   lastNewsletterSentAt DateTime?
-  seoTitle       String?
-  seoDescription String?
-  ogImage        String?
-  createdAt      DateTime @default(now()) @map(name: "created_at")
-  updatedAt      DateTime @default(now()) @map(name: "updated_at")
-  publishedAt    DateTime @default(now())
-  authorId       String
-  author         User     @relation(fields: [authorId], references: [id])
-  canonicalURL String?
+  seoTitle             String?
+  seoDescription       String?
+  ogImage              String?
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime  @default(now()) @map("updated_at")
+  publishedAt          DateTime  @default(now())
+  authorId             String
+  canonicalURL         String?
+  author               User      @relation(fields: [authorId], references: [id])
 
   @@unique([authorId, slug])
-  @@map(name: "articles")
+  @@map("articles")
 }
 
 model Project {
   id             String   @id @default(cuid())
   title          String
-  content        String?  @db.LongText()
+  content        String?  @db.LongText
   published      Boolean  @default(false)
-  createdAt      DateTime @default(now()) @map(name: "created_at")
-  updatedAt      DateTime @default(now()) @map(name: "updated_at")
-  slug           String   @default(cuid()) 
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @default(now()) @map("updated_at")
+  slug           String   @default(cuid())
   views          Int      @default(0)
   year           Int?
   description    String?
@@ -149,31 +138,31 @@ model Project {
   authorId       String
   author         User     @relation(fields: [authorId], references: [id])
 
-  @@unique([authorId,slug])
-  @@map(name: "projects")
+  @@unique([authorId, slug])
+  @@map("projects")
 }
 
 model Collection {
   id        String     @id @default(cuid())
   name      String
+  authorId  String
   bookmarks Bookmark[]
   user      User       @relation(fields: [authorId], references: [id])
-  authorId  String
 
-  @@map(name: "collections")
+  @@map("collections")
 }
 
 model Bookmark {
   id           String      @id @default(cuid())
   title        String
   url          String
-  createdAt    DateTime    @default(now()) @map(name: "created_at")
-  updatedAt    DateTime    @default(now()) @map(name: "updated_at")
+  createdAt    DateTime    @default(now()) @map("created_at")
+  updatedAt    DateTime    @default(now()) @map("updated_at")
   authorId     String
-  author       User        @relation(fields: [authorId], references: [id])
   clicks       Int         @default(0)
-  collection   Collection? @relation(fields: [collectionId], references: [id])
   collectionId String?
+  author       User        @relation(fields: [authorId], references: [id])
+  collection   Collection? @relation(fields: [collectionId], references: [id])
 
-  @@map(name: "bookmarks")
+  @@map("bookmarks")
 }

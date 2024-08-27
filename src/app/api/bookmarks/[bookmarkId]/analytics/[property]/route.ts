@@ -1,11 +1,10 @@
 import { verifyBookmarkAccess } from "@/lib/actions/bookmarks";
 import {
+  analyticsSearchParamsSchema,
   getBookmarkAnalytics,
-  IntervalProps,
   ZodAnalyticsProperty,
 } from "@/lib/analytics";
 import { guard } from "@/lib/auth";
-import { getSearchParams } from "@/lib/utils";
 import { NextResponse } from "next/server";
 import * as z from "zod";
 
@@ -17,21 +16,22 @@ const routeContextSchema = z.object({
 });
 
 export const GET = guard(
-  async ({ req, user, ctx }) => {
+  async ({
+    user,
+    ctx: {
+      params: { bookmarkId, property },
+    },
+    searchParams: { interval },
+  }) => {
     try {
-      const { params } = ctx;
-      if (!(await verifyBookmarkAccess(params.bookmarkId, user.id))) {
+      if (!(await verifyBookmarkAccess(bookmarkId, user.id))) {
         return new Response(null, { status: 403 });
       }
 
-      const searchParams: { interval?: IntervalProps } = getSearchParams(
-        req.url,
-      );
-
       const data = await getBookmarkAnalytics({
-        id: params.bookmarkId,
-        property: params.property,
-        interval: searchParams.interval,
+        id: bookmarkId,
+        property,
+        interval,
       });
 
       return NextResponse.json(data);
@@ -43,6 +43,7 @@ export const GET = guard(
     requiredPlan: "Pro",
     schemas: {
       contextSchema: routeContextSchema,
+      searchParamsSchema: analyticsSearchParamsSchema,
     },
   },
 );
