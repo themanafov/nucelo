@@ -1,13 +1,16 @@
 import { getSubscription } from "@lemonsqueezy/lemonsqueezy.js";
-import { Client } from "@planetscale/database";
-import { PrismaPlanetScale } from "@prisma/adapter-planetscale";
+import { Pool, neonConfig } from '@neondatabase/serverless'
+import { PrismaNeon } from '@prisma/adapter-neon'
 import { PrismaClient } from "@prisma/client";
+import ws from 'ws'
 import { squeezy } from "./squeezy";
 
-const client = new Client({ url: process.env.DATABASE_URL });
-const adapter = new PrismaPlanetScale(client);
 
-export const dbEdge = new PrismaClient({ adapter });
+neonConfig.webSocketConstructor = ws
+const pool = new Pool({ connectionString: process.env.DATABASE_URL })
+const adapter = new PrismaNeon(pool)
+
+export const dbEdge = new PrismaClient({ adapter })
 
 export async function getUserViaEdge(
   username?: string,

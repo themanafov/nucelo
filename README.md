@@ -22,7 +22,7 @@ Open source minimal blogging platform.
 - [TypeScript](https://typescriptlang.org) – Language
 - [Tailwind](https://tailwindcss.com) – CSS
 - [Tiptap](https://tiptap.dev) – Content Editor
-- [PlanetScale](https://planetscale.com) – Database
+- [Neon](https://neon.tech) – Database
 - [Upstash](https://upstash.com) – Redis
 - [NextAuth](https://next-auth.js.org) – Auth
 - [Tinybird](https://tinybird.com) – Analytics
