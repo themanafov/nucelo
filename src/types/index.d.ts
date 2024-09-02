@@ -51,6 +51,7 @@ export type SiteConfig = {
     app: string;
     github: string;
     help: string;
+    privacy: string;
     demo: string;
   };
   privacy: {
@@ -99,6 +100,7 @@ export type Preview = {
   image: string;
 };
 export type MarketingConfig = {
+  headline: string;
   features: Feature[];
   plans: Plan[];
   links: Link[];

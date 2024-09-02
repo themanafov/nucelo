@@ -3,43 +3,54 @@ import { siteConfig } from "./site";
 import { freePlan, proPlan } from "./subscriptions";
 
 export const marketingConfig: MarketingConfig = {
+  headline:
+    "Quickly create your personal website and share your thoughts, projects and favourite links with your readers in a simple way.",
   features: [
     {
-      title: "Rich text editor",
+      title: "Content editor",
       description:
-        "Leverage a rich text editor like Notion for a streamlined blogging experience.",
+        "Leverage a rich text editor like Notion for a streamlined blogging experience",
       icon: "squarePen",
     },
     {
       title: "Analytics",
-      description: "Understand your audience better with detailed analytics.",
+      description: "Understand your audience better with detailed analytics",
       icon: "areaChart",
     },
     {
       title: "Collect emails",
       description:
-        "Effortlessly build your email list by collecting subscriber emails for newsletters.",
+        "Build your email list by collecting subscriber emails for newsletters",
       icon: "mail",
     },
     {
       title: "SEO",
-      description:
-        "Optimize your page, articles, and projects with customizable Open Graph settings.",
+      description: "Optimize your page with customizable Open Graph settings",
       icon: "search",
     },
     {
       title: "Custom domain",
-      description: "Connect your own domain or subdomain to your blog.",
+      description: "Connect your own domain or subdomain to your blog",
       icon: "globe",
     },
     {
-      title: "Password protection",
-      description: "Secure your private projects with password protection.",
+      title: "Password Protection",
+      description: "Secure your private projects with password",
       icon: "locked",
     },
   ],
   plans: [freePlan, proPlan],
   links: [
+    {
+      name: "Support",
+      href: siteConfig.links.help,
+      icon: "logo",
+    },
+    {
+      name: "Privacy Policy",
+      href: "/privacy",
+      icon: "logo",
+    },
     {
       name: "Github",
       href: siteConfig.links.github,
@@ -59,23 +70,27 @@ export const marketingConfig: MarketingConfig = {
   previews: [
     {
       title: "Articles",
-      image: "/_static/previews/articles.png",
-    },
-    {
-      title: "Editor",
-      image: "/_static/previews/editor.png",
-    },
-    {
-      title: "Projects",
-      image: "/_static/previews/projects.png",
+      image: "/_static/previews/articles",
     },
     {
       title: "Bookmarks",
-      image: "/_static/previews/bookmarks.png",
+      image: "/_static/previews/bookmarks",
     },
     {
       title: "Analytics",
-      image: "/_static/previews/analytics.png",
+      image: "/_static/previews/analytics",
+    },
+    {
+      title: "Command",
+      image: "/_static/previews/command",
+    },
+    {
+      title: "Editor",
+      image: "/_static/previews/editor",
+    },
+    {
+      title: "Example Profile",
+      image: "/_static/previews/example",
     },
   ],
 } as const;

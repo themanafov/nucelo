@@ -7,30 +7,46 @@ import Button from "../ui/button";
 
 export default function ThemeToggle({
   compact = false,
+  onlyText = false,
+  className,
+  iconSize = 15,
 }: {
   compact?: boolean;
+  onlyText?: boolean;
+  className?: string;
+  iconSize?: number;
 }) {
   const { theme, setTheme } = useTheme();
+
+  const isDark = theme === "dark";
+  const toggle = () => setTheme(isDark ? "light" : "dark");
+  const text = isDark ? "Switch Theme to light" : "Switch Theme to dark";
+  if (onlyText) {
+    return (
+      <p
+        onClick={toggle}
+        className="w-max text-xs text-gray-4 hover:text-secondary transition-colors cursor-pointer"
+      >
+        {text.split("Theme")}
+      </p>
+    );
+  }
+
   return (
     <Button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={toggle}
       className={cn(
         "justify-start text-secondary hover:text-secondary gap-2 dark:[&_.moon-icon]:hidden [&_.sun-icon]:hidden dark:[&_.sun-icon]:inline",
         compact ? "justify-center text-gray-4" : "",
+        className,
       )}
       size={compact ? "icon" : "sm"}
       variant="ghost"
-      aria-label={
-        theme === "dark" ? "Switch Theme to light" : "Switch Theme to dark"
-      }
+      aria-label={text}
     >
-      <Icons.sun size={15} className="sun-icon" />
-      <Icons.moon size={15} className="moon-icon" />
-      {!compact && (
-        <span className="text-xs ">
-          {theme === "dark" ? "Switch to light" : "Switch to dark"}
-        </span>
-      )}
+      <Icons.sun size={iconSize} className="sun-icon" />
+      <Icons.moon size={iconSize} className="moon-icon" />
+      {!compact && <span className="text-xs ">{text}</span>}
     </Button>
   );
 }

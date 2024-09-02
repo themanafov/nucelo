@@ -37,10 +37,10 @@ export default function Privacy() {
           <div className="section-content text-gray-4 text-base inline pb-0">
             For privacy-related questions, please contact us at{" "}
             <Link
-              href="mailto:privacy@nucelo.com"
+              href={siteConfig.links.privacy}
               className="text-gray-4 hover:text-secondary transition-colors underline"
             >
-              privacy@nucelo.com
+              {siteConfig.links.privacy.split("mailto:")}
             </Link>
             .
           </div>

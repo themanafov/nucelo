@@ -1,45 +1,47 @@
 import NavButton from "@/components/layout/nav-button";
-import ThemeToggle from "@/components/layout/theme-toggle";
+import { Icons } from "@/components/shared/icons";
 import { marketingConfig } from "@/config/marketing";
 import { siteConfig } from "@/config/site";
-import Link from "next/link";
+import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+import Balancer from "react-wrap-balancer";
+
+const ThemeToggle = dynamic(() => import("@/components/layout/theme-toggle"), {
+  ssr: false,
+});
 
 export default function Footer() {
   return (
-    <footer className="flex items-center justify-between py-4 pt-32 max-md:flex-col max-md:gap-3">
-      <div className="text-xs text-gray-4 flex gap-2">
-        <p>© 2024 nucelo.com.</p>
-        <span>|</span>
-        <div>
-          <Link
-            href="/privacy"
-            className="text-gray-4 hover:text-secondary transition-colors"
-          >
-            Privacy
-          </Link>
-        </div>
+    <footer className="flex flex-col items-center justify-center py-24 gap-5">
+      <div className="flex flex-col items-center">
+        <Icons.logo size={70} />
+        <p className="text-gray-4 text-center my-5 text-sm">
+          <Balancer>{marketingConfig.headline}</Balancer>
+        </p>
+        <NavButton
+          href={siteConfig.links.signup}
+          size="wide"
+          buttonVariant="primary"
+          aria-label="Create your website"
+        >
+          Create your website
+        </NavButton>
       </div>
-      <div className="flex items-center gap-2 text-gray-1">
+      <div className={cn("flex max-sm:flex-col gap-3")}>
         {marketingConfig.links.map((link) => (
           <NavButton
-            icon={link.icon}
             href={link.href}
-            target="_blank"
-            buttonClassname="border-none"
-            size="icon"
-            buttonVariant="ghost"
+            variant="text"
+            target={link.href.startsWith("https://") ? "_blank" : "_parent"}
             aria-label={link.name}
+            className={cn(
+              link.href === "/privacy" && "border-r border-gray-1 pr-3",
+            )}
             key={link.name}
-          />
+          >
+            {link.name}
+          </NavButton>
         ))}
-        <NavButton
-          icon="mail"
-          href={siteConfig.links.help}
-          size="icon"
-          buttonVariant="ghost"
-          aria-label="Support email"
-        />
-        <ThemeToggle compact />
       </div>
     </footer>
   );

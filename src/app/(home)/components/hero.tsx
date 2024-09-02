@@ -1,33 +1,43 @@
 import NavButton from "@/components/layout/nav-button";
-import PublicBetaBadge from "@/components/shared/public-beta-badge";
+import AnimatedLogo from "@/components/shared/animated-logo";
+import { marketingConfig } from "@/config/marketing";
 import { siteConfig } from "@/config/site";
+import Balancer from "react-wrap-balancer";
 
 export default function Hero() {
   return (
-    <section className="section-container pt-16">
-      <div className="flex items-center gap-3">
-        <h3 className="font-medium text-2xl section-title">Nucelo</h3>
-        <PublicBetaBadge className="mt-0" />
-      </div>
-      <p className="text-gray-4 text-base">
-        Open source minimal blogging platform.
-      </p>
-      <div className="mt-2 flex items-center gap-2">
+    <section className="section-container pt-40 pb-20">
+      <div className="flex flex-col items-center gap-2">
+        <AnimatedLogo size={70} />
+        <h3 className="font-medium text-2xl section-title mt-3">Nucelo</h3>
+        <p className="text-gray-4 text-center">
+          <Balancer>{marketingConfig.headline}</Balancer>
+        </p>
+        <div className="grid grid-cols-2 *:w-full mt-5 mb-2 gap-3 max-md:grid-cols-1 ">
+          <NavButton
+            href={siteConfig.links.login}
+            buttonVariant="secondary"
+            size="wide"
+            aria-label="Log in"
+          >
+            Log in
+          </NavButton>
+          <NavButton
+            href={siteConfig.links.signup}
+            size="wide"
+            buttonVariant="primary"
+            aria-label="Create your website"
+          >
+            Create your website
+          </NavButton>
+        </div>
         <NavButton
           href={siteConfig.links.signup}
-          aria-label="Sign up Nucelo"
-          size="sm"
-          buttonVariant="secondary"
+          size="wide"
+          buttonVariant="ghost"
+          aria-label="See a sample website"
         >
-          Start writing
-        </NavButton>
-        <NavButton
-          href={siteConfig.links.demo}
-          aria-label="View demo of Nucelo"
-          target="_blank"
-          size="sm"
-        >
-          View demo
+          See a sample website
         </NavButton>
       </div>
     </section>

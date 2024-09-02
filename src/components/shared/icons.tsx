@@ -67,7 +67,7 @@ import {
   X,
 } from "lucide-react";
 
-type IconProps = {
+export type IconProps = {
   size?: number;
   color?: string;
   className?: string;

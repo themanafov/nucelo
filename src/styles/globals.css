@@ -32,6 +32,10 @@
   ::selection {
     @apply bg-gray-2 text-gray-4;
   }
+
+  hr {
+    @apply border-gray-2 w-full
+  }
 }
 
 @layer components {
@@ -48,6 +52,7 @@
   .section-content {
     @apply flex flex-col break-words pb-4;
   }
+
 }
 
 @layer utilities {

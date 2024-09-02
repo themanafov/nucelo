@@ -1,4 +1,3 @@
-import PublicBetaBadge from "@/components/shared/public-beta-badge";
 import React from "react";
 
 export default function AuthLayout({
@@ -9,7 +8,6 @@ export default function AuthLayout({
   return (
     <div className="mx-auto flex h-screen w-[350px] flex-col justify-center  max-[350px]:w-full max-[350px]:p-2">
       {children}
-      <PublicBetaBadge />
     </div>
   );
 }

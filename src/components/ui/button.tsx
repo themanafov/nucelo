@@ -16,11 +16,13 @@ const buttonVariants = cva(
           "bg-gray-3 enabled:hover:bg-gray-2 border border-gray-2 text-gray-4 enabled:hover:text-secondary",
         ghost:
           "enabled:hover:!bg-gray-2 text-gray-4 enabled:hover:!text-secondary",
+        primary:
+          "bg-secondary text-primary opacity-100 hover:opacity-80 transition-opacity",
       },
       size: {
         sm: "h-4.5 text-xs",
         icon: "size-4.5 p-0 hover:text-secondary",
-        wide: "w-full",
+        wide: "w-full text-sm px-4",
       },
     },
     defaultVariants: {
