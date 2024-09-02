@@ -37,7 +37,7 @@ export default function Pricing() {
                     ))}
                   </div>
                 ) : (
-                  <Badge className="py-1">Free</Badge>
+                  <Badge className="py-1 text-secondary">Free</Badge>
                 )}
               </div>
               <div className="p-3 border-b border-gray-2 ">

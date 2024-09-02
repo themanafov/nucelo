@@ -32,9 +32,10 @@ export default function Hero() {
           </NavButton>
         </div>
         <NavButton
-          href={siteConfig.links.signup}
+          href={siteConfig.links.demo}
           size="wide"
           buttonVariant="ghost"
+          target="_blank"
           aria-label="See a sample website"
         >
           See a sample website
