@@ -20,14 +20,14 @@ export default function ThemeToggle({
 
   const isDark = theme === "dark";
   const toggle = () => setTheme(isDark ? "light" : "dark");
-  const text = isDark ? "Switch Theme to light" : "Switch Theme to dark";
+  const text = isDark ? "Switch to light" : "Switch to dark";
   if (onlyText) {
     return (
       <p
         onClick={toggle}
         className="w-max text-xs text-gray-4 hover:text-secondary transition-colors cursor-pointer"
       >
-        {text.split("Theme")}
+        {text}
       </p>
     );
   }
