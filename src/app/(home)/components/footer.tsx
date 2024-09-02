@@ -3,12 +3,7 @@ import { Icons } from "@/components/shared/icons";
 import { marketingConfig } from "@/config/marketing";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
-import dynamic from "next/dynamic";
 import Balancer from "react-wrap-balancer";
-
-const ThemeToggle = dynamic(() => import("@/components/layout/theme-toggle"), {
-  ssr: false,
-});
 
 export default function Footer() {
   return (
