@@ -110,6 +110,7 @@ export default function AuthForm() {
                 aria-label={p.name}
                 target="_blank"
                 rel="noopener noreferrer"
+                key={p.name}
               />
             ))}
           </div>
@@ -138,6 +139,7 @@ export default function AuthForm() {
                         setAuthMethod(method);
                       }
                     }}
+                    key={method}
                   >
                     {isLoading === method ? (
                       <Icons.spinner size={18} className="animate-spin" />
