@@ -58,10 +58,9 @@ export async function POST(req: Request) {
         }
         await db.user.update({
           where: {
-            id: userId,
+            lsId: subscription.data.id,
           },
           data: {
-            lsId: subscription.data.id,
             lsVariantId: subscription.data.attributes.variant_id.toString(),
             lsCurrentPeriodEnd: subscription.data.attributes.renews_at,
           },
