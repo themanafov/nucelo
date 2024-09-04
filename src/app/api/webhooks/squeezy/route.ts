@@ -71,6 +71,12 @@ export async function POST(req: Request) {
           where: {
             lsId: body.id,
           },
+          select: {
+            id: true,
+            domain: true,
+            email: true,
+            name: true,
+          }
         });
         if (!user) {
           return new Response("User not found", { status: 404 });
@@ -79,7 +85,7 @@ export async function POST(req: Request) {
           removeDomain(user?.domain as string),
           db.user.update({
             where: {
-              id: userId,
+              id: user.id,
             },
             data: {
               lsId: null,
