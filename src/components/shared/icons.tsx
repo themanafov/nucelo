@@ -48,6 +48,7 @@ import {
   MousePointerClick,
   Plus,
   Quote,
+  Radio,
   RefreshCw,
   Search,
   Send,
@@ -75,6 +76,7 @@ export type IconProps = {
 
 export const Icons = {
   locked: Lock,
+  radio: Radio,
   plus: Plus,
   send: Send,
   chevronsUpDown: ChevronsUpDown,

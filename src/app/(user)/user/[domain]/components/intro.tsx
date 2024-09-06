@@ -1,5 +1,6 @@
 import { User } from "@prisma/client";
 import CommandMenuToggle from "./toggle";
+import Subscribe from "../articles/components/subscribe";
 
 export default function Intro({
   user,
@@ -15,6 +16,7 @@ export default function Intro({
     | "dribbble"
     | "contactEmail"
     | "linkedin"
+    | "username"
   >;
 }) {
   return (
@@ -23,8 +25,9 @@ export default function Intro({
         <h1 className="text-lg">{user.name}</h1>
         <h2 className="text-gray-4 text-sm">{user.title}</h2>
       </dt>
-      <dd className="section-content  py-0">
+      <dd className="section-content flex-row gap-2  py-0">
         <CommandMenuToggle />
+        <Subscribe username={user.username} compact/>
       </dd>
     </dl>
   );
