@@ -41,7 +41,7 @@ export default function Onboarding() {
         const err = await res.text();
         toast({
           title: "Something went wrong",
-          description: res.status === 422 ? "Username is not available."  : err,
+          description: err,
         });
       } else {
         router.push("/");
