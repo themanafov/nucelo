@@ -20,7 +20,13 @@ import * as z from "zod";
 
 type FormData = z.infer<typeof subscribeSchema>;
 
-export default function Subscribe({ username, compact = false }: { username: string; compact?: boolean }) {
+export default function Subscribe({
+  username,
+  compact = false,
+}: {
+  username: string;
+  compact?: boolean;
+}) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isLoading, startTransition] = useTransition();
   const {
@@ -61,7 +67,10 @@ export default function Subscribe({ username, compact = false }: { username: str
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant={compact ? "secondary" : "default"} size={compact ? "icon" : "sm"}>
+        <Button
+          variant={compact ? "secondary" : "default"}
+          size={compact ? "icon" : "sm"}
+        >
           {compact ? <Icons.radio size={15} /> : "Subscribe"}
         </Button>
       </DialogTrigger>

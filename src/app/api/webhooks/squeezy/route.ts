@@ -76,7 +76,7 @@ export async function POST(req: Request) {
             domain: true,
             email: true,
             name: true,
-          }
+          },
         });
         if (!user) {
           return new Response("User not found", { status: 404 });
