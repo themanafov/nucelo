@@ -71,7 +71,7 @@ export default function Subscribe({
           variant={compact ? "secondary" : "default"}
           size={compact ? "icon" : "sm"}
         >
-          {compact ? <Icons.radio size={15} /> : "Subscribe"}
+          {compact ? <Icons.mail size={15} /> : "Subscribe"}
         </Button>
       </DialogTrigger>
       <DialogContent>
