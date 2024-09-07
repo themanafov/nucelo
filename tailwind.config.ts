@@ -25,6 +25,7 @@ const config: Config = {
         "gray-2": "var(--gray-2)",
         "gray-3": "var(--gray-3)",
         "gray-4": "var(--gray-4)",
+        "overlay": "var(--overlay)",
       },
       spacing: {
         "1": "5px",

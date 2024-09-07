@@ -12,6 +12,7 @@
     --gray-4: #646464;
     --blue: rgb(33, 146, 255);
     --grass: #46a758;
+    --overlay: rgba(var(--foreground),.2);
   }
 
   .dark {
@@ -21,6 +22,8 @@
     --gray-2: #313131;
     --gray-3: #222222;
     --gray-4: #8e8e8e;
+    --overlay: rgba(var(--background-color),.2);
+
   }
 }
 
