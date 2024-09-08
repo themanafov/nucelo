@@ -1,22 +1,31 @@
 import { marketingConfig } from "@/config/marketing";
+import { getBlurDataURL } from "@/lib/sharp";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-const CustomImage = ({ src, alt }: { src: string; alt: string }) => {
+const CustomImage = async ({ src, alt }: { src: string; alt: string }) => {
+  const blurDataURL = await getBlurDataURL(src);
+
   return (
-    <Image
-      src={src}
-      alt={alt}
-      width={0}
-      height={0}
-      sizes="100vw"
+    <div
       className={cn(
-        "w-full hidden border border-gray-2 rounded-md",
+        "w-full hidden border border-gray-2 overflow-hidden rounded-md",
         src.includes("light") ? "dark:hidden block" : "dark:block",
       )}
-      quality={100}
-      priority
-    />
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={0}
+        height={0}
+        sizes="100vw"
+        className="w-full"
+        quality={80}
+        blurDataURL={blurDataURL}
+        placeholder="blur"
+        priority
+      />
+    </div>
   );
 };
 export default function Preview() {
