@@ -7,9 +7,10 @@ export const freePlan: Plan = {
     monthly: 0,
     yearly: 0,
   },
+  maxPostLimit: 1,
   features: [
     {
-      name: "Max 3 articles, projects, and bookmarks",
+      name: "Max 1 article, project, and bookmark",
       icon: "check",
     },
     {
@@ -50,6 +51,7 @@ export const proPlan: Plan = {
     monthly: 4,
     yearly: 40,
   },
+  maxPostLimit: "∞",
   features: [
     {
       name: "Unlimited articles, projects, and bookmarks",

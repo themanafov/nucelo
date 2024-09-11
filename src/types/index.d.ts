@@ -81,6 +81,7 @@ export type Plan = {
     monthly: number;
     yearly: number;
   };
+  maxPostLimit: number | "∞";
   features: PlanFeature[];
   action: {
     text: string;

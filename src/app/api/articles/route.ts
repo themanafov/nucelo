@@ -12,10 +12,10 @@ export const POST = guard(
         },
       });
 
-      if (articlesCount >= 3 && !plan.isPro) {
+      if (typeof plan.maxPostLimit === "number" && articlesCount >= plan.maxPostLimit && !plan.isPro) {
         return new Response(
-          "If you want to share more than 3 articles, upgrade the plan to Pro",
-          { status: 401 },
+          `If you want to share more than ${plan.maxPostLimit} article(s), upgrade the plan to Pro`,
+          { status: 403 },
         );
       }
       const article = await createArticle(user.id, body);

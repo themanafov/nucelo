@@ -12,10 +12,10 @@ export const POST = guard(
         },
       });
 
-      if (bookmarksCount >= 3 && !plan.isPro) {
+      if (typeof plan.maxPostLimit === "number" && bookmarksCount >= plan.maxPostLimit && !plan.isPro) {
         return new Response(
-          "If you want to share more than 3 bookmarks, upgrade the plan to Pro",
-          { status: 401 },
+          `If you want to share more than ${plan.maxPostLimit} bookmark(s), upgrade the plan to Pro`,
+          { status: 403 },
         );
       }
       await createBookmark(user.id, body);
