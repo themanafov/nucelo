@@ -31,3 +31,8 @@ export const analyticsEndpoint = {
     total: "nbc",
   },
 } as const;
+
+export const analyticsSources = {
+  analytics: "na",
+  bookmarks: "nb",
+} as const;

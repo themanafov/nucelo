@@ -11,6 +11,7 @@ import {
 } from "./edge";
 import { rateLimit } from "./ratelimit";
 import { capitalize, detectBot } from "./utils";
+import { analyticsSources } from "./constants";
 
 export async function track({
   req,
@@ -65,7 +66,7 @@ export async function track({
 
     await Promise.all([
       user.isPro
-        ? fetch("https://api.tinybird.co/v0/events?name=na", {
+        ? fetch(`https://api.tinybird.co/v0/events?name=${analyticsSources.analytics}`, {
             headers: {
               Authorization: `Bearer ${process.env.TINYBIRD_API_KEY}`,
             },
@@ -144,7 +145,7 @@ export async function recordClick(req: NextRequest, bookmarkId: string) {
     const referer = req.headers.get("referer");
     await Promise.all([
       user.isPro
-        ? fetch("https://api.tinybird.co/v0/events?name=nb", {
+        ? fetch(`https://api.tinybird.co/v0/events?name=${analyticsSources.bookmarks}`, {
             headers: {
               Authorization: `Bearer ${process.env.TINYBIRD_API_KEY}`,
             },
