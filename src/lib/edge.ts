@@ -128,3 +128,25 @@ export async function getBookmarkViaEdge(bookmarkId: string) {
     },
   });
 }
+
+export async function isArticleExist(slug: string, authorId: string) {
+  const isExist = await dbEdge.article.count({
+    where: {
+      authorId,
+      slug,
+    },
+  });
+
+  return isExist > 0;
+}
+
+export async function isProjectExist(slug: string, authorId: string) {
+  const isExist = await dbEdge.project.count({
+    where: {
+      authorId,
+      slug,
+    },
+  });
+
+  return isExist > 0;
+}

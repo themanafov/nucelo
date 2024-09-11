@@ -6,6 +6,8 @@ import {
   incrementArticleViewsViaEdge,
   incrementBookmarkClicksViaEdge,
   incrementProjectViewsViaEdge,
+  isArticleExist,
+  isProjectExist,
 } from "./edge";
 import { rateLimit } from "./ratelimit";
 import { capitalize, detectBot } from "./utils";
@@ -53,6 +55,13 @@ export async function track({
     if (!user) {
       return new Response(null, { status: 404 });
     }
+    const authorId = user.userId
+    const isPost = type && slug
+    const isPostExist = isPost ? type === "articles" ?  isArticleExist(slug, authorId) : isProjectExist(slug, authorId) : null
+
+    if(!isPostExist) {
+      return new Response(null, {status: 404})
+    }
 
     await Promise.all([
       user.isPro
@@ -62,7 +71,7 @@ export async function track({
             },
             method: "POST",
             body: JSON.stringify({
-              userId: user.userId || "Unknown",
+              userId: authorId || "Unknown",
               timestamp: new Date(Date.now()).toISOString(),
               domain: domain ?? "_root",
               page,
@@ -89,10 +98,10 @@ export async function track({
             }),
           })
         : null,
-      type && slug
+      isPost
         ? type === "articles"
-          ? incrementArticleViewsViaEdge(slug, user.userId)
-          : incrementProjectViewsViaEdge(slug, user.userId)
+          ? incrementArticleViewsViaEdge(slug, authorId)
+          : incrementProjectViewsViaEdge(slug, authorId)
         : null,
     ]);
 
