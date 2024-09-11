@@ -60,7 +60,7 @@ export async function track({
     const isPost = type && slug
     const isPostExist = isPost ? type === "articles" ?  isArticleExist(slug, authorId) : isProjectExist(slug, authorId) : null
 
-    if(!isPostExist) {
+    if(isPost && !isPostExist) {
       return new Response(null, {status: 404})
     }
 
