@@ -1,7 +1,7 @@
 "use server";
-import * as z from "zod";
+import type * as z from "zod";
 import { db } from "../db";
-import { collectionSchema } from "../validations/bookmark";
+import type { collectionSchema } from "../validations/bookmark";
 
 type Schema = z.infer<typeof collectionSchema>;
 

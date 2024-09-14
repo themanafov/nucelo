@@ -93,7 +93,7 @@ export async function getAnalytics({
 }) {
   try {
     const endpoint = getEndpoint(property, "analytics");
-    let url = new URL(`https://api.tinybird.co/v0/pipes/${endpoint}.json`);
+    const url = new URL(`https://api.tinybird.co/v0/pipes/${endpoint}.json`);
 
     url.searchParams.append("type", property);
     if (page) {
@@ -147,7 +147,7 @@ export async function getBookmarkAnalytics({
 }) {
   const endpoint = getEndpoint(property, "bookmarks");
 
-  let url = new URL(`https://api.tinybird.co/v0/pipes/${endpoint}.json`);
+  const url = new URL(`https://api.tinybird.co/v0/pipes/${endpoint}.json`);
   url.searchParams.append("id", id);
   url.searchParams.append("type", property);
   if (interval) {

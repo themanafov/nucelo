@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 import getCurrentUser from "@/lib/session";
 import { revalidatePath } from "next/cache";
 export async function newsletterToggle(prev: any, data: FormData) {
-  const toggle = data.get("newsletter") === "on" ? true : false;
+  const toggle = data.get("newsletter") === "on";
   const user = await getCurrentUser();
   if (!user) {
     return {

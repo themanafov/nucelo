@@ -4,7 +4,7 @@ import NoProjectsPlaceholder from "@/components/projects/no-projects-placeholder
 import Project from "@/components/projects/project";
 import { getProjectsByAuthor } from "@/lib/fetchers/projects";
 import { getUserByDomain } from "@/lib/fetchers/users";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {

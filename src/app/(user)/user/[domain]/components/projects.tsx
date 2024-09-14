@@ -1,6 +1,6 @@
 import Project from "@/components/projects/project";
 import { Icons } from "@/components/shared/icons";
-import { Project as ProjectProps } from "@prisma/client";
+import type { Project as ProjectProps } from "@prisma/client";
 import Link from "next/link";
 
 export default function Projects({ projects }: { projects: ProjectProps[] }) {

@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { getUserViaEdge } from "@/lib/edge";
-import { User } from "@prisma/client";
+import type { User } from "@prisma/client";
 import Link from "next/link";
 
 export default async function Watermark({ user }: { user: Pick<User, "id"> }) {

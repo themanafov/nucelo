@@ -11,7 +11,7 @@ const bodySchema = z.object({
     .nullable()
     .refine(
       (value) => !value?.includes("nucelo.co"),
-      `You cannot use this domain as your own custom domain.`,
+      "You cannot use this domain as your own custom domain.",
     ),
 });
 

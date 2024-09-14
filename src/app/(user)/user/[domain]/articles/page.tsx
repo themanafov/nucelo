@@ -4,7 +4,7 @@ import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
 import { getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getUserByDomain } from "@/lib/fetchers/users";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Subscribe from "./components/subscribe";
 

@@ -1,12 +1,12 @@
 import { siteConfig } from "@/config/site";
-import { BookmarkWithCollection } from "@/types";
-import { Article, Project } from "@prisma/client";
-import clsx, { ClassValue } from "clsx";
-import { Metadata } from "next";
-import { NextRequest } from "next/server";
+import type { BookmarkWithCollection } from "@/types";
+import type { Article, Project } from "@prisma/client";
+import clsx, { type ClassValue } from "clsx";
+import type { Metadata } from "next";
+import type { NextRequest } from "next/server";
 import slug from "slugify";
 import { twMerge } from "tailwind-merge";
-import { PropertyProps } from "./analytics";
+import type { PropertyProps } from "./analytics";
 import { URLRegex, analyticsEndpoint } from "./constants";
 
 export function cn(...inputs: ClassValue[]) {

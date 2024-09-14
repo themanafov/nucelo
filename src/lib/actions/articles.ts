@@ -1,13 +1,13 @@
 "use server";
 import Newsletter from "@/emails/newsletter";
-import { NewsletterProps } from "@/types";
-import { Article, User } from "@prisma/client";
-import * as z from "zod";
+import type { NewsletterProps } from "@/types";
+import type { Article, User } from "@prisma/client";
+import type * as z from "zod";
 import { db } from "../db";
 import { getSubscribersByUserId } from "../fetchers/subscribers";
 import { resend } from "../resend";
 import { formatDate, slugify } from "../utils";
-import {
+import type {
   articleCreateSchema,
   articlePatchSchema,
 } from "../validations/article";
@@ -80,7 +80,7 @@ export async function sendNewsletter(
         sendNewsletterEmail({
           from: `${user?.name} from Nucelo <notify@nucelo.com>`,
           to: e.email,
-          subject: `I shared a new article.`,
+          subject: "I shared a new article.",
           newsletter: {
             title: article.title,
             author: user.name || user.username,
@@ -103,9 +103,8 @@ export async function sendNewsletter(
     ]);
 
     return new Response(null, { status: 200 });
-  } else {
-    return new Response("You don't have any subscribers", { status: 400 });
   }
+  return new Response("You don't have any subscribers", { status: 400 });
 }
 
 export async function sendNewsletterEmail({

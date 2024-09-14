@@ -55,7 +55,7 @@ export async function getProjects({
 export async function getProjectsByAuthor(
   authorId: string,
   limit?: number,
-  published: boolean = true,
+  published = true,
 ) {
   return await db.project.findMany({
     where: {

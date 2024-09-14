@@ -1,6 +1,6 @@
 "use client";
-import { motion, Variants } from "framer-motion";
-import { IconProps } from "./icons";
+import { type Variants, motion } from "framer-motion";
+import type { IconProps } from "./icons";
 
 const logo: Variants = {
   hidden: {

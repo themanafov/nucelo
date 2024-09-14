@@ -1,7 +1,7 @@
 "use server";
-import * as z from "zod";
+import type * as z from "zod";
 import { db } from "../db";
-import { subscribeSchema } from "../validations/subscribe";
+import type { subscribeSchema } from "../validations/subscribe";
 
 type SubscriberSchema = z.infer<typeof subscribeSchema>;
 

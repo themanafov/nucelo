@@ -8,8 +8,8 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Editor } from "@tiptap/core";
-import { Dispatch, SetStateAction } from "react";
+import type { Editor } from "@tiptap/core";
+import type { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 

@@ -3,7 +3,7 @@
 import { siteConfig } from "@/config/site";
 import useAppCommand from "@/hooks/use-app-command";
 import { getInitials } from "@/lib/utils";
-import { User } from "@prisma/client";
+import type { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import ThemeToggle from "../layout/theme-toggle";

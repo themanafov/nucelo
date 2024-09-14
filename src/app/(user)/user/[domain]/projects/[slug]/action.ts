@@ -16,9 +16,8 @@ export async function unlockProject(prev: any, data: FormData) {
     return {
       unlocked: true,
     };
-  } else {
-    return {
-      error: "Incorrect Password",
-    };
   }
+  return {
+    error: "Incorrect Password",
+  };
 }

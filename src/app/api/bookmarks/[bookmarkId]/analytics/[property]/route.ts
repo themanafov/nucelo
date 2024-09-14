@@ -1,8 +1,8 @@
 import { verifyBookmarkAccess } from "@/lib/actions/bookmarks";
 import {
+  ZodAnalyticsProperty,
   analyticsSearchParamsSchema,
   getBookmarkAnalytics,
-  ZodAnalyticsProperty,
 } from "@/lib/analytics";
 import { guard } from "@/lib/auth";
 import { NextResponse } from "next/server";

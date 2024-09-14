@@ -1,6 +1,6 @@
 "use client";
 
-import { StorageFolders } from "@/lib/constants";
+import type { StorageFolders } from "@/lib/constants";
 import { uploadFile } from "@/lib/upload";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

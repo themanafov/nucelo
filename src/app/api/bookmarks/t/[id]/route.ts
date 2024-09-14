@@ -1,5 +1,5 @@
 import { recordClick } from "@/lib/tinybird";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 import * as z from "zod";
 
 export const runtime = "edge";

@@ -1,11 +1,11 @@
-import { Plan, UserSubscriptionPlan } from "@/types";
+import type { Plan, UserSubscriptionPlan } from "@/types";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { User } from "@prisma/client";
-import { NextAuthOptions } from "next-auth";
+import type { User } from "@prisma/client";
+import type { NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import * as z from "zod";
+import type * as z from "zod";
 import MagicLinkEmail from "../../emails/magic-link";
 import { db } from "./db";
 import { getUser } from "./fetchers/users";

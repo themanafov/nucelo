@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { Bar, BarListItem } from "./bar-list";
+import { type Bar, BarListItem } from "./bar-list";
 
 export default function ViewAllBarlist({
   data,

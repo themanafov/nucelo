@@ -1,8 +1,8 @@
 import { verifyArticleAccess } from "@/lib/actions/articles";
 import {
+  ZodAnalyticsProperty,
   analyticsSearchParamsSchema,
   getAnalytics,
-  ZodAnalyticsProperty,
 } from "@/lib/analytics";
 import { guard } from "@/lib/auth";
 import { db } from "@/lib/db";

@@ -8,8 +8,8 @@ import AppHeader from "@/components/layout/header";
 import { getBookmarks } from "@/lib/fetchers/bookmarks";
 import { getCollections } from "@/lib/fetchers/collections";
 import { sortBookmarks } from "@/lib/utils";
-import { Collection } from "@prisma/client";
-import { Metadata } from "next";
+import type { Collection } from "@prisma/client";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Bookmarks",

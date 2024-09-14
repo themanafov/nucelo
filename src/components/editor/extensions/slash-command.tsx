@@ -1,7 +1,7 @@
 import { Icons } from "@/components/shared/icons";
 import { cn } from "@/lib/utils";
 import { Extension } from "@tiptap/core";
-import { Editor, ReactRenderer } from "@tiptap/react";
+import { type Editor, ReactRenderer } from "@tiptap/react";
 import Suggestion from "@tiptap/suggestion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import tippy from "tippy.js";
@@ -155,17 +155,17 @@ const renderItems = () => {
     onUpdate: (props: { editor: Editor; clientRect: DOMRect }) => {
       component?.updateProps(props);
 
-      popup &&
-        popup[0].setProps({
-          getReferenceClientRect: props.clientRect,
-        });
+      popup?.[0].setProps({
+        getReferenceClientRect: props.clientRect,
+      });
     },
     onKeyDown: (props: { event: KeyboardEvent }) => {
       if (props.event.key === "Escape") {
         popup?.[0].hide();
 
         return true;
-      } else if (props.event.key === "Enter") {
+      }
+      if (props.event.key === "Enter") {
         return true;
       }
 

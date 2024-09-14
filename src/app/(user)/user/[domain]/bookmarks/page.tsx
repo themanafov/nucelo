@@ -7,8 +7,8 @@ import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
 import { getCollectionsByAuthor } from "@/lib/fetchers/collections";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import { sortBookmarks } from "@/lib/utils";
-import { Collection } from "@prisma/client";
-import { Metadata } from "next";
+import type { Collection } from "@prisma/client";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {

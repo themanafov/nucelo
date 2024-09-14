@@ -9,8 +9,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "@/components/ui/use-toast";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
-import { Icon } from "@/types";
-import { Article, Project, User } from "@prisma/client";
+import type { Icon } from "@/types";
+import type { Article, Project, User } from "@prisma/client";
 import Link from "next/link";
 import { useState } from "react";
 import Editor from "..";

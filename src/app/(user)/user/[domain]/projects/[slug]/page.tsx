@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { getProject, getProjectsByAuthor } from "@/lib/fetchers/projects";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import { generateSEO } from "@/lib/utils";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Protection from "./protection";

@@ -1,5 +1,5 @@
 import { freePlan, proPlan } from "@/config/subscriptions";
-import { UserSubscriptionPlan } from "@/types";
+import type { UserSubscriptionPlan } from "@/types";
 import { getSubscription } from "@lemonsqueezy/lemonsqueezy.js";
 import { getServerSession } from "next-auth";
 import authOptions from "./auth";

@@ -1,11 +1,11 @@
 import { toast } from "@/components/ui/use-toast";
 import { uploadFile } from "@/lib/upload";
-import { EditorView } from "@tiptap/pm/view";
-import { findPlaceholder, Placeholder } from "../plugins/placeholder";
+import type { EditorView } from "@tiptap/pm/view";
+import { Placeholder, findPlaceholder } from "../plugins/placeholder";
 
 export async function uploadImg(file: File, view: EditorView) {
-  let id = {};
-  let tr = view.state.tr;
+  const id = {};
+  const tr = view.state.tr;
   if (!tr.selection.empty) tr.deleteSelection();
   const reader = new FileReader();
   reader.readAsDataURL(file);
@@ -22,7 +22,8 @@ export async function uploadImg(file: File, view: EditorView) {
 
   if (!file.type.includes("image/")) {
     return;
-  } else if (file.size / 1024 / 1024 > 20) {
+  }
+  if (file.size / 1024 / 1024 > 20) {
     return;
   }
 
@@ -44,7 +45,7 @@ export async function uploadImg(file: File, view: EditorView) {
     title: "Uploaded.",
   });
 
-  let pos = findPlaceholder(view.state, id);
+  const pos = findPlaceholder(view.state, id);
   if (pos == null) return;
 
   view.dispatch(

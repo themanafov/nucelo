@@ -1,7 +1,7 @@
 import {
+  ZodAnalyticsProperty,
   analyticsSearchParamsSchema,
   getAnalytics,
-  ZodAnalyticsProperty,
 } from "@/lib/analytics";
 import { guard } from "@/lib/auth";
 import { NextResponse } from "next/server";

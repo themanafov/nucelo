@@ -5,7 +5,7 @@ import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
 import NavButton from "@/components/layout/nav-button";
 import { getProjectById } from "@/lib/fetchers/projects";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 interface ProjectSettingsProps {

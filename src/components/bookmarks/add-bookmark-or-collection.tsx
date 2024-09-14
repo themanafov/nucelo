@@ -1,5 +1,5 @@
 "use client";
-import { Collection } from "@prisma/client";
+import type { Collection } from "@prisma/client";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Icons } from "../shared/icons";

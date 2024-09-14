@@ -4,7 +4,7 @@ import Button from "@/components/ui/button";
 import { marketingConfig } from "@/config/marketing";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
-import { Period } from "@/types";
+import type { Period } from "@/types";
 import Link from "next/link";
 
 export default function Pricing() {

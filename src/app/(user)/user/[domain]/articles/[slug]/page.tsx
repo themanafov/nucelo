@@ -6,7 +6,7 @@ import { getArticle, getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import { formatDate, generateSEO } from "@/lib/utils";
 import moment from "moment";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import readingTime from "reading-time";
 export const revalidate = 60;

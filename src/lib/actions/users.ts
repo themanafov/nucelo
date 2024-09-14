@@ -1,10 +1,10 @@
 "use server";
 import { cancelSubscription } from "@lemonsqueezy/lemonsqueezy.js";
-import { User } from "@prisma/client";
-import * as z from "zod";
+import type { User } from "@prisma/client";
+import type * as z from "zod";
 import { db } from "../db";
 import { addDomain, removeDomain } from "../domains";
-import { updateUserSchema } from "../validations/user";
+import type { updateUserSchema } from "../validations/user";
 
 type UpdateUserSchema = z.infer<typeof updateUserSchema>;
 

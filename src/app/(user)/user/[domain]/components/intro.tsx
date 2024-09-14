@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import type { User } from "@prisma/client";
 import Subscribe from "../articles/components/subscribe";
 import CommandMenuToggle from "./toggle";
 

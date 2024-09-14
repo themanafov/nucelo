@@ -2,9 +2,9 @@ import Track from "@/components/analytics/track";
 import Command from "@/components/layout/user-page-command";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import { generateSEO } from "@/lib/utils";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import React from "react";
+import type React from "react";
 import Watermark from "./components/watermark";
 
 interface LayoutProps {

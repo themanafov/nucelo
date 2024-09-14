@@ -1,7 +1,7 @@
 import { Icons } from "@/components/shared/icons";
 import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Editor } from "@tiptap/core";
+import type { Editor } from "@tiptap/core";
 import { BubbleMenu as TipTapBubbleMenu } from "@tiptap/react";
 import { useState } from "react";
 import LinkSelector from "./link-selector";

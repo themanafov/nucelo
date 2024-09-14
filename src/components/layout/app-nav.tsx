@@ -1,7 +1,7 @@
 "use client";
 
-import { MainNavItem } from "@/types";
-import { User } from "@prisma/client";
+import type { MainNavItem } from "@/types";
+import type { User } from "@prisma/client";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { Icons } from "../shared/icons";

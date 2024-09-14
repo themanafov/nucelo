@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "@/components/ui/use-toast";
-import { Collection } from "@prisma/client";
+import type { Collection } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import AddEditCollectionModal from "./add-edit-collection-modal";

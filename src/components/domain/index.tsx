@@ -56,7 +56,7 @@ export default function CustomDomain({
   const onSubmit = async (data: FormData) => {
     setError(null);
     startTransition(async () => {
-      const res = await fetch(`/api/user/domain`, {
+      const res = await fetch("/api/user/domain", {
         method: "POST",
         body: JSON.stringify({
           domain: data.domain?.length ? data.domain : null,

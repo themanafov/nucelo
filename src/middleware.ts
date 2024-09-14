@@ -1,5 +1,5 @@
 import { getToken } from "next-auth/jwt";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export const config = {
   matcher: ["/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)"],
@@ -22,7 +22,8 @@ export default async function middleware(req: NextRequest) {
   ) {
     if (path === "/" && session) {
       return NextResponse.redirect(process.env.NEXT_PUBLIC_APP_URL as string);
-    } else if (path === "/" && !session) {
+    }
+    if (path === "/" && !session) {
       return NextResponse.rewrite(new URL("/home", req.url));
     }
   }
@@ -31,7 +32,8 @@ export default async function middleware(req: NextRequest) {
     const isAuthPage = path === "/login" || path === "/signup";
     if (session && isAuthPage) {
       return NextResponse.redirect(new URL("/", req.url));
-    } else if (!session && !isAuthPage) {
+    }
+    if (!session && !isAuthPage) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
     return NextResponse.rewrite(

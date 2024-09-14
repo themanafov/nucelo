@@ -13,7 +13,7 @@ export const updateUserSchema = z.object({
     .max(36)
     .refine(
       (value) => !notAllowedUsernames.includes(value),
-      `Username is not available`,
+      "Username is not available",
     )
     .optional(),
   title: z.string().max(32).nullable().optional(),

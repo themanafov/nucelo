@@ -35,7 +35,7 @@ export default function UploadAvatar({ defaultValue, name }: Props) {
       });
     }
 
-    const res = await fetch(`/api/user`, {
+    const res = await fetch("/api/user", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

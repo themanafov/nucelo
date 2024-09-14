@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IndexProps } from ".";
+import type { IndexProps } from ".";
 import { Icons } from "../shared/icons";
 import { Badge } from "../ui/badge";
 

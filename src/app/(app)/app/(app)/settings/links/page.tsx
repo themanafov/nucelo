@@ -1,6 +1,6 @@
 import Form from "@/components/forms/form";
 import { getUser } from "@/lib/fetchers/users";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Links",

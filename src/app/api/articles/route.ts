@@ -12,7 +12,11 @@ export const POST = guard(
         },
       });
 
-      if (typeof plan.maxPostLimit === "number" && articlesCount >= plan.maxPostLimit && !plan.isPro) {
+      if (
+        typeof plan.maxPostLimit === "number" &&
+        articlesCount >= plan.maxPostLimit &&
+        !plan.isPro
+      ) {
         return new Response(
           `If you want to share more than ${plan.maxPostLimit} article(s), upgrade the plan to Pro`,
           { status: 403 },

@@ -1,5 +1,5 @@
 import { formatDate } from "@/lib/utils";
-import { Article as ArticleType } from "@prisma/client";
+import type { Article as ArticleType } from "@prisma/client";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { AnalyticsBadge } from "../analytics/analytics-badge";

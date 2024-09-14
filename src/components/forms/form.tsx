@@ -2,7 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useMemo, useState, useTransition } from "react";
+import type React from "react";
+import { type FormEvent, useMemo, useState, useTransition } from "react";
 import { Icons } from "../shared/icons";
 import Button from "../ui/button";
 import Input from "../ui/input";
@@ -88,7 +89,7 @@ export default function Form({
         router.refresh();
 
         toast({
-          title: `Saved`,
+          title: "Saved",
         });
       }
     });

@@ -2,8 +2,8 @@
 
 import { marketingConfig } from "@/config/marketing";
 import { cn, formatDate } from "@/lib/utils";
-import { Period, UserSubscriptionPlan } from "@/types";
-import { FormEvent, useState, useTransition } from "react";
+import type { Period, UserSubscriptionPlan } from "@/types";
+import { type FormEvent, useState, useTransition } from "react";
 import { Icons } from "../shared/icons";
 import { Badge } from "../ui/badge";
 import Button from "../ui/button";

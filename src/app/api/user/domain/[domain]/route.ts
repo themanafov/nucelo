@@ -5,7 +5,7 @@ import {
   getDomainResponse,
   verifyDomain,
 } from "@/lib/domains";
-import { DomainStatus } from "@/types";
+import type { DomainStatus } from "@/types";
 import * as z from "zod";
 
 const routeContextSchema = z.object({
@@ -31,7 +31,7 @@ export const GET = guard(
       } else if (!domainRes.verified) {
         status = "Pending Verification";
         const res = await verifyDomain(domain);
-        if (res && res.verified) {
+        if (res?.verified) {
           status = "Valid Configuration";
         }
       } else if (config.misconfigured) {
@@ -39,7 +39,7 @@ export const GET = guard(
       } else {
         status = "Valid Configuration";
       }
-      delete domainRes.projectId;
+      domainRes.projectId = undefined;
 
       return new Response(JSON.stringify({ status, domainRes }));
     } catch (err) {

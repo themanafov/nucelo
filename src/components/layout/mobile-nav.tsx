@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { NavItem } from "@/types";
+import type { NavItem } from "@/types";
 import { Icons } from "../shared//icons";
 import {
   DropdownMenu,

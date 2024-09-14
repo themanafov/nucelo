@@ -79,7 +79,7 @@ export const BarListItem = ({
             width: `${(item.value / total) * 100}%`,
           }}
           className="absolute left-0 top-0 z-[1] h-full rounded-md  bg-[#8d8d8d21]"
-        ></span>
+        />
         {item.icon && (
           <Favicon url={item.icon} alt={`${item.icon} icon`} size={18} />
         )}

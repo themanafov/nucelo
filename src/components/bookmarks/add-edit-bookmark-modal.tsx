@@ -3,11 +3,11 @@ import { URLRegex } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { bookmarkFormSchema } from "@/lib/validations/bookmark";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Bookmark as BookmarkType, Collection } from "@prisma/client";
+import type { Bookmark as BookmarkType, Collection } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import * as z from "zod";
+import type * as z from "zod";
 import { Icons } from "../shared/icons";
 import Button from "../ui/button";
 import {
@@ -64,14 +64,13 @@ export default function AddEditBookmarkModal({
         method: "PATCH",
         successMessage: "Bookmark has been saved.",
       };
-    } else {
-      return {
-        title: "Add bookmark",
-        endpoint: "/api/bookmarks",
-        method: "POST",
-        successMessage: "Bookmark has been added.",
-      };
     }
+    return {
+      title: "Add bookmark",
+      endpoint: "/api/bookmarks",
+      method: "POST",
+      successMessage: "Bookmark has been added.",
+    };
   }, [edit, bookmark]);
 
   const {

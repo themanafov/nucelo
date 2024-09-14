@@ -1,5 +1,5 @@
 import { fetcher } from "@/lib/utils";
-import { DomainStatus } from "@/types";
+import type { DomainStatus } from "@/types";
 import useSWR from "swr";
 
 const useDomainStatus = (

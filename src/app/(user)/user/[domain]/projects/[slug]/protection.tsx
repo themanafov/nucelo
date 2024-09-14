@@ -3,8 +3,8 @@
 import { Icons } from "@/components/shared/icons";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
-import { Project, User } from "@prisma/client";
-import * as React from "react";
+import type { Project, User } from "@prisma/client";
+import type * as React from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { unlockProject } from "./action";
 

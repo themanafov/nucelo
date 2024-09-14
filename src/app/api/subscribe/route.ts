@@ -2,7 +2,7 @@ import { createSubscriber, isSubscriberExist } from "@/lib/actions/subscribers";
 import { getUserById } from "@/lib/fetchers/users";
 import { rateLimit } from "@/lib/ratelimit";
 import { getUserSubscription } from "@/lib/subscription";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 import * as z from "zod";
 
 const subscribeNewsletterPatchSchema = z.object({

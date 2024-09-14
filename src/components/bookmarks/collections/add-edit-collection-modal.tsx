@@ -13,11 +13,11 @@ import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { collectionSchema } from "@/lib/validations/bookmark";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Collection } from "@prisma/client";
+import type { Collection } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
+import type * as z from "zod";
 
 type CollectionFormData = z.infer<typeof collectionSchema>;
 
@@ -55,18 +55,17 @@ export default function AddEditCollectionModal({
             loading: "Saving",
           },
         };
-      } else {
-        return {
-          title: "New collection",
-          endpoint: "/api/bookmarks/collections",
-          method: "POST",
-          successMessage: "Collection has been created.",
-          buttonText: {
-            default: "Create",
-            loading: "Creating",
-          },
-        };
       }
+      return {
+        title: "New collection",
+        endpoint: "/api/bookmarks/collections",
+        method: "POST",
+        successMessage: "Collection has been created.",
+        buttonText: {
+          default: "Create",
+          loading: "Creating",
+        },
+      };
     }, [edit, collection]);
 
   const {

@@ -2,7 +2,7 @@
 
 import { getLinks, userPageConfig } from "@/config/user-page";
 import useNavigation from "@/hooks/use-navigation";
-import { User } from "@prisma/client";
+import type { User } from "@prisma/client";
 import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";

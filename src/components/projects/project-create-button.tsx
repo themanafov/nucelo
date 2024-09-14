@@ -51,7 +51,6 @@ export async function createProject() {
       description: body,
     });
     return null;
-  } else {
-    return await res.json();
   }
+  return await res.json();
 }

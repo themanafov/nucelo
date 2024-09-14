@@ -3,7 +3,7 @@
 import "@/styles/editor.css";
 import { EditorContent, useEditor } from "@tiptap/react";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { useDebouncedCallback } from "use-debounce";
 import { toast } from "../ui/use-toast";

@@ -2,13 +2,13 @@
 
 import { capitalize, cn } from "@/lib/utils";
 import { authFormSchema } from "@/lib/validations/auth";
-import { Icon } from "@/types";
+import type { Icon } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Balancer from "react-wrap-balancer";
-import * as z from "zod";
+import type * as z from "zod";
 import NavButton from "../layout/nav-button";
 import { Icons } from "../shared/icons";
 import Button from "../ui/button";

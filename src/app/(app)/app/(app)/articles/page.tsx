@@ -6,7 +6,7 @@ import AppHeader from "@/components/layout/header";
 import PostsFilter from "@/components/layout/posts-filter";
 import { getArticles } from "@/lib/fetchers/articles";
 import { sortArticles } from "@/lib/utils";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 interface Props {
   searchParams: {

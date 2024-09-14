@@ -1,5 +1,5 @@
 import { getDomainFromURL } from "@/lib/utils";
-import { Bookmark as BookmarkType, Collection } from "@prisma/client";
+import type { Bookmark as BookmarkType, Collection } from "@prisma/client";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { AnalyticsBadge } from "../analytics/analytics-badge";

@@ -6,7 +6,7 @@ import Project from "@/components/projects/project";
 import CreateProject from "@/components/projects/project-create-button";
 import { getProjects } from "@/lib/fetchers/projects";
 import { sortProjects } from "@/lib/utils";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 interface Props {
   searchParams: {

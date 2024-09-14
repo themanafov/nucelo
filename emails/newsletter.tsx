@@ -1,4 +1,4 @@
-import { NewsletterProps } from "@/types";
+import type { NewsletterProps } from "@/types";
 import {
   Body,
   Container,

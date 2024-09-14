@@ -1,12 +1,12 @@
 "use client";
 import { appConfig } from "@/config/app";
 import useAppCommand from "@/hooks/use-app-command";
-import { Icon } from "@/types";
-import { User } from "@prisma/client";
+import type { Icon } from "@/types";
+import type { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { type ReactNode, useCallback, useEffect, useState } from "react";
 import { createArticle } from "../articles/article-create-button";
 import { createProject } from "../projects/project-create-button";
 import { Icons } from "../shared/icons";

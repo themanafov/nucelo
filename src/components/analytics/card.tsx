@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import React, { SetStateAction } from "react";
+import type React from "react";
+import type { SetStateAction } from "react";
 import Button from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 
@@ -47,7 +48,7 @@ export default function Card({
                     ? "bg-gray-3 text-secondary"
                     : "",
                 )}
-                onClick={() => setTab && setTab(tab.toLowerCase())}
+                onClick={() => setTab?.(tab.toLowerCase())}
                 key={i}
               />
             ))}

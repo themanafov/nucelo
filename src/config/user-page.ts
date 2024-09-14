@@ -1,5 +1,5 @@
-import { UserPageConfig } from "@/types";
-import { User } from "@prisma/client";
+import type { UserPageConfig } from "@/types";
+import type { User } from "@prisma/client";
 
 export const userPageConfig: UserPageConfig = {
   pages: [

@@ -5,9 +5,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { Editor } from "@tiptap/core";
-import { Dispatch, SetStateAction } from "react";
-import { BubbleMenuItem } from "./bubble-menu";
+import type { Editor } from "@tiptap/core";
+import type { Dispatch, SetStateAction } from "react";
+import type { BubbleMenuItem } from "./bubble-menu";
 
 interface LinkSelectorProps {
   editor: Editor;

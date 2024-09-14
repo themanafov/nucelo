@@ -1,4 +1,4 @@
-import { AppConfig } from "@/types";
+import type { AppConfig } from "@/types";
 
 export const appConfig: AppConfig = {
   mainNav: [

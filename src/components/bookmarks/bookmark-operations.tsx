@@ -1,7 +1,7 @@
 "use client";
-import { Collection } from "@prisma/client";
+import type { Collection } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { type FormEvent, useState } from "react";
 import { Icons } from "../shared/icons";
 import {
   AlertDialog,
@@ -19,7 +19,7 @@ import {
 } from "../ui/dropdown-menu";
 
 import { toast } from "../ui/use-toast";
-import AddEditBookmarkModal, { Bookmark } from "./add-edit-bookmark-modal";
+import AddEditBookmarkModal, { type Bookmark } from "./add-edit-bookmark-modal";
 
 interface Props {
   bookmark: Bookmark;

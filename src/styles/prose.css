@@ -39,10 +39,12 @@
 }
 
 .prose ul[class="contains-task-list"] li[class="task-list-item"] {
-
   @apply list-none [&_p]:my-0;
 }
-.prose ul[class="contains-task-list"] > li[class="task-list-item"] > ul[class="contains-task-list"] {
+.prose
+  ul[class="contains-task-list"]
+  > li[class="task-list-item"]
+  > ul[class="contains-task-list"] {
   @apply pl-4.4 my-2;
 }
 .prose ul[class="contains-task-list"] {

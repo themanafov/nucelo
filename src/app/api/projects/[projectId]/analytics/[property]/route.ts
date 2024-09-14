@@ -1,8 +1,8 @@
 import { verifyProjectAccess } from "@/lib/actions/projects";
 import {
+  ZodAnalyticsProperty,
   analyticsSearchParamsSchema,
   getAnalytics,
-  ZodAnalyticsProperty,
 } from "@/lib/analytics";
 import { guard } from "@/lib/auth";
 import { db } from "@/lib/db";

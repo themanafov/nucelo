@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Collection } from "@prisma/client";
+import type { Collection } from "@prisma/client";
 import Link from "next/link";
 
 export default function CollectionBar({

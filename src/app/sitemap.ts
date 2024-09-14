@@ -2,7 +2,7 @@ import { userPageConfig } from "@/config/user-page";
 import { getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getProjectsByAuthor } from "@/lib/fetchers/projects";
 import { getUserByDomain } from "@/lib/fetchers/users";
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 

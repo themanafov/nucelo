@@ -1,4 +1,4 @@
-import { Editor, Range } from "@tiptap/react";
+import type { Editor, Range } from "@tiptap/react";
 import { uploadImg } from "./upload-image";
 
 interface CommandProps {

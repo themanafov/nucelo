@@ -3,7 +3,7 @@ import AnalyticsSkeleton from "@/components/analytics/skeleton";
 import Upgrade from "@/components/shared/upgrade";
 import { getArticleById } from "@/lib/fetchers/articles";
 import { getUserSubscription } from "@/lib/subscription";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 

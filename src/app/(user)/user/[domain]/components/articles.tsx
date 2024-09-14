@@ -1,6 +1,6 @@
 import Article from "@/components/articles/article";
 import { Icons } from "@/components/shared/icons";
-import { Article as ArticleProps } from "@prisma/client";
+import type { Article as ArticleProps } from "@prisma/client";
 import Link from "next/link";
 
 export default function Articles({ articles }: { articles: ArticleProps[] }) {

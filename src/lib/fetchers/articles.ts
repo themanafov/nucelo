@@ -64,7 +64,7 @@ export async function getArticles({
 export async function getArticlesByAuthor(
   authorId: string,
   limit?: number,
-  published: boolean = true,
+  published = true,
 ) {
   return await db.article.findMany({
     where: {

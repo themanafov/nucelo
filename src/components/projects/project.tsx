@@ -1,4 +1,4 @@
-import { Project as ProjectType } from "@prisma/client";
+import type { Project as ProjectType } from "@prisma/client";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { AnalyticsBadge } from "../analytics/analytics-badge";

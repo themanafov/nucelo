@@ -3,7 +3,7 @@ import DeleteForm from "@/components/forms/delete-form";
 import Form from "@/components/forms/form";
 import UploadAvatar from "@/components/forms/upload-avatar";
 import { getUser } from "@/lib/fetchers/users";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {

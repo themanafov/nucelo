@@ -3,7 +3,7 @@ import AppNav from "@/components/layout/app-nav";
 import { appConfig } from "@/config/app";
 import { getUser } from "@/lib/fetchers/users";
 import { generateSEO } from "@/lib/utils";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = generateSEO({

@@ -1,7 +1,7 @@
 "use server";
-import * as z from "zod";
+import type * as z from "zod";
 import { db } from "../db";
-import { bookmarkSchema } from "../validations/bookmark";
+import type { bookmarkSchema } from "../validations/bookmark";
 
 type BookmarkSchema = z.infer<typeof bookmarkSchema>;
 

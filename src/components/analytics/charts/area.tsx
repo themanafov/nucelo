@@ -6,7 +6,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { IndexProps } from "..";
+import type { IndexProps } from "..";
 
 export default function AreaChart({
   data,

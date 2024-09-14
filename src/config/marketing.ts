@@ -1,4 +1,4 @@
-import { MarketingConfig } from "@/types";
+import type { MarketingConfig } from "@/types";
 import { siteConfig } from "./site";
 import { freePlan, proPlan } from "./subscriptions";
 

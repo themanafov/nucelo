@@ -1,6 +1,6 @@
 "use client";
 
-import { intervalData, IntervalProps } from "@/lib/analytics";
+import type { IntervalProps, intervalData } from "@/lib/analytics";
 import { useSearchParams } from "next/navigation";
 import { createContext } from "react";
 import Devices from "./devices";

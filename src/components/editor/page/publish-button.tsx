@@ -1,10 +1,10 @@
 import NavButton from "@/components/layout/nav-button";
 import { Icons } from "@/components/shared/icons";
 import { formatDate } from "@/lib/utils";
-import { Article } from "@prisma/client";
+import type { Article } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { SetStateAction, useState } from "react";
-import { EditorPageProps, Post } from ".";
+import { type SetStateAction, useState } from "react";
+import type { EditorPageProps, Post } from ".";
 import Button from "../../ui/button";
 import {
   DropdownMenu,

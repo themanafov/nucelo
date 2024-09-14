@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
-import { VariantProps } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import Link from "next/link";
-import React from "react";
+import type React from "react";
 import { Icons } from "../shared/icons";
-import Button, { buttonVariants } from "../ui/button";
+import Button, { type buttonVariants } from "../ui/button";
 export default function NavButton({
   children,
   className,

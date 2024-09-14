@@ -1,7 +1,7 @@
 "use server";
-import * as z from "zod";
+import type * as z from "zod";
 import { db } from "../db";
-import {
+import type {
   projectCreateSchema,
   projectPatchSchema,
 } from "../validations/project";

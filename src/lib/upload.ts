@@ -1,5 +1,5 @@
-import { PutBlobResult } from "@vercel/blob";
-import { StorageFolders } from "./constants";
+import type { PutBlobResult } from "@vercel/blob";
+import type { StorageFolders } from "./constants";
 
 type Response = {
   error?: string;
