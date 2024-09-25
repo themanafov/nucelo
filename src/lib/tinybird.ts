@@ -71,7 +71,7 @@ export async function track({
     await Promise.all([
       user.isPro
         ? fetch(
-            `https://api.tinybird.co/v0/events?name=${analyticsSources.analytics}`,
+            `${process.env.TINYBIRD_API_URL}/v0/events?name=${analyticsSources.analytics}`,
             {
               headers: {
                 Authorization: `Bearer ${process.env.TINYBIRD_API_KEY}`,
@@ -153,7 +153,7 @@ export async function recordClick(req: NextRequest, bookmarkId: string) {
     await Promise.all([
       user.isPro
         ? fetch(
-            `https://api.tinybird.co/v0/events?name=${analyticsSources.bookmarks}`,
+            `${process.env.TINYBIRD_API_URL}/v0/events?name=${analyticsSources.bookmarks}`,
             {
               headers: {
                 Authorization: `Bearer ${process.env.TINYBIRD_API_KEY}`,
