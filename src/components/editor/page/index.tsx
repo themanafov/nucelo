@@ -23,7 +23,7 @@ export type Post = Article | Project;
 export interface EditorPageProps {
   post: Post;
   type: "articles" | "projects";
-  user: Pick<User, "username" | "newsletter">;
+  user: Pick<User, "username" | "newsletter" | "domain">;
 }
 
 type PostAction = {
@@ -37,7 +37,9 @@ export default function EditorPage({ post, type, user }: EditorPageProps) {
   const [saving, setSaving] = useState<boolean>(false);
   const postPath = `/${type}/${post.id}`;
   const [_, copy] = useCopyToClipboard();
-  const postURL = `https://${user.username}.nucelo.co/${type}/${post.slug}`;
+  const postURL = user.domain
+    ? `https://${user.domain}/${type}/${post.slug}`
+    : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}/${type}/${post.slug}`;
   const actions: PostAction[] = [
     {
       title: "Settings",
