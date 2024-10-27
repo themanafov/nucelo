@@ -1,5 +1,6 @@
 import NavButton from "@/components/layout/nav-button";
 import { Icons } from "@/components/shared/icons";
+import { siteConfig } from "@/config/site";
 
 export default function NotFound() {
   return (
@@ -14,7 +15,7 @@ export default function NotFound() {
           <p className="text-gray-4 text-lg">Page not found</p>
         </div>
         <NavButton
-          href="/"
+          href={siteConfig.links.home}
           icon="arrowLeft"
           direction="ltr"
           aria-label="Back to home"
