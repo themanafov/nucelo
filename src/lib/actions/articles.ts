@@ -29,20 +29,20 @@ export async function createArticle(
 
 export async function updateArticle(
   articleId: string,
-  user: Pick<User, "id" | "name" | "username" | "newsletter" | "domain">,
+  user: User,
   data: ArticlePatchSchema,
 ) {
-  await db.article.update({
+  const {slug, publishedAt, ...rest} = data
+
+  return await db.article.update({
     where: {
       id: articleId,
       authorId: user.id,
     },
     data: {
-      slug: data.slug || slugify(data.title),
-      publishedAt: data.publishedAt
-        ? new Date(data.publishedAt).toISOString()
-        : undefined,
-      ...data,
+      ...rest,
+      slug: slug || slugify(data.title),
+      publishedAt: publishedAt ? new Date(publishedAt).toISOString() : undefined,
     },
   });
 }
