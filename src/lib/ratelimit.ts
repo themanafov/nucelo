@@ -22,4 +22,10 @@ export const rateLimit = {
     prefix: "subscribe",
     analytics: true,
   }),
+  newsletter: new Ratelimit({
+    redis,
+    limiter : Ratelimit.slidingWindow(2, "1 d"),
+    prefix: "newsletter",
+    analytics: true,
+  })
 };

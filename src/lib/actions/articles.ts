@@ -12,6 +12,7 @@ import type {
   articlePatchSchema,
 } from "../validations/article";
 import { nanoid } from "nanoid";
+import { rateLimit } from "../ratelimit";
 
 type ArticleCreateSchema = z.infer<typeof articleCreateSchema>;
 type ArticlePatchSchema = z.infer<typeof articlePatchSchema>;
@@ -74,7 +75,16 @@ export async function sendNewsletter(
   article: Article,
   user: Pick<User, "id" | "username" | "domain" | "name" | "newsletter">,
 ) {
+  const { success } = await rateLimit.newsletter.limit(
+    `newsletter:${user.id}:${article.id}`,
+  );
+
+  if (!success) {
+    return new Response("You can send newsletters a maximum of 2 times a day.", { status: 429 });
+  }
+
   const emails = await getSubscribersByUserId(user.id);
+
   if (emails.length) {
     await Promise.all([
       ...emails.map((e) => {
