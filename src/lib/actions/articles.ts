@@ -11,6 +11,7 @@ import type {
   articleCreateSchema,
   articlePatchSchema,
 } from "../validations/article";
+import { nanoid } from "nanoid";
 
 type ArticleCreateSchema = z.infer<typeof articleCreateSchema>;
 type ArticlePatchSchema = z.infer<typeof articlePatchSchema>;
@@ -123,5 +124,8 @@ export async function sendNewsletterEmail({
     to,
     subject,
     react: Newsletter(newsletter),
+    headers: {
+      "X-Entity-Ref-ID": nanoid()
+    }
   });
 }
