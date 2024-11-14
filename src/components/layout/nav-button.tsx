@@ -11,6 +11,7 @@ export default function NavButton({
   icon,
   buttonVariant = "default",
   size = "sm",
+  iconSize = 16,
   variant = "button",
   direction = "rtl",
   buttonClassname,
@@ -21,6 +22,7 @@ export default function NavButton({
   buttonVariant?: VariantProps<typeof buttonVariants>["variant"];
   size?: VariantProps<typeof buttonVariants>["size"];
   href: string;
+  iconSize?: number;
   buttonClassname?: string;
   variant?: "text" | "button";
   icon?: keyof typeof Icons;
@@ -41,7 +43,7 @@ export default function NavButton({
       {variant === "text" ? (
         <>
           {children}
-          <Icon size={16} />
+          <Icon size={iconSize} />
         </>
       ) : (
         <Button
@@ -54,7 +56,7 @@ export default function NavButton({
           aria-label={props["aria-label"]}
         >
           {children}
-          <Icon size={16} />
+          <Icon size={iconSize} />
         </Button>
       )}
     </Link>

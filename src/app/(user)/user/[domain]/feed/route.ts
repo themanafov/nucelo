@@ -71,7 +71,10 @@ export async function GET(
     });
   });
   bookmarks.forEach((bookmark) => {
-    const [url, updatedAt] = [`https://go.nucelo.co/${bookmark.id}`, bookmark.updatedAt];
+    const [url, updatedAt] = [
+      `https://go.nucelo.co/${bookmark.id}`,
+      bookmark.updatedAt,
+    ];
     feed.addItem({
       id: url,
       title: bookmark.title,

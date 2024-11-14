@@ -1,5 +1,6 @@
 "use client";
 
+import NavButton from "@/components/layout/nav-button";
 import { Icons } from "@/components/shared/icons";
 import Button from "@/components/ui/button";
 import {
@@ -21,6 +22,19 @@ import { useForm } from "react-hook-form";
 import type * as z from "zod";
 
 type FormData = z.infer<typeof subscribeSchema>;
+
+const feeds = [
+  {
+    type: "rss",
+    title: "RSS",
+    href: "/feed",
+  },
+  {
+    type: "atom",
+    title: "Atom",
+    href: "/feed?type=atom",
+  },
+] as const;
 
 export default function Subscribe({
   newsletter = false,
@@ -84,22 +98,29 @@ export default function Subscribe({
         <DialogHeader>
           <DialogTitle className="items-center">Subscribe</DialogTitle>
         </DialogHeader>
-        <div className="flex gap-2 justify-between *:w-full *:h-16">
-          <Button variant="secondary" onClick={() => router.push("/feed")}>
-            <Icons.rss size={18} />
-            RSS
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={() => router.push("/feed?type=atom")}
-          >
-            <Icons.rss size={18} />
-            Atom
-          </Button>
+        <div className="flex gap-2 justify-between">
+          {feeds.map((feed) => (
+            <NavButton
+              href={feed.href}
+              buttonVariant="secondary"
+              iconSize={18}
+              size="wide"
+              className="w-full"
+              buttonClassname="h-16 text-base"
+              direction="ltr"
+              icon="rss"
+              key={feed.type}
+            >
+              {feed.title}
+            </NavButton>
+          ))}
           {newsletter && (
             <Button
               variant="secondary"
-              className={cn(showSubscribeForm && "text-secondary bg-gray-2")}
+              className={cn(
+                "w-full h-16",
+                showSubscribeForm && "text-secondary bg-gray-2",
+              )}
               onClick={() => setShowSubscribeForm((prev) => !prev)}
             >
               <Icons.mail size={18} />
