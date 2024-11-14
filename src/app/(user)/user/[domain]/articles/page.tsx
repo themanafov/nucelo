@@ -27,7 +27,7 @@ export default async function ArticlesPage({ params }: ArticlesPageProps) {
   return (
     <AppShell>
       <AppHeader title="Articles">
-        {user.newsletter && <Subscribe username={user.username} />}
+        <Subscribe username={user.username} newsletter={user.newsletter} />
       </AppHeader>
       <div>
         {articles.map((article) => (
