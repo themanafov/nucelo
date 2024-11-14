@@ -2,17 +2,17 @@
 import Newsletter from "@/emails/newsletter";
 import type { NewsletterProps } from "@/types";
 import type { Article, User } from "@prisma/client";
+import { nanoid } from "nanoid";
 import type * as z from "zod";
 import { db } from "../db";
 import { getSubscribersByUserId } from "../fetchers/subscribers";
+import { rateLimit } from "../ratelimit";
 import { resend } from "../resend";
 import { formatDate, slugify } from "../utils";
 import type {
   articleCreateSchema,
   articlePatchSchema,
 } from "../validations/article";
-import { nanoid } from "nanoid";
-import { rateLimit } from "../ratelimit";
 
 type ArticleCreateSchema = z.infer<typeof articleCreateSchema>;
 type ArticlePatchSchema = z.infer<typeof articlePatchSchema>;
@@ -34,7 +34,7 @@ export async function updateArticle(
   user: User,
   data: ArticlePatchSchema,
 ) {
-  const {slug, publishedAt, ...rest} = data
+  const { slug, publishedAt, ...rest } = data;
 
   return await db.article.update({
     where: {
@@ -44,7 +44,9 @@ export async function updateArticle(
     data: {
       ...rest,
       slug: slug || slugify(data.title),
-      publishedAt: publishedAt ? new Date(publishedAt).toISOString() : undefined,
+      publishedAt: publishedAt
+        ? new Date(publishedAt).toISOString()
+        : undefined,
     },
   });
 }
@@ -80,7 +82,10 @@ export async function sendNewsletter(
   );
 
   if (!success) {
-    return new Response("You can send newsletters a maximum of 2 times a day.", { status: 429 });
+    return new Response(
+      "You can send newsletters a maximum of 2 times a day.",
+      { status: 429 },
+    );
   }
 
   const emails = await getSubscribersByUserId(user.id);
@@ -135,7 +140,7 @@ export async function sendNewsletterEmail({
     subject,
     react: Newsletter(newsletter),
     headers: {
-      "X-Entity-Ref-ID": nanoid()
-    }
+      "X-Entity-Ref-ID": nanoid(),
+    },
   });
 }

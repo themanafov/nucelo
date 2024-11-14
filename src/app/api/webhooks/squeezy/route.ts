@@ -1,9 +1,9 @@
-import crypto from "node:crypto";
 import { db } from "@/lib/db";
 import { removeDomain } from "@/lib/domains";
 import log from "@/lib/log";
 import { squeezy } from "@/lib/squeezy";
 import { getSubscription } from "@lemonsqueezy/lemonsqueezy.js";
+import crypto from "node:crypto";
 
 const relevantEvents = new Set([
   "subscription_created",

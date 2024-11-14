@@ -11,14 +11,16 @@ export async function GET(req: NextRequest) {
   );
 
   return new ImageResponse(
-    <div tw="flex flex-col justify-center items-center h-full w-full bg-[#1c1c1c] text-white">
-      <h1
-        tw="text-5xl whitespace-prewrap text-center  pb-5 leading-[60px]"
-        style={font("Ubuntu Medium")}
-      >
-        {username}
-      </h1>
-    </div>,
+    (
+      <div tw="flex flex-col justify-center items-center h-full w-full bg-[#1c1c1c] text-white">
+        <h1
+          tw="text-5xl whitespace-prewrap text-center  pb-5 leading-[60px]"
+          style={font("Ubuntu Medium")}
+        >
+          {username}
+        </h1>
+      </div>
+    ),
     {
       width: 1200,
       height: 630,

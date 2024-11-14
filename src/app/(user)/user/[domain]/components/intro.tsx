@@ -28,7 +28,11 @@ export default function Intro({
       </dt>
       <dd className="section-content flex-row gap-2  py-0">
         <CommandMenuToggle />
-        {user.newsletter && <Subscribe username={user.username} compact />}
+        <Subscribe
+          username={user.username}
+          newsletter={user.newsletter}
+          compact
+        />
       </dd>
     </dl>
   );

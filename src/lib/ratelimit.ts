@@ -24,8 +24,8 @@ export const rateLimit = {
   }),
   newsletter: new Ratelimit({
     redis,
-    limiter : Ratelimit.slidingWindow(2, "1 d"),
+    limiter: Ratelimit.slidingWindow(2, "1 d"),
     prefix: "newsletter",
     analytics: true,
-  })
+  }),
 };

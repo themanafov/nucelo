@@ -14,22 +14,24 @@ export async function GET(req: NextRequest) {
   );
 
   return new ImageResponse(
-    <div
-      tw="flex flex-col h-full w-full p-10 bg-[#1c1c1c] text-white"
-      style={font("Ubuntu Medium")}
-    >
-      <header tw="w-full px-5 flex items-center">
-        <b tw="text-3xl">{username}</b>
-      </header>
-      <div tw="w-full flex-1 grow pb-20 flex flex-col items-center justify-center">
-        <div tw="flex items-center">
-          {locked && <Lock />}
-          <h1 tw="text-5xl ml-3 text-center flex items-center gap-5 leading-[60px]">
-            {title}
-          </h1>
+    (
+      <div
+        tw="flex flex-col h-full w-full p-10 bg-[#1c1c1c] text-white"
+        style={font("Ubuntu Medium")}
+      >
+        <header tw="w-full px-5 flex items-center">
+          <b tw="text-3xl">{username}</b>
+        </header>
+        <div tw="w-full flex-1 grow pb-20 flex flex-col items-center justify-center">
+          <div tw="flex items-center">
+            {locked && <Lock />}
+            <h1 tw="text-5xl ml-3 text-center flex items-center gap-5 leading-[60px]">
+              {title}
+            </h1>
+          </div>
         </div>
       </div>
-    </div>,
+    ),
     {
       width: 1200,
       height: 630,
