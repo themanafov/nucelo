@@ -23,6 +23,9 @@ export async function generateMetadata({
     return notFound();
   }
   const title = user.name || user.username;
+  const url = user.domain
+    ? `https://${user.domain}`
+    : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}`;
   return generateSEO({
     title,
     template: title,
@@ -35,6 +38,10 @@ export async function generateMetadata({
     url: user.domain
       ? `https://${user.domain}`
       : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}`,
+    feeds: {
+      rss: `${url}/feed`,
+      atom: `${url}/feed?type=atom`,
+    },
   });
 }
 

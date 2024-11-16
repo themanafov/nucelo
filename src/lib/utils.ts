@@ -187,6 +187,7 @@ export function generateSEO({
   template,
   noIndex = false,
   canonicalURL,
+  feeds,
 }: {
   title?: string;
   template?: string | null;
@@ -198,6 +199,10 @@ export function generateSEO({
   url?: string;
   noIndex?: boolean;
   canonicalURL?: string;
+  feeds?: {
+    rss: string;
+    atom: string;
+  };
 } = {}): Metadata {
   return {
     ...(template
@@ -240,6 +245,22 @@ export function generateSEO({
       : new URL(`https://${process.env.NEXT_PUBLIC_APP_DOMAIN as string}`),
     alternates: {
       canonical: canonicalURL || url,
+      ...(feeds && {
+        types: {
+          "application/rss+xml": [
+            {
+              title: "RSS Feed",
+              url: feeds.rss,
+            },
+          ],
+          "application/atom+xml": [
+            {
+              title: "Atom Feed",
+              url: feeds.atom,
+            },
+          ],
+        },
+      }),
     },
     ...(noIndex && {
       robots: {
