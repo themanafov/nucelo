@@ -138,4 +138,4 @@ export type BookmarkWithCollection = Bookmark & {
 export type ExportResponse = {
   filename: string;
   content: string;
-}
+};

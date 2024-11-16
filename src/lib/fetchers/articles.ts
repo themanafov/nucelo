@@ -104,11 +104,18 @@ export async function getArticleExport(
   }
 
   const filename = `nucelo_export_article_${article.slug}.md`;
-  const { content: articleContent, createdAt, updatedAt, ...props } = article;
+  const {
+    content: articleContent,
+    createdAt,
+    updatedAt,
+    publishedAt,
+    ...props
+  } = article;
   const frontmatter = jsonToFrontmatter({
     ...props,
     createdAt: formatVerboseDate(createdAt),
     updatedAt: formatVerboseDate(updatedAt),
+    publishedAt: formatVerboseDate(publishedAt),
   });
   const content = frontmatter + articleContent!;
 

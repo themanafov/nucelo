@@ -1,9 +1,9 @@
 "use server";
+import { ExportResponse } from "@/types";
 import { json2csv } from "json-2-csv";
 import { db } from "../db";
 import getCurrentUser from "../session";
 import { formatVerboseDate } from "../utils";
-import { ExportResponse } from "@/types";
 
 export async function getBookmarksByAuthor(author: string, limit?: number) {
   return await db.bookmark.findMany({
