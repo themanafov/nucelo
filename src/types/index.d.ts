@@ -134,3 +134,8 @@ export type DomainStatus =
 export type BookmarkWithCollection = Bookmark & {
   collection: Collection | null;
 };
+
+export type ExportResponse = {
+  filename: string;
+  content: string;
+}

@@ -127,7 +127,7 @@ export default function AddEditBookmarkModal({
         <Button
           size="sm"
           variant="ghost"
-          className={cn("gap-2", edit ? "justify-start" : "")}
+          className={cn("gap-2 justify-start")}
           aria-label={title}
         >
           {edit ? (

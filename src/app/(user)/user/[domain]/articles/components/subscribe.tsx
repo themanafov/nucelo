@@ -60,7 +60,7 @@ export default function Subscribe({
 
   const onSubmit = async (data: FormData) => {
     startTransition(async () => {
-      const res = await fetch("/api/subscribe", {
+      const res = await fetch("/api/subscribers", {
         method: "POST",
         body: JSON.stringify({
           email: data.email,

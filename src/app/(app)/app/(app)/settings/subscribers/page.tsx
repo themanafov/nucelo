@@ -1,3 +1,4 @@
+import ExportButton from "@/components/forms/export-button";
 import { Icons } from "@/components/shared/icons";
 import Upgrade from "@/components/shared/upgrade";
 import { Badge } from "@/components/ui/badge";
@@ -42,7 +43,14 @@ export default async function Subscribers() {
       {user.newsletter ? (
         <>
           <div className="w-full flex justify-between items-center mb-3">
-            <Badge>{subscribers.length} Subscribers</Badge>
+            <div className="flex gap-2">
+              <Badge>{subscribers.length} Subscribers</Badge>
+              <ExportButton
+                text="Export subscribers"
+                icon="download"
+                endpoint="subscribers/export"
+              />
+            </div>
             <Newsletter checked={user.newsletter} />
           </div>
           <SubscribersTable subscribers={subscribers} />

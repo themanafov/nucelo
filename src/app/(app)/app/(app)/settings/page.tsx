@@ -1,5 +1,6 @@
 import CustomDomain from "@/components/domain";
 import DeleteForm from "@/components/forms/delete-form";
+import ExportButton from "@/components/forms/export-button";
 import Form from "@/components/forms/form";
 import UploadAvatar from "@/components/forms/upload-avatar";
 import { getUser } from "@/lib/fetchers/users";
@@ -86,6 +87,13 @@ export default async function Settings() {
           defaultValue: user.email ?? "",
         }}
       />
+      <Form title="Export" endpoint={`${endpoint}/export`} asChild>
+        <ExportButton
+          text="Export all data"
+          icon="download"
+          endpoint={`${endpoint}/export`}
+        />
+      </Form>
       <DeleteForm
         type={endpoint}
         title="Delete account"

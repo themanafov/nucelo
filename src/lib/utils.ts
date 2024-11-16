@@ -2,13 +2,13 @@ import { siteConfig } from "@/config/site";
 import type { BookmarkWithCollection } from "@/types";
 import type { Article, Project } from "@prisma/client";
 import clsx, { type ClassValue } from "clsx";
+import { formatDate as format } from "date-fns";
 import type { Metadata } from "next";
 import type { NextRequest } from "next/server";
 import slug from "slugify";
 import { twMerge } from "tailwind-merge";
 import type { PropertyProps } from "./analytics";
 import { URLRegex, analyticsEndpoint } from "./constants";
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -57,6 +57,10 @@ export function formatDate(date: Date) {
     day: "numeric",
     year: "numeric",
   });
+}
+
+export function formatVerboseDate(date: Date) {
+  return format(date, "PPPPpppp");
 }
 
 export function absoluteUrl(path: string) {
@@ -244,4 +248,17 @@ export function generateSEO({
       },
     }),
   };
+}
+
+export function jsonToFrontmatter(jsonData: object) {
+  const frontmatter = Object.entries(jsonData)
+    .map(([key, value]) => {
+      if (Array.isArray(value)) {
+        return `${key}:\n  - ${value.join("\n  - ")}`;
+      }
+      return `${key}: ${value}`;
+    })
+    .join("\n");
+
+  return `---\n${frontmatter}\n---\n\n`;
 }

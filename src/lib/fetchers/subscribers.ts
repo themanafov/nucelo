@@ -1,5 +1,8 @@
 "use server";
+import { json2csv } from "json-2-csv";
 import { db } from "../db";
+import { formatVerboseDate } from "../utils";
+import { ExportResponse } from "@/types";
 
 export async function getSubscribersByUserId(userId: string) {
   return await db.subscriber.findMany({
@@ -10,4 +13,29 @@ export async function getSubscribersByUserId(userId: string) {
       createdAt: "desc",
     },
   });
+}
+
+export async function getSubscibersExport(
+  userId: string,
+): Promise<ExportResponse> {
+  const subscribers = await db.subscriber.findMany({
+    where: {
+      userId,
+    },
+    select: {
+      name: true,
+      email: true,
+      createdAt: true,
+    },
+  });
+
+  const filename = `nucelo_subscribers_export.csv`;
+
+  const content = json2csv(
+    subscribers.map(({ createdAt, ...subscriber }) => {
+      return { ...subscriber, subscribedAt: formatVerboseDate(createdAt) };
+    }),
+  );
+
+  return { filename, content };
 }

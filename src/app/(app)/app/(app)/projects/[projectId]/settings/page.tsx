@@ -1,4 +1,5 @@
 import DeleteForm from "@/components/forms/delete-form";
+import ExportButton from "@/components/forms/export-button";
 import Form from "@/components/forms/form";
 import UploadImage from "@/components/forms/upload-image";
 import AppShell from "@/components/layout/app-shell";
@@ -139,6 +140,13 @@ export default async function ProjectSettings({
             defaultValue: project.password || "",
           }}
         />
+        <Form title="Export" endpoint={`${endpoint}/export`} asChild>
+          <ExportButton
+            text="Export project"
+            icon="download"
+            endpoint={`${endpoint}/export`}
+          />
+        </Form>
         <DeleteForm
           title="Delete project"
           description="Enter your project slug"

@@ -1,4 +1,5 @@
 import DeleteForm from "@/components/forms/delete-form";
+import ExportButton from "@/components/forms/export-button";
 import Form from "@/components/forms/form";
 import UploadImage from "@/components/forms/upload-image";
 import AppShell from "@/components/layout/app-shell";
@@ -107,6 +108,13 @@ export default async function ArticleSettings({
           }}
           required={false}
         />
+        <Form title="Export" endpoint={`${endpoint}/export`} asChild>
+          <ExportButton
+            text="Export article"
+            icon="download"
+            endpoint={`${endpoint}/export`}
+          />
+        </Form>
         <DeleteForm
           title="Delete article"
           description="Enter your article slug"

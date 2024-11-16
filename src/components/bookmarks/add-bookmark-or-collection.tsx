@@ -2,6 +2,7 @@
 import type { Collection } from "@prisma/client";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import ExportButton from "../forms/export-button";
 import { Icons } from "../shared/icons";
 import Button from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
@@ -33,7 +34,7 @@ export default function AddBookmarkOrCollection({
           className="data-[state=open]:bg-gray-2 data-[state=open]:text-secondary"
           aria-label="Add bookmark or collection"
         >
-          <Icons.plus size={18} />
+          <Icons.more size={18} />
         </Button>
       </PopoverTrigger>
       <PopoverContent align="end" className="bg-gray-3 p-1  flex flex-col">
@@ -42,6 +43,11 @@ export default function AddBookmarkOrCollection({
           collections={collections}
         />
         <AddEditCollectionModal open={action === "newCollection"} />
+        <ExportButton
+          text="Export bookmarks"
+          buttonVariant="ghost"
+          endpoint="bookmarks/export"
+        />
       </PopoverContent>
     </Popover>
   );

@@ -1,6 +1,9 @@
 "use server";
+import { json2csv } from "json-2-csv";
 import { db } from "../db";
 import getCurrentUser from "../session";
+import { formatVerboseDate } from "../utils";
+import { ExportResponse } from "@/types";
 
 export async function getBookmarksByAuthor(author: string, limit?: number) {
   return await db.bookmark.findMany({
@@ -66,4 +69,41 @@ export async function getBookmarkById(bookmarkId: string) {
       authorId: session?.id,
     },
   });
+}
+
+export async function getBookmarksExport(
+  authorId: string,
+): Promise<ExportResponse> {
+  const bookmarks = await db.bookmark.findMany({
+    where: {
+      authorId,
+    },
+    include: {
+      collection: {
+        select: {
+          name: true,
+        },
+      },
+    },
+    omit: {
+      id: true,
+      authorId: true,
+      collectionId: true,
+    },
+  });
+
+  const filename = `nucelo_bookmarks_export.csv`;
+
+  const content = json2csv(
+    bookmarks.map(({ collection, createdAt, updatedAt, ...bookmark }) => {
+      return {
+        ...bookmark,
+        createdAt: formatVerboseDate(createdAt),
+        updatedAt: formatVerboseDate(updatedAt),
+        collectionName: collection?.name ?? null,
+      };
+    }),
+  );
+
+  return { filename, content };
 }
