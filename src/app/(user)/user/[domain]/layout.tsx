@@ -35,9 +35,7 @@ export async function generateMetadata({
       user.ogImage ||
       `https://nucelo.com/api/og/user?username=${user.name || user.username}`,
     icons: user.image && [user?.image as string],
-    url: user.domain
-      ? `https://${user.domain}`
-      : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}`,
+    url,
     feeds: {
       rss: `${url}/feed`,
       atom: `${url}/feed?type=atom`,
