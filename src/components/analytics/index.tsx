@@ -11,10 +11,11 @@ import Timeseries from "./timeseries";
 import Pages from "./top-pages";
 
 export type IndexProps = "visitors" | "views" | "clicks";
+export type Interval = keyof typeof intervalData;
 
 export const AnalyticsContext = createContext<{
   basePath: string;
-  interval: keyof typeof intervalData;
+  interval: Interval;
   index?: IndexProps;
 }>({
   basePath: "",

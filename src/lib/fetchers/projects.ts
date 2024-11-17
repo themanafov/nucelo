@@ -117,9 +117,7 @@ export async function getProjectsExport(authorId: string) {
   });
 
   const data = await Promise.all(
-    projects.map(
-      async (project) => await getProjectExport(project.id, project.authorId),
-    ),
+    projects.map((project) => getProjectExport(project.id, project.authorId)),
   );
 
   return data;

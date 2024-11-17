@@ -72,9 +72,10 @@ export const intervalData = {
   },
 };
 
-export const IntervalZod = z.enum(
-  Object.keys(intervalData) as [keyof typeof intervalData],
-);
+export const IntervalZod = z
+  .enum(Object.keys(intervalData) as [keyof typeof intervalData])
+  .default("7d")
+  .optional();
 
 export const analyticsSearchParamsSchema = z.object({
   interval: IntervalZod,

@@ -2,7 +2,8 @@ import { INTERVALS } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
-import { AnalyticsContext } from ".";
+import { AnalyticsContext, Interval } from ".";
+import ExportButton from "../forms/export-button";
 import AppHeader from "../layout/header";
 import { Icons } from "../shared/icons";
 import Button from "../ui/button";
@@ -60,7 +61,31 @@ export default function StatsHeader({
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
+        <More interval={interval} />
       </div>
     </AppHeader>
+  );
+}
+
+function More({ interval }: { interval?: Interval }) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          size="icon"
+          variant="secondary"
+          className="data-[state=open]:text-secondary data-[state=open]:bg-gray-2 "
+        >
+          <Icons.more size={16} />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <ExportButton
+          text="Export analytics as CSV"
+          buttonVariant="ghost"
+          endpoint={`analytics/export${interval ? `?interval=${interval}` : ""}`}
+        />
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

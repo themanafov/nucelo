@@ -130,9 +130,7 @@ export async function getArticlesExport(authorId: string) {
   });
 
   const data = await Promise.all(
-    articles.map(
-      async (article) => await getArticleExport(article.id, article.authorId),
-    ),
+    articles.map((article) => getArticleExport(article.id, article.authorId)),
   );
 
   return data;
