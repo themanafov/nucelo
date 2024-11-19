@@ -5,6 +5,7 @@ import { Icons } from "@/components/shared/icons";
 import Button from "@/components/ui/button";
 import {
   Dialog,
+  DialogTitle,
   DialogContent,
   DialogFooter,
   DialogHeader,
@@ -15,8 +16,6 @@ import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { subscribeSchema } from "@/lib/validations/subscribe";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { DialogTitle } from "@radix-ui/react-dialog";
-import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import type * as z from "zod";
@@ -47,7 +46,6 @@ export default function Subscribe({
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isLoading, startTransition] = useTransition();
-  const router = useRouter();
   const [showSubscribeForm, setShowSubscribeForm] = useState<boolean>(false);
   const {
     register,

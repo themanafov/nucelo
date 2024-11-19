@@ -24,6 +24,15 @@ export async function getUserByDomain(domain: string) {
         },
       ],
     },
+    omit: {
+      email: true,
+      emailVerified: true,
+      lsVariantId: true,
+      lsCurrentPeriodEnd: true,
+      lsId: true,
+      createdAt: true,
+      updatedAt: true,
+    }
   });
 }
 

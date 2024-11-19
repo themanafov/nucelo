@@ -1,6 +1,6 @@
 import { Icons } from "@/components/shared/icons";
 import { getLinks } from "@/config/user-page";
-import type { User } from "@prisma/client";
+import { User } from "@/types";
 import Link from "next/link";
 
 export default function Connect({ user }: { user: User }) {

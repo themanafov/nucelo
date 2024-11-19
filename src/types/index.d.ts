@@ -139,3 +139,6 @@ export type ExportResponse = {
   filename: string;
   content: string;
 };
+
+
+export type User = Omit<User, "email" | "emailVerified" | "lsVariantId" | "lsCurrentPeriodEnd" | "lsId" | "createdAt" | "updatedAt">
