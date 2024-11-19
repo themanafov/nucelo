@@ -5,6 +5,7 @@ import type {
   projectCreateSchema,
   projectPatchSchema,
 } from "../validations/project";
+import { slugify } from "../utils";
 
 type ProjectCreateSchema = z.infer<typeof projectCreateSchema>;
 type ProjectPatchSchema = z.infer<typeof projectPatchSchema>;
@@ -26,12 +27,16 @@ export async function updateProject(
   authorId: string,
   data: ProjectPatchSchema,
 ) {
+  const {slug, ...rest} = data
   return await db.project.update({
     where: {
       id: projectId,
       authorId,
     },
-    data,
+    data: {
+      ...rest,
+      slug: slug || slugify(data.title),
+    }
   });
 }
 
