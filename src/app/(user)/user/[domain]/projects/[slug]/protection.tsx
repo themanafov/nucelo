@@ -13,14 +13,16 @@ export default function Protection({
   user,
   children,
 }: {
-  project: Pick<Project, "id" | "password">;
+  project: Pick<Project, "id"> & {
+    isProtected: boolean
+  };
   user: Pick<User, "username">;
   children: React.ReactNode;
 }) {
   const [state, formAction] = useFormState(unlockProject, {
-    unlocked: !project.password,
+    unlocked: false,
   });
-  if (!state.unlocked && project.password) {
+  if (!state.unlocked && project.isProtected) {
     return (
       <div className="w-[300px] mx-auto flex flex-col gap-2 max-md:mt-10">
         <p className="text-sm text-gray-4">

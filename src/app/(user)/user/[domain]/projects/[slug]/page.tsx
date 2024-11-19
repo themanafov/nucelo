@@ -39,12 +39,12 @@ export async function generateMetadata({
   const path = `/projects/${project.slug}`;
   return generateSEO({
     title: project.title,
-    ...(!project.password && {
+    ...(!project.isProtected && {
       description: project.seoDescription || project.description || undefined,
     }),
     image:
       project.ogImage ||
-      `https://nucelo.com/api/og/post?title=${project.title}&username=${user.username || user.name}${project.password ? "&locked=true" : ""}`,
+      `https://nucelo.com/api/og/post?title=${project.title}&username=${user.username || user.name}${project.isProtected ? "&locked=true" : ""}`,
     url: user.domain
       ? `https://${user.domain}${path}`
       : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}${path}`,
@@ -107,7 +107,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     </AppShell>
   );
 
-  if (project.password) {
+  if (project.isProtected) {
     return (
       <Protection project={project} user={user}>
         {Content}

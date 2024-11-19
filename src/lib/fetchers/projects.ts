@@ -14,7 +14,7 @@ export async function getProject({
   slug: string;
   published?: boolean;
 }) {
-  return await db.project.findUnique({
+  const project = await db.project.findUnique({
     where: {
       authorId_slug: {
         slug,
@@ -23,6 +23,19 @@ export async function getProject({
       published,
     },
   });
+
+  if(!project) {
+    return null
+  }
+
+  const {password, ...rest}  = project
+
+  const isProtected = !!password
+  
+  return {
+    ...rest,
+    isProtected,
+  }
 }
 
 export async function getProjectById(projectId: string) {
@@ -69,6 +82,9 @@ export async function getProjectsByAuthor(
     orderBy: {
       year: "desc",
     },
+    omit: {
+      password: true,
+    }
   });
 }
 
