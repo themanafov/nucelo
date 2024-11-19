@@ -2,6 +2,7 @@
 
 import { getLinks, userPageConfig } from "@/config/user-page";
 import useNavigation from "@/hooks/use-navigation";
+import { User } from "@/types";
 import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
@@ -17,7 +18,6 @@ import {
   CommandList,
 } from "../ui/command";
 import NavButton from "./nav-button";
-import { User } from "@/types";
 
 export default function UserPageCommand({ user }: { user: User }) {
   const { isOpen, toggle, setOpen } = useNavigation();

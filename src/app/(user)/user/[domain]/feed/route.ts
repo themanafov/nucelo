@@ -1,11 +1,12 @@
-import { Post } from "@/components/editor/page";
 import { getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
 import { getProjectsByAuthor } from "@/lib/fetchers/projects";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import { getSearchParams } from "@/lib/utils";
-import { Article } from "@prisma/client";
+import { Article, Project } from "@prisma/client";
 import { Feed } from "feed";
+
+type Post = Article | Omit<Project, "password">;
 
 function isPostArticle(post: Post): post is Article {
   return (post as Article).publishedAt !== undefined;

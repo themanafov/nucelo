@@ -14,7 +14,7 @@ export default function Protection({
   children,
 }: {
   project: Pick<Project, "id"> & {
-    isProtected: boolean
+    isProtected: boolean;
   };
   user: Pick<User, "username">;
   children: React.ReactNode;

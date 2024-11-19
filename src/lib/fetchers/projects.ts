@@ -24,18 +24,18 @@ export async function getProject({
     },
   });
 
-  if(!project) {
-    return null
+  if (!project) {
+    return null;
   }
 
-  const {password, ...rest}  = project
+  const { password, ...rest } = project;
 
-  const isProtected = !!password
-  
+  const isProtected = !!password;
+
   return {
     ...rest,
     isProtected,
-  }
+  };
 }
 
 export async function getProjectById(projectId: string) {
@@ -59,7 +59,7 @@ export async function getProjects({
   return await db.project.findMany({
     where: {
       authorId: user?.id,
-      published: published,
+      published,
     },
     take: limit,
     orderBy: {
@@ -73,7 +73,7 @@ export async function getProjectsByAuthor(
   limit?: number,
   published = true,
 ) {
-  return await db.project.findMany({
+  const projects = await db.project.findMany({
     where: {
       authorId,
       published,
@@ -82,10 +82,19 @@ export async function getProjectsByAuthor(
     orderBy: {
       year: "desc",
     },
-    omit: {
-      password: true,
-    }
   });
+
+  const filteredProjects = projects.map((project) => {
+    const { password, ...rest } = project;
+    const isProtected = !!password;
+
+    return {
+      ...rest,
+      isProtected,
+    };
+  });
+
+  return filteredProjects;
 }
 
 export async function getProjectExport(

@@ -1,9 +1,11 @@
 import Project from "@/components/projects/project";
 import { Icons } from "@/components/shared/icons";
-import type { Project as ProjectProps } from "@prisma/client";
+import type { Project as ProjectPrisma } from "@prisma/client";
 import Link from "next/link";
 
-export default function Projects({ projects }: { projects: ProjectProps[] }) {
+type ProjectType = Omit<ProjectPrisma, "password"> & { isProtected: boolean };
+
+export default function Projects({ projects }: { projects: ProjectType[] }) {
   if (!projects.length) {
     return null;
   }

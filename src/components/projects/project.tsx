@@ -9,15 +9,10 @@ interface Props {
   admin?: boolean;
   project: Pick<
     ProjectType,
-    | "id"
-    | "title"
-    | "year"
-    | "description"
-    | "slug"
-    | "password"
-    | "views"
-    | "published"
-  >;
+    "id" | "title" | "year" | "description" | "slug" | "views" | "published"
+  > & {
+    isProtected: boolean;
+  };
 }
 
 export default function Project({ project, admin }: Props) {
@@ -43,7 +38,7 @@ export default function Project({ project, admin }: Props) {
 
       <div className="max-md:w-full max-md:mt-2 flex items-center justify-end z-10">
         <div className="flex items-center gap-1">
-          {project?.password && (
+          {project.isProtected && (
             <Badge className="h-4 py-2 px-1 hover:bg-gray-2 flex font-normal items-center gap-1 cursor-default">
               <Icons.locked size={14} /> Locked
             </Badge>

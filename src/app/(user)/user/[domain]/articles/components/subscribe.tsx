@@ -5,10 +5,10 @@ import { Icons } from "@/components/shared/icons";
 import Button from "@/components/ui/button";
 import {
   Dialog,
-  DialogTitle,
   DialogContent,
   DialogFooter,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Input from "@/components/ui/input";

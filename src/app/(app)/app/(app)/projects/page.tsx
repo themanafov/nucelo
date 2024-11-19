@@ -28,9 +28,11 @@ export default async function Projects({ searchParams: { published } }: Props) {
       </AppHeader>
       <PostsFilter segment="projects" current={published} />
       <div>
-        {sortedProjects.map((project) => (
-          <Project project={project} key={project.id} admin />
-        ))}
+        {sortedProjects.map(({ password, ...rest }) => {
+          const project = { ...rest, isProtected: !!password };
+
+          return <Project project={project} key={project.id} admin />;
+        })}
         {!sortedProjects.length && <NoProjectsPlaceholder description />}
       </div>
     </AppShell>

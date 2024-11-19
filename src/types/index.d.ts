@@ -140,5 +140,13 @@ export type ExportResponse = {
   content: string;
 };
 
-
-export type User = Omit<User, "email" | "emailVerified" | "lsVariantId" | "lsCurrentPeriodEnd" | "lsId" | "createdAt" | "updatedAt">
+export type User = Omit<
+  User,
+  | "email"
+  | "emailVerified"
+  | "lsVariantId"
+  | "lsCurrentPeriodEnd"
+  | "lsId"
+  | "createdAt"
+  | "updatedAt"
+>;

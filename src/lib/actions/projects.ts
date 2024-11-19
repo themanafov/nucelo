@@ -1,11 +1,11 @@
 "use server";
 import type * as z from "zod";
 import { db } from "../db";
+import { slugify } from "../utils";
 import type {
   projectCreateSchema,
   projectPatchSchema,
 } from "../validations/project";
-import { slugify } from "../utils";
 
 type ProjectCreateSchema = z.infer<typeof projectCreateSchema>;
 type ProjectPatchSchema = z.infer<typeof projectPatchSchema>;
@@ -27,7 +27,7 @@ export async function updateProject(
   authorId: string,
   data: ProjectPatchSchema,
 ) {
-  const {slug, ...rest} = data
+  const { slug, ...rest } = data;
   return await db.project.update({
     where: {
       id: projectId,
@@ -36,7 +36,7 @@ export async function updateProject(
     data: {
       ...rest,
       slug: slug || slugify(data.title),
-    }
+    },
   });
 }
 
