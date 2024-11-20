@@ -43,8 +43,8 @@ export default async function Home({ params }: PageProps) {
     return notFound();
   }
   const [articles, projects] = await Promise.all([
-    getArticlesByAuthor(user.id, 3),
-    getProjectsByAuthor(user.id, 3),
+    getArticlesByAuthor(user.id, 8),
+    getProjectsByAuthor(user.id, 8),
   ]);
   return (
     <AppShell className="gap-16">
