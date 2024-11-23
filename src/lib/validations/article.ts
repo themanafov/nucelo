@@ -5,14 +5,16 @@ export const articleCreateSchema = z.object({
   content: z.string().optional(),
 });
 
-export const articlePatchSchema = z.object({
-  slug: z.string().min(1).optional(),
-  title: z.string().min(1).max(70).optional(),
-  content: z.string().optional(),
-  seoTitle: z.string().max(60).nullable().optional(),
-  seoDescription: z.string().max(160).nullable().optional(),
-  ogImage: z.string().url().nullable().optional(),
-  published: z.boolean().optional(),
-  publishedAt: z.string().date().optional(),
-  canonicalURL: z.string().url().nullable().optional(),
-});
+export const articlePatchSchema = z
+  .object({
+    slug: z.string().min(1),
+    title: z.string().min(1).max(70),
+    content: z.string(),
+    seoTitle: z.string().max(60).nullable(),
+    seoDescription: z.string().max(160).nullable(),
+    ogImage: z.string().url().nullable(),
+    published: z.boolean(),
+    publishedAt: z.string().date(),
+    canonicalURL: z.string().url().nullable(),
+  })
+  .partial();
