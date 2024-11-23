@@ -36,7 +36,7 @@
   }
 
   hr {
-    @apply border-gray-2 w-full
+    @apply w-full border-gray-2;
   }
 }
 
@@ -54,7 +54,6 @@
   .section-content {
     @apply flex flex-col break-words pb-4;
   }
-
 }
 
 @layer utilities {

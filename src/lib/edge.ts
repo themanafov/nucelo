@@ -67,6 +67,20 @@ export async function getUserViaEdge(
     isPro,
   };
 }
+
+export async function getUserAvatarViaEdge(username: string) {
+  const user = await dbEdge.user.findUnique({
+    where: {
+      username,
+    },
+    select: {
+      image: true,
+    },
+  });
+
+  return user?.image;
+}
+
 export async function incrementBookmarkClicksViaEdge(
   bookmarkId: string,
   authorId: string,
