@@ -15,9 +15,13 @@ const routeContextSchema = z.object({
 });
 
 export const GET = guard(
-  async ({ ctx }) => {
+  async ({ user, ctx }) => {
     try {
       const { domain } = ctx.params;
+
+      if(user.domain !== domain) {
+        return new Response(null, {status: 403})
+      }
 
       const [domainRes, config] = await Promise.all([
         getDomainResponse(domain),
