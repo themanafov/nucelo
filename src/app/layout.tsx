@@ -1,4 +1,5 @@
 import ThemeProvider from "@/components/providers/theme-provider";
+import SnowFall from "@/components/shared/snowfall";
 import { Toaster } from "@/components/ui/toaster";
 import { generateSEO } from "@/lib/utils";
 import "@/styles/globals.css";
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={ubuntu.className}>
         <ThemeProvider attribute="class">
+          <SnowFall />
           {children}
           <Analytics />
           <Toaster />
