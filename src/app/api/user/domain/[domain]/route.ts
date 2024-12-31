@@ -19,8 +19,8 @@ export const GET = guard(
     try {
       const { domain } = ctx.params;
 
-      if(user.domain !== domain) {
-        return new Response(null, {status: 403})
+      if (user.domain !== domain) {
+        return new Response(null, { status: 403 });
       }
 
       const [domainRes, config] = await Promise.all([
