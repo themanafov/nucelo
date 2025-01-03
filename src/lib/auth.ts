@@ -98,9 +98,17 @@ const authOptions: NextAuthOptions = {
   events: {
     async signIn(message) {
       if (message.isNewUser) {
-        await log(`**${message.user.email}** new user logged in`);
+        await log(
+          "New user logged in",
+          `${message.user.email} new user logged in`,
+          message.user.id,
+        );
       } else {
-        await log(`**${message.user.email}** user logged in`);
+        await log(
+          "User logged in",
+          `${message.user.email} user logged in`,
+          message.user.id,
+        );
       }
     },
   },

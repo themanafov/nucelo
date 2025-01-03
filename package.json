@@ -17,6 +17,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.8.0",
     "@lemonsqueezy/lemonsqueezy.js": "^3.2.0",
+    "@logsnag/node": "^1.0.1",
     "@neondatabase/serverless": "^0.9.4",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@prisma/adapter-neon": "^5.22.0",

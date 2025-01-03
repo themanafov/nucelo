@@ -1,5 +1,6 @@
 import { deleteUser, updateUser } from "@/lib/actions/users";
 import { guard } from "@/lib/auth";
+import log from "@/lib/log";
 import { updateUserSchema } from "@/lib/validations/user";
 
 export const PATCH = guard(
@@ -21,7 +22,10 @@ export const PATCH = guard(
 
 export const DELETE = guard(async ({ user }) => {
   try {
-    await deleteUser(user.id, user.lsId);
+    await Promise.allSettled([
+      deleteUser(user.id, user.lsId),
+      log("User deleted", `${user.email}`, user.id),
+    ]);
     return new Response(null, { status: 200 });
   } catch (err) {
     return new Response(

@@ -1,20 +1,16 @@
-type NoorThread = "nucelo-logs";
+import { LogSnag } from "@logsnag/node";
 
-export default async function log(
-  text: string,
-  thread: NoorThread = "nucelo-logs",
-) {
-  return await fetch("https://sun.noor.to/api/v0/sendMessage", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.NOOR_API_KEY}`,
-    },
-    body: JSON.stringify({
-      spaceId: process.env.NOOR_SPACE_ID,
-      thread,
-      notifyByName: ["manafov"],
-      text,
-    }),
+const logsnag = new LogSnag({
+  token: process.env.LOGSNAG_TOKEN!,
+  project: "nucelo",
+});
+
+export default async function log(event: string, text: string, userId: string) {
+  return await logsnag.track({
+    channel: "logs",
+    event,
+    user_id: userId,
+    description: text,
+    icon: "💾",
   });
 }

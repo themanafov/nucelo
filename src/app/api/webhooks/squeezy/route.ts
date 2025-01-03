@@ -95,7 +95,7 @@ export async function POST(req: Request) {
               domain: null,
             },
           }),
-          log(`${user.email} / ${user.name}'s subscription expired`),
+          log("Subscription expired", `${user.email} / ${user.name}`, user.id),
         ]);
       }
     } catch (err) {
