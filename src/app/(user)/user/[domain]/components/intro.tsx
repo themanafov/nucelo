@@ -21,7 +21,7 @@ export default function Intro({
   >;
 }) {
   return (
-    <dl className="section-container flex-row justify-between items-center">
+    <dl className="section-container flex-row justify-between items-center mb-6">
       <dt className="section-title flex-col items-start">
         <h1 className="text-lg">{user.name}</h1>
         <h2 className="text-gray-4 text-sm">{user.title}</h2>

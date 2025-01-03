@@ -9,6 +9,8 @@ import Connect from "./components/connect";
 import Intro from "./components/intro";
 import { NothingPlaceholder } from "./components/nothing-placeholder";
 import Projects from "./components/projects";
+import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
+import Bookmarks from "./components/bookmarks";
 
 export const revalidate = 60;
 
@@ -42,20 +44,22 @@ export default async function Home({ params }: PageProps) {
   if (!user) {
     return notFound();
   }
-  const [articles, projects] = await Promise.all([
-    getArticlesByAuthor(user.id, 8),
-    getProjectsByAuthor(user.id, 8),
+  const [articles, projects, bookmarks] = await Promise.all([
+    getArticlesByAuthor(user.id, 5),
+    getProjectsByAuthor(user.id, 5),
+    getBookmarksByAuthor(user.id,5)
   ]);
   return (
-    <AppShell className="gap-16">
+    <AppShell>
       <Intro user={user} />
       {!user?.about?.trim().length && !articles.length && !projects.length && (
         <NothingPlaceholder name={user.name || user.username} />
       )}
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-6">
         <About content={user.about as string} />
         <Articles articles={articles} />
         <Projects projects={projects} />
+        <Bookmarks bookmarks={bookmarks} />
         <Connect user={user} />
       </div>
     </AppShell>
