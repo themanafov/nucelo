@@ -1,6 +1,5 @@
 import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
-import NavButton from "@/components/layout/nav-button";
 import MDX from "@/components/markdown/mdx";
 import { Icons } from "@/components/shared/icons";
 import { Badge } from "@/components/ui/badge";
@@ -80,7 +79,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
   const Content = (
     <AppShell>
-      <GoBack />
       <AppHeader
         title={project.title}
         className="flex-row items-center justify-normal gap-1  [&_.title]:text-xl"
@@ -103,9 +101,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </Badge>
       </div>
       <MDX source={project.content} />
-      <div className="mt-5 max-md:hidden">
-        <GoBack />
-      </div>
     </AppShell>
   );
 
@@ -118,18 +113,4 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return Content;
-}
-
-function GoBack() {
-  return (
-    <NavButton
-      variant="text"
-      className="flex-row-reverse"
-      href="/projects"
-      icon="arrowLeft"
-      aria-label="Back to Projects"
-    >
-      Back to Projects
-    </NavButton>
-  );
 }

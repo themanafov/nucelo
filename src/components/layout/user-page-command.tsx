@@ -114,8 +114,16 @@ export default function UserPageCommand({ user }: { user: User }) {
         </CommandList>
       </CommandDialog>
       {pathname !== "/" && (
-        <nav className="fixed w-full h-dvh pointer-events-none flex flex-col items-start max-md:justify-end left-0 top-0">
-          <div className="z-50 w-[700px] max-md:pl-4.4 py-4.4 max-md:w-full mx-auto pointer-events-auto flex gap-1 items-center">
+        <nav className="fixed w-full pointer-events-none flex flex-col items-start max-md:justify-end left-0 top-0 max-md:bottom-0">
+          <div className="z-50 w-[700px] max-md:pl-4 py-4.4 max-md:w-full mx-auto pointer-events-auto flex gap-1 items-center">
+            <Button
+              onClick={() => router.back()}
+              size="icon"
+              variant="secondary"
+              aria-label="Go back"
+            >
+              <Icons.arrowLeft size={16} />
+            </Button>
             <NavButton
               href="/"
               className="size-4.5"

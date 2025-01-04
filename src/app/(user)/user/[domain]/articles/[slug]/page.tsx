@@ -1,6 +1,5 @@
 import AppShell from "@/components/layout/app-shell";
 import AppHeader from "@/components/layout/header";
-import NavButton from "@/components/layout/nav-button";
 import MDX from "@/components/markdown/mdx";
 import { getArticle, getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getUserByDomain } from "@/lib/fetchers/users";
@@ -77,35 +76,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
   return (
     <AppShell>
-      <GoBack />
       <AppHeader
         title={article?.title as string}
         className="gap-2 flex-col items-start mb-4 [&_.title]:text-xl"
       >
         <div className="w-full flex gap-2 text-sm text-gray-4">
-            <p>
-              {formatDate(article.publishedAt)}
-            </p>
+          <p>{formatDate(article.publishedAt)}</p>
         </div>
       </AppHeader>
       <MDX source={article.content} />
-      <div className="mt-5 max-md:hidden">
-        <GoBack />
-      </div>
     </AppShell>
-  );
-}
-
-function GoBack() {
-  return (
-    <NavButton
-      variant="text"
-      className="flex-row-reverse"
-      href="/articles"
-      icon="arrowLeft"
-      aria-label="Back to Articles"
-    >
-      Back to Articles
-    </NavButton>
   );
 }
