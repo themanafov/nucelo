@@ -9,15 +9,15 @@ import Watermark from "./components/watermark";
 
 interface LayoutProps {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     domain: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
   params,
 }: LayoutProps): Promise<Metadata | null> {
-  const domain = decodeURIComponent(params.domain);
+  const domain = decodeURIComponent((await params).domain);
   const user = await getUserByDomain(domain);
   if (!user) {
     return notFound();
@@ -44,7 +44,7 @@ export async function generateMetadata({
 }
 
 export default async function UserLayout({ children, params }: LayoutProps) {
-  const domain = decodeURIComponent(params.domain);
+  const domain = decodeURIComponent((await params).domain);
   const user = await getUserByDomain(domain);
   if (!user) {
     return notFound();

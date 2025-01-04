@@ -16,19 +16,23 @@ export const metadata: Metadata = {
 };
 
 interface BookmarksPageProps {
-  params: {
+  params: Promise<{
     domain: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     collection?: string;
-  };
+  }>;
 }
 
 export default async function Bookmarks({
   params,
-  searchParams: { collection },
+  searchParams,
 }: BookmarksPageProps) {
-  const domain = decodeURIComponent(params.domain);
+  const [{ domain: userDomain }, { collection }] = await Promise.all([
+    params,
+    searchParams,
+  ]);
+  const domain = decodeURIComponent(userDomain);
   const user = await getUserByDomain(domain);
   if (!user) {
     return notFound();

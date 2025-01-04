@@ -16,17 +16,16 @@ export const metadata: Metadata = {
 };
 
 interface BookmarksPageProps {
-  searchParams: {
+  searchParams: Promise<{
     collection?: string;
-  };
+  }>;
 }
 
-export default async function Bookmarks({
-  searchParams: { collection },
-}: BookmarksPageProps) {
-  const [bookmarks, collections] = await Promise.all([
+export default async function Bookmarks({ searchParams }: BookmarksPageProps) {
+  const [bookmarks, collections, { collection }] = await Promise.all([
     getBookmarks(),
     getCollections(),
+    searchParams,
   ]);
   const sortedBookmarks = sortBookmarks(bookmarks, collection);
 

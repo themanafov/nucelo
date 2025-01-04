@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 };
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     domain: string;
-  };
+  }>;
 }
 
 export default async function ProjectsPage({ params }: ProjectPageProps) {
-  const domain = decodeURIComponent(params.domain);
+  const domain = decodeURIComponent((await params).domain);
   const user = await getUserByDomain(domain);
   if (!user) {
     return notFound();

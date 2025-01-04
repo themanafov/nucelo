@@ -9,16 +9,19 @@ import { sortArticles } from "@/lib/utils";
 import type { Metadata } from "next";
 
 interface Props {
-  searchParams: {
+  searchParams: Promise<{
     published?: "true" | "false";
-  };
+  }>;
 }
 export const metadata: Metadata = {
   title: "Articles",
 };
 
-export default async function Articles({ searchParams: { published } }: Props) {
-  const articles = await getArticles();
+export default async function Articles({ searchParams }: Props) {
+  const [articles, { published }] = await Promise.all([
+    getArticles(),
+    searchParams,
+  ]);
   const sortedArticles = sortArticles(articles, published);
   return (
     <AppShell>

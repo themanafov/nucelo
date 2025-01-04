@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 export default async function ProjectAnalytics({
   params,
 }: {
-  params: { projectId: string };
+  params: Promise<{ projectId: string }>;
 }) {
   const [project, plan] = await Promise.all([
-    getProjectById(params.projectId),
+    getProjectById((await params).projectId),
     getUserSubscription(),
   ]);
 

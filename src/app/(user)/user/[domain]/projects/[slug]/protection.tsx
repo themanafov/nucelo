@@ -4,8 +4,7 @@ import { Icons } from "@/components/shared/icons";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import type { Project, User } from "@prisma/client";
-import type * as React from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { ReactNode, useActionState } from "react";
 import { unlockProject } from "./action";
 
 export default function Protection({
@@ -17,9 +16,9 @@ export default function Protection({
     isProtected: boolean;
   };
   user: Pick<User, "username">;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
-  const [state, formAction] = useFormState(unlockProject, {
+  const [state, formAction, isPending] = useActionState(unlockProject, {
     unlocked: false,
   });
   if (!state.unlocked && project.isProtected) {
@@ -35,22 +34,17 @@ export default function Protection({
             type="password"
             name="password"
             placeholder="Enter password"
+            disabled={isPending}
             className={state?.error ? "focus:border-danger border-danger" : ""}
           />
           {state?.error && <b className="text-xs text-danger">{state.error}</b>}
-          <FormButton />
+          <Button type="submit" disabled={isPending}>
+            {isPending && <Icons.spinner size={18} className="animate-spin" />}{" "}
+            Unlock
+          </Button>
         </form>
       </div>
     );
   }
   return children;
-}
-
-function FormButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button type="submit" disabled={pending}>
-      {pending && <Icons.spinner size={18} className="animate-spin" />} Unlock
-    </Button>
-  );
 }

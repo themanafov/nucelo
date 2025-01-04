@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 export default async function BookmarkAnalytics({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const [bookmark, plan] = await Promise.all([
-    getBookmarkById(params.id),
+    getBookmarkById((await params).id),
     getUserSubscription(),
   ]);
 

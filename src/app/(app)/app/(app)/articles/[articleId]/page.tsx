@@ -7,11 +7,11 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 interface EditorPageProps {
-  params: { articleId: string };
+  params: Promise<{ articleId: string }>;
 }
 
 export async function generateMetadata({ params }: EditorPageProps) {
-  const article = await getArticleById(params.articleId);
+  const article = await getArticleById((await params).articleId);
 
   if (!article) {
     return notFound();
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: EditorPageProps) {
 export default async function ArticleEditorPage({ params }: EditorPageProps) {
   const [user, article] = await Promise.all([
     getUser(),
-    getArticleById(params.articleId),
+    getArticleById((await params).articleId),
   ]);
   if (!article || !user) {
     return notFound();

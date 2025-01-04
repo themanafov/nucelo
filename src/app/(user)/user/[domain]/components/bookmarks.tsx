@@ -4,8 +4,11 @@ import type { BookmarkWithCollection } from "@/types";
 import { Collection } from "@prisma/client";
 import Link from "next/link";
 
-
-export default function Bookmarks({ bookmarks }: { bookmarks: BookmarkWithCollection[] }) {
+export default function Bookmarks({
+  bookmarks,
+}: {
+  bookmarks: BookmarkWithCollection[];
+}) {
   if (!bookmarks.length) {
     return null;
   }

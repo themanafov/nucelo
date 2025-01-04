@@ -10,9 +10,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 interface ArticleSettingsProps {
-  params: {
+  params: Promise<{
     articleId: string;
-  };
+  }>;
 }
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default async function ArticleSettings({
   params,
 }: ArticleSettingsProps) {
-  const article = await getArticleById(params.articleId);
+  const article = await getArticleById((await params).articleId);
 
   if (!article) {
     return notFound();

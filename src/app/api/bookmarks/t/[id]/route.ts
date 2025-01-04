@@ -4,22 +4,20 @@ import * as z from "zod";
 
 export const runtime = "edge";
 
-const routeContextSchema = z.object({
-  params: z.object({
-    id: z.string().min(1),
-  }),
+const paramsSchema = z.object({
+  id: z.string().min(1),
 });
 
 export async function GET(
   req: NextRequest,
-  context: z.infer<typeof routeContextSchema>,
+  context: { params: Promise<z.infer<typeof paramsSchema>> },
 ) {
-  const ctx = routeContextSchema.safeParse(context);
+  const ctx = paramsSchema.safeParse(await context.params);
   if (!ctx.success) {
     return new Response(ctx.error.issues[0].message, {
       status: 422,
     });
   }
 
-  return recordClick(req, ctx.data.params.id);
+  return recordClick(req, ctx.data.id);
 }

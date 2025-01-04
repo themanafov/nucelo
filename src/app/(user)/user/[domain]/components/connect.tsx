@@ -20,7 +20,11 @@ export default function Connect({ user }: { user: User }) {
             <Link
               href={`${link.url}${link.username === null ? "" : link.username}`}
               className="flex text-gray-4 items-center group -mx-2  relative justify-between rounded-md  p-2 text-sm transition-colors  hover:bg-gray-3 "
-              key={link.url + link.username === null ? "" : link.username}
+              key={
+                link.url + link.username === null
+                  ? ""
+                  : link.username + `-${link.platform}`
+              }
               target="_blank"
             >
               <p>{link.platform}</p>

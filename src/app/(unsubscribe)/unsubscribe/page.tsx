@@ -5,9 +5,9 @@ import { notFound } from "next/navigation";
 import { unsubscribe } from "./action";
 
 interface Props {
-  searchParams: {
+  searchParams: Promise<{
     subId: string;
-  };
+  }>;
 }
 
 export const metadata: Metadata = {
@@ -15,13 +15,14 @@ export const metadata: Metadata = {
 };
 
 export default async function Unsubscribe({ searchParams }: Props) {
-  if (!searchParams.subId) {
+  const { subId } = await searchParams;
+  if (subId) {
     return notFound();
   }
 
   const subscriber = await db.subscriber.findUnique({
     where: {
-      id: searchParams.subId,
+      id: subId,
     },
     select: {
       user: {
@@ -39,7 +40,7 @@ export default async function Unsubscribe({ searchParams }: Props) {
   }
 
   const data: { error?: string; success?: string } = await unsubscribe(
-    searchParams.subId,
+    subId,
     subscriber.user.id,
   );
 

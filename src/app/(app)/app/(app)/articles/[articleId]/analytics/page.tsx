@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 };
 
 interface Props {
-  params: {
+  params: Promise<{
     articleId: string;
-  };
+  }>;
 }
 
 export default async function ArticleAnalytics({ params }: Props) {
   const [article, plan] = await Promise.all([
-    getArticleById(params.articleId),
+    getArticleById((await params).articleId),
     getUserSubscription(),
   ]);
 

@@ -1,23 +1,23 @@
 import AppShell from "@/components/layout/app-shell";
 import { getArticlesByAuthor } from "@/lib/fetchers/articles";
+import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
 import { getProjectsByAuthor } from "@/lib/fetchers/projects";
 import { getAllUserDomains, getUserByDomain } from "@/lib/fetchers/users";
 import { notFound } from "next/navigation";
 import About from "./components/about";
 import Articles from "./components/articles";
+import Bookmarks from "./components/bookmarks";
 import Connect from "./components/connect";
 import Intro from "./components/intro";
 import { NothingPlaceholder } from "./components/nothing-placeholder";
 import Projects from "./components/projects";
-import { getBookmarksByAuthor } from "@/lib/fetchers/bookmarks";
-import Bookmarks from "./components/bookmarks";
 
 export const revalidate = 60;
 
 interface PageProps {
-  params: {
+  params: Promise<{
     domain: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -39,7 +39,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Home({ params }: PageProps) {
-  const domain = decodeURIComponent(params.domain);
+  const domain = decodeURIComponent((await params).domain);
   const user = await getUserByDomain(domain);
   if (!user) {
     return notFound();
@@ -47,7 +47,7 @@ export default async function Home({ params }: PageProps) {
   const [articles, projects, bookmarks] = await Promise.all([
     getArticlesByAuthor(user.id, 5),
     getProjectsByAuthor(user.id, 5),
-    getBookmarksByAuthor(user.id,5)
+    getBookmarksByAuthor(user.id, 5),
   ]);
   return (
     <AppShell>

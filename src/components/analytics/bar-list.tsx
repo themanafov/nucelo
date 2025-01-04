@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { JSX } from "react";
 import Favicon from "../bookmarks/bookmark-favicon";
 import { EmptyPlaceholder } from "../ui/empty-placeholder";
 import { Skeleton } from "../ui/skeleton";

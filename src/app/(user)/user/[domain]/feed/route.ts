@@ -14,12 +14,13 @@ function isPostArticle(post: Post): post is Article {
 
 export async function GET(
   req: Request,
-  context: { params: { domain: string } },
+  context: { params: Promise<{ domain: string }> },
 ) {
   const { type = "rss" } = getSearchParams(req.url) as {
     type?: "rss" | "atom";
   };
-  const user = await getUserByDomain(context.params.domain);
+  const { domain } = await context.params;
+  const user = await getUserByDomain(domain);
   if (!user) {
     return new Response(null, { status: 404 });
   }

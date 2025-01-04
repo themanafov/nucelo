@@ -12,13 +12,15 @@ import readingTime from "reading-time";
 export const revalidate = 60;
 
 interface ArticlePageProps {
-  params: { slug: string; domain: string };
+  params: Promise<{ slug: string; domain: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata | null> {
-  const domain = decodeURIComponent(params.domain);
+  const { slug, domain: userDomain } = await params;
+
+  const domain = decodeURIComponent(userDomain);
   const user = await getUserByDomain(domain);
   if (!user) {
     return notFound();
@@ -26,7 +28,7 @@ export async function generateMetadata({
 
   const article = await getArticle({
     authorId: user.id,
-    slug: params.slug,
+    slug,
     published: true,
   });
 
@@ -49,7 +51,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams({ params }: ArticlePageProps) {
-  const domain = decodeURIComponent(params.domain);
+  const domain = decodeURIComponent((await params).domain);
   const user = await getUserByDomain(domain);
   const articles = await getArticlesByAuthor(user?.id as string);
 
@@ -59,14 +61,16 @@ export async function generateStaticParams({ params }: ArticlePageProps) {
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
-  const domain = decodeURIComponent(params.domain);
+  const { slug, domain: userDomain } = await params;
+
+  const domain = decodeURIComponent(userDomain);
   const user = await getUserByDomain(domain);
   if (!user) {
     return notFound();
   }
   const article = await getArticle({
     authorId: user.id,
-    slug: params.slug,
+    slug,
     published: true,
   });
 

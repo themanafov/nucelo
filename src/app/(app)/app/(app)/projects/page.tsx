@@ -9,17 +9,20 @@ import { sortProjects } from "@/lib/utils";
 import type { Metadata } from "next";
 
 interface Props {
-  searchParams: {
+  searchParams: Promise<{
     published?: "true" | "false";
-  };
+  }>;
 }
 
 export const metadata: Metadata = {
   title: "Projects",
 };
 
-export default async function Projects({ searchParams: { published } }: Props) {
-  const projects = await getProjects();
+export default async function Projects({ searchParams }: Props) {
+  const [projects, { published }] = await Promise.all([
+    getProjects(),
+    searchParams,
+  ]);
   const sortedProjects = sortProjects(projects, published);
   return (
     <AppShell>

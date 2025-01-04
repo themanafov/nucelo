@@ -10,9 +10,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 interface ProjectSettingsProps {
-  params: {
+  params: Promise<{
     projectId: string;
-  };
+  }>;
 }
 export const metadata: Metadata = {
   title: "Settings",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default async function ProjectSettings({
   params,
 }: ProjectSettingsProps) {
-  const project = await getProjectById(params.projectId);
+  const project = await getProjectById((await params).projectId);
 
   if (!project) {
     return notFound();

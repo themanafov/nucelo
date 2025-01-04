@@ -7,7 +7,7 @@ import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const headersList = headers();
+  const headersList = await headers();
   const host = headersList.get("host") as string;
   const url = `https://${host}`;
   const userDomain = `.${process.env.NEXT_PUBLIC_USER_DOMAIN as string}`;

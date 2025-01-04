@@ -1,4 +1,4 @@
-import { ipAddress } from "@vercel/edge";
+import { geolocation, ipAddress } from "@vercel/edge";
 import { type NextRequest, NextResponse, userAgent } from "next/server";
 import { analyticsSources } from "./constants";
 import {
@@ -36,7 +36,7 @@ export async function track({
     }
     const referer = req.headers.get("referer");
 
-    const geo = req.geo;
+    const geo = geolocation(req);
     const ua = userAgent(req);
     const ip = ipAddress(req) || "0.0.0.0";
 
@@ -147,7 +147,7 @@ export async function recordClick(req: NextRequest, bookmarkId: string) {
       return NextResponse.redirect(url);
     }
     const user = await getUserViaEdge(undefined, undefined, bookmark.authorId);
-    const geo = req.geo;
+    const geo = geolocation(req);
     const ua = userAgent(req);
     const referer = req.headers.get("referer");
     await Promise.all([

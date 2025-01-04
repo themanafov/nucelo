@@ -89,7 +89,11 @@ export default function UserPageCommand({ user }: { user: User }) {
                 const Icon = Icons[link.icon as keyof typeof Icons];
                 return (
                   <CommandItem
-                    key={link.url + link.username === null ? "" : link.username}
+                    key={
+                      link.url + link.username === null
+                        ? ""
+                        : link.username + `-${link.platform}`
+                    }
                     onSelect={() =>
                       window.open(
                         `${link.url}${

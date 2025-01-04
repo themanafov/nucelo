@@ -15,20 +15,21 @@ import Protection from "./protection";
 export const revalidate = 60;
 
 interface ProjectPageProps {
-  params: { slug: string; domain: string };
+  params: Promise<{ slug: string; domain: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata | null> {
-  const domain = decodeURIComponent(params.domain);
+  const { slug, domain: userDomain } = await params;
+  const domain = decodeURIComponent(userDomain);
   const user = await getUserByDomain(domain);
   if (!user) {
     return notFound();
   }
   const project = await getProject({
     authorId: user.id,
-    slug: params.slug,
+    slug,
     published: true,
   });
 
@@ -52,7 +53,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams({ params }: ProjectPageProps) {
-  const domain = decodeURIComponent(params.domain);
+  const domain = decodeURIComponent((await params).domain);
   const user = await getUserByDomain(domain);
   const projects = await getProjectsByAuthor(user?.id as string);
 
@@ -62,14 +63,15 @@ export async function generateStaticParams({ params }: ProjectPageProps) {
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const domain = decodeURIComponent(params.domain);
+  const { slug, domain: userDomain } = await params;
+  const domain = decodeURIComponent(userDomain);
   const user = await getUserByDomain(domain);
   if (!user) {
     return notFound();
   }
   const project = await getProject({
     authorId: user.id,
-    slug: params.slug,
+    slug,
     published: true,
   });
 

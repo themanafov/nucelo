@@ -177,7 +177,11 @@ export const guard = <
     }
 
     if (contextSchema) {
-      const parse = contextSchema.safeParse(context);
+      const resolvedContext = {
+        ...context,
+        params: await Promise.resolve(context.params),
+      };
+      const parse = contextSchema.safeParse(resolvedContext);
       if (!parse.success) {
         return new Response(parse.error.issues[0].message, {
           status: 422,

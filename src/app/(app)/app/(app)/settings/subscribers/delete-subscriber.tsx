@@ -3,12 +3,11 @@
 import { Icons } from "@/components/shared/icons";
 import Button from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { useEffect } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState, useEffect } from "react";
 import { deleteSubscriber } from "./actions";
 
 export default function DeleteSubscriber({ id }: { id: string }) {
-  const [state, formAction] = useFormState(deleteSubscriber, null);
+  const [state, formAction, isPending] = useActionState(deleteSubscriber, null);
 
   useEffect(() => {
     if (state?.error) {
@@ -21,27 +20,20 @@ export default function DeleteSubscriber({ id }: { id: string }) {
   return (
     <form action={formAction} className="flex justify-right self-end">
       <input type="hidden" name="subId" value={id} />
-      <FormButton />
+      <Button
+        type="submit"
+        size="icon"
+        variant="destructive"
+        disabled={isPending}
+        className="border-none"
+        aria-label="Subscriber Delete Button"
+      >
+        {isPending ? (
+          <Icons.spinner size={15} className="animate-spin text-danger" />
+        ) : (
+          <Icons.trash size={15} />
+        )}
+      </Button>
     </form>
-  );
-}
-
-function FormButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button
-      type="submit"
-      size="icon"
-      variant="destructive"
-      disabled={pending}
-      className="border-none"
-      aria-label="Subscriber Delete Button"
-    >
-      {pending ? (
-        <Icons.spinner size={15} className="animate-spin text-danger" />
-      ) : (
-        <Icons.trash size={15} />
-      )}
-    </Button>
   );
 }

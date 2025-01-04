@@ -7,15 +7,15 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 interface ProjectEditorPageProps {
-  params: { projectId: string };
+  params: Promise<{ projectId: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: { projectId: string };
+  params: ProjectEditorPageProps["params"];
 }) {
-  const project = await getProjectById(params.projectId);
+  const project = await getProjectById((await params).projectId);
 
   if (!project) {
     return notFound();
@@ -31,7 +31,7 @@ export default async function ProjectEditorPage({
 }: ProjectEditorPageProps) {
   const [user, project] = await Promise.all([
     getUser(),
-    getProjectById(params.projectId),
+    getProjectById((await params).projectId),
   ]);
 
   if (!project || !user) {
