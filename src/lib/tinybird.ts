@@ -1,4 +1,4 @@
-import { geolocation, ipAddress } from "@vercel/edge";
+import { geolocation, ipAddress } from "@vercel/functions";
 import { type NextRequest, NextResponse, userAgent } from "next/server";
 import { analyticsSources } from "./constants";
 import {
