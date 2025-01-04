@@ -21,7 +21,7 @@
     "@neondatabase/serverless": "^0.9.4",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@prisma/adapter-neon": "^5.22.0",
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "^6.1.0",
     "@radix-ui/react-alert-dialog": "^1.1.4",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-checkbox": "^1.1.3",
