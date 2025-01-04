@@ -8,7 +8,6 @@ import { formatDate, generateSEO } from "@/lib/utils";
 import moment from "moment";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import readingTime from "reading-time";
 export const revalidate = 60;
 
 interface ArticlePageProps {
@@ -85,13 +84,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         className="gap-2 flex-col items-start mb-4 [&_.title]:text-xl"
       >
         <div className="w-full flex flex-row justify-between items-center gap-2 text-sm text-gray-4">
-          <div className="flex gap-2 items-center">
             <p>
               {`${formatDate(article.publishedAt)} ( ${moment(article.publishedAt).fromNow()} )`}
             </p>
-            <span>•</span>
-            <p>{readingTime(article.content as string).text}</p>
-          </div>
           <span>{article.views} views</span>
         </div>
       </AppHeader>
