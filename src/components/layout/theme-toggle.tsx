@@ -16,7 +16,7 @@ export default function ThemeToggle({
   className?: string;
   iconSize?: number;
 }) {
-  const { forcedTheme: theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const isDark = theme === "dark";
   const toggle = () => setTheme(isDark ? "light" : "dark");

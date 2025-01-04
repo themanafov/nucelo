@@ -37,7 +37,7 @@ export default function AppCommand({ user }: { user: User }) {
   const [isLoading, setIsLoading] = useState<"article" | "project" | null>(
     null,
   );
-  const { setTheme, forcedTheme: theme } = useTheme();
+  const { setTheme, theme } = useTheme();
 
   const newArticle = async () => {
     setIsLoading("article");
