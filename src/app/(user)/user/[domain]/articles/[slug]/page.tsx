@@ -5,7 +5,6 @@ import MDX from "@/components/markdown/mdx";
 import { getArticle, getArticlesByAuthor } from "@/lib/fetchers/articles";
 import { getUserByDomain } from "@/lib/fetchers/users";
 import { formatDate, generateSEO } from "@/lib/utils";
-import moment from "moment";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 export const revalidate = 60;
@@ -83,11 +82,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         title={article?.title as string}
         className="gap-2 flex-col items-start mb-4 [&_.title]:text-xl"
       >
-        <div className="w-full flex flex-row justify-between items-center gap-2 text-sm text-gray-4">
+        <div className="w-full flex gap-2 text-sm text-gray-4">
             <p>
-              {`${formatDate(article.publishedAt)} ( ${moment(article.publishedAt).fromNow()} )`}
+              {formatDate(article.publishedAt)}
             </p>
-          <span>{article.views} views</span>
         </div>
       </AppHeader>
       <MDX source={article.content} />
