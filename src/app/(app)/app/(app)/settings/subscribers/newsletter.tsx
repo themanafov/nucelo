@@ -30,7 +30,7 @@ export default function Newsletter({ checked }: { checked: boolean }) {
         Newsletter
       </label>
 
-      <div className="flex items-center">
+      <div className="flex items-center gap-1">
         <Switch
           type="submit"
           name="newsletter"
