@@ -1,9 +1,21 @@
 import { cn } from "@/lib/utils";
 import type { VariantProps } from "class-variance-authority";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import type React from "react";
 import { Icons } from "../shared/icons";
 import Button, { type buttonVariants } from "../ui/button";
+
+interface NavButtonProps extends React.ComponentProps<"a">, LinkProps {
+  buttonVariant?: VariantProps<typeof buttonVariants>["variant"];
+  size?: VariantProps<typeof buttonVariants>["size"];
+  iconSize?: number;
+  buttonClassname?: string;
+  variant?: "text" | "button";
+  icon?: keyof typeof Icons;
+  direction?: "ltr" | "rtl";
+  href: string;
+}
+
 export default function NavButton({
   children,
   className,
@@ -16,19 +28,7 @@ export default function NavButton({
   direction = "rtl",
   buttonClassname,
   ...props
-}: {
-  children?: React.ReactNode;
-  className?: string;
-  buttonVariant?: VariantProps<typeof buttonVariants>["variant"];
-  size?: VariantProps<typeof buttonVariants>["size"];
-  href: string;
-  iconSize?: number;
-  buttonClassname?: string;
-  variant?: "text" | "button";
-  icon?: keyof typeof Icons;
-  direction?: "ltr" | "rtl";
-  [key: string]: any;
-}) {
+}: NavButtonProps) {
   const Icon = icon ? Icons[icon] : () => null;
   return (
     <Link
