@@ -90,7 +90,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         {article?.previousArticle && (
           <NavButton
             variant="text"
-            className="flex-row-reverse [&_.articleTitle]:hidden hover:[&_.articleTitle]:block  hover[&_.action]:hidden"
+            className="flex-row-reverse"
             href={`/articles/${article.previousArticle.slug}`}
             icon="arrowLeft"
             aria-label="Read previous article"
