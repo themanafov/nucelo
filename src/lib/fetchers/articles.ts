@@ -14,7 +14,7 @@ export async function getArticle({
   slug: string;
   published?: boolean;
 }) {
-  return await db.article.findUnique({
+  const article = await db.article.findUnique({
     where: {
       authorId_slug: {
         slug,
@@ -23,6 +23,46 @@ export async function getArticle({
       published,
     },
   });
+
+  if (!article) {
+    return null;
+  }
+
+  const [previousArticle, nextArticle] = await Promise.all([
+    db.article.findFirst({
+      where: {
+        authorId,
+        published,
+        publishedAt: {
+          lt: article.publishedAt,
+        },
+      },
+      orderBy: {
+        publishedAt: "desc",
+      },
+      select: {
+        title: true,
+        slug: true,
+      },
+    }),
+    db.article.findFirst({
+      where: {
+        authorId,
+        published,
+        publishedAt: {
+          gt: article.publishedAt,
+        },
+      },
+      orderBy: {
+        publishedAt: "asc",
+      },
+      select: {
+        title: true,
+        slug: true,
+      },
+    }),
+  ]);
+  return { ...article, previousArticle, nextArticle };
 }
 
 export async function getArticleByAuthor(articleId: string, authorId: string) {
