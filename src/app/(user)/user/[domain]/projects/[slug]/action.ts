@@ -1,6 +1,8 @@
 "use server";
 
 import { getProjectById } from "@/lib/fetchers/projects";
+import { rateLimit } from "@/lib/ratelimit";
+import { headers } from "next/headers";
 
 export async function unlockProject(prev: any, data: FormData) {
   const projectId = data.get("projectId") as string;
@@ -10,6 +12,20 @@ export async function unlockProject(prev: any, data: FormData) {
     return {
       error: "Project not found",
     };
+  }
+
+  if (process.env.VERCEL === "1") {
+    const ip = (await headers()).get("x-forwarded-for");
+
+    const { success } = await rateLimit.protection.limit(
+      `project:${project.id}:${ip}`,
+    );
+
+    if (!success) {
+      return {
+        error: "Try again later",
+      };
+    }
   }
 
   if (project?.password === pw) {

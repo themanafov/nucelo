@@ -28,4 +28,10 @@ export const rateLimit = {
     prefix: "newsletter",
     analytics: true,
   }),
+  protection: new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(10, "1 h"),
+    prefix: "unlock",
+    analytics: true,
+  }),
 };
