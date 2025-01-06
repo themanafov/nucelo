@@ -68,6 +68,30 @@ export async function getUserViaEdge(
   };
 }
 
+export async function isSiteProtected(domain: string) {
+  const user = await dbEdge.user.findFirst({
+    where: {
+      OR: [
+        {
+          domain,
+        },
+        {
+          username: domain,
+        },
+      ],
+    },
+    select: {
+      password: true,
+    },
+  });
+
+  if (!user) {
+    return null;
+  }
+
+  return user.password;
+}
+
 export async function getUserAvatarViaEdge(username: string) {
   const user = await dbEdge.user.findUnique({
     where: {

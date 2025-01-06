@@ -73,6 +73,7 @@ model User {
   bookmarks          Bookmark[]
   subscribers        Subscriber[]
   collections        Collection[]
+  password           String?
 
   @@map("users")
 }

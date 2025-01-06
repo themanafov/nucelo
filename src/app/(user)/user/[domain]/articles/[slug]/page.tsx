@@ -95,7 +95,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             icon="arrowLeft"
             aria-label="Read previous article"
           >
-          Previous
+            Previous
           </NavButton>
         )}
         {article?.nextArticle && (
@@ -105,7 +105,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             icon="arrowRight"
             aria-label="Read next article"
           >
-           Next
+            Next
           </NavButton>
         )}
       </div>

@@ -30,5 +30,6 @@ export const updateUserSchema = z
     linkedin: z.string().trim().nullable(),
     readcv: z.string().trim().nullable(),
     contactEmail: z.string().trim().nullable(),
+    password: z.string().nullable(),
   })
   .partial();

@@ -87,6 +87,18 @@ export default async function Settings() {
           defaultValue: user.email ?? "",
         }}
       />
+      <Form
+        title="Password protection"
+        description="If you want to protect your site with a password, enter the password."
+        endpoint={endpoint}
+        required={false}
+        inputData={{
+          type: "password",
+          name: "password",
+          placeholder: "password",
+          defaultValue: user.password || "",
+        }}
+      />
       <Form title="Export" endpoint={`${endpoint}/export`} asChild>
         <ExportButton
           text="Export all data"

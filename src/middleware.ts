@@ -1,5 +1,6 @@
 import { getToken } from "next-auth/jwt";
 import { type NextRequest, NextResponse } from "next/server";
+import { isSiteProtected } from "./lib/edge";
 
 export const config = {
   matcher: ["/((?!api/|_next/|_static/|_vercel|[\\w-]+\\.\\w+).*)"],
@@ -47,9 +48,29 @@ export default async function middleware(req: NextRequest) {
   }
 
   if (hostname.endsWith(`.${userDomain}`)) {
+    const domain = hostname.split(`.${userDomain}`)[0];
+    const password = await isSiteProtected(domain);
+    if (password) {
+      const cookiePassword = req.cookies.get(domain)?.value;
+      if (cookiePassword === password) {
+        return NextResponse.rewrite(
+          new URL(
+            `/user/${domain}${path === "/" ? "" : path}${
+              url.searchParams ? searchParams : ""
+            }`,
+            req.url,
+          ),
+        );
+      }
+      return NextResponse.rewrite(new URL(`/protected`, req.url), {
+        headers: {
+          "X-Domain": domain,
+        },
+      });
+    }
     return NextResponse.rewrite(
       new URL(
-        `/user/${hostname.split(".")[0]}${path === "/" ? "" : path}${
+        `/user/${domain}${path === "/" ? "" : path}${
           url.searchParams ? searchParams : ""
         }`,
         req.url,
@@ -58,6 +79,25 @@ export default async function middleware(req: NextRequest) {
   }
 
   if (!hostname.includes(userDomain) && !hostname.endsWith(vercelDomain)) {
+    const password = await isSiteProtected(hostname);
+    if (password) {
+      const cookiePassword = req.cookies.get(hostname)?.value;
+      if (cookiePassword === password) {
+        return NextResponse.rewrite(
+          new URL(
+            `/user/${hostname}${path === "/" ? "" : path}${
+              url.searchParams ? searchParams : ""
+            }`,
+            req.url,
+          ),
+        );
+      }
+      return NextResponse.rewrite(new URL(`/protected`, req.url), {
+        headers: {
+          "X-Domain": hostname,
+        },
+      });
+    }
     return NextResponse.rewrite(
       new URL(
         `/user/${hostname}${path === "/" ? "" : path}${
