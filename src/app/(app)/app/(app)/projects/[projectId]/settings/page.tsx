@@ -85,6 +85,7 @@ export default async function ProjectSettings({
           helpText="Optional"
           endpoint={endpoint}
           inputData={{
+            type: "url",
             name: "url",
             placeholder: "https://example.com",
             defaultValue: project.url || "",
