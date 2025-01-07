@@ -18,7 +18,7 @@ export function AnalyticsBadge({
     const Icon = Icons[index === "clicks" ? "mousePointerClick" : "bar"];
     return (
       <Link href={href}>
-        <Badge className="h-4 min-w-max flex gap-1 hover:bg-gray-2 px-1 font-normal">
+        <Badge className="h-4.4 flex gap-1 px-1 py-1  min-w-max hover:bg-gray-2 font-normal">
           <Icon size={14} /> <p>{`${value} ${index}`}</p>
         </Badge>
       </Link>

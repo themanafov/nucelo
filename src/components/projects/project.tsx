@@ -29,9 +29,9 @@ export default function Project({ project, admin }: Props) {
           {project.year}
         </span>
         <div className="w-full  flex flex-1  flex-col">
-          <h5>
+          <div>
             <Balancer>{project.title}</Balancer>
-          </h5>
+          </div>
           <p className="text-gray-4 text-xs">{project?.description}</p>
         </div>
       </div>
@@ -39,7 +39,7 @@ export default function Project({ project, admin }: Props) {
       <div className="max-md:w-full max-md:mt-2 flex items-center justify-end z-10">
         <div className="flex items-center gap-1">
           {project.isProtected && (
-            <Badge className="h-4 py-2 px-1 hover:bg-gray-2 flex font-normal items-center gap-1 cursor-default">
+            <Badge className="h-4.4  px-1 py-1  hover:bg-gray-2 flex font-normal items-center gap-1 cursor-default">
               <Icons.locked size={14} /> Locked
             </Badge>
           )}
@@ -48,7 +48,7 @@ export default function Project({ project, admin }: Props) {
               <Link
                 href={`/projects?published=${isPublished ? "true" : "false"}`}
               >
-                <Badge className="h-4 py-2 px-1 hover:bg-gray-2 font-normal">
+                <Badge className="h-4.4 flex gap-1 px-1 py-1  hover:bg-gray-2 font-normal">
                   {isPublished ? "Public" : "Draft"}
                 </Badge>
               </Link>

@@ -32,9 +32,9 @@ export default async function Article({ article, admin }: Props) {
         <span className="block text-gray-4 w-24 group-hover:text-secondary transition-colors">
           {formatDate(article.publishedAt)}
         </span>
-        <h5>
+        <div>
           <Balancer>{article.title}</Balancer>
-        </h5>
+        </div>
       </div>
       {admin && (
         <div className="flex max-md:mt-2 justify-end max-md:w-full ">
@@ -42,7 +42,7 @@ export default async function Article({ article, admin }: Props) {
             <Link
               href={`/articles?published=${isPublished ? "true" : "false"}`}
             >
-              <Badge className="h-4 py-2 px-1 hover:bg-gray-2 font-normal">
+              <Badge className="h-4.4 flex gap-1 px-1 py-1  hover:bg-gray-2 font-normal">
                 {isPublished ? "Public" : "Draft"}
               </Badge>
             </Link>

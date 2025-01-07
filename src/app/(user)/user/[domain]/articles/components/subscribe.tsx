@@ -87,6 +87,7 @@ export default function Subscribe({
       <DialogTrigger asChild>
         <Button
           variant={compact ? "secondary" : "default"}
+          aria-label="Subscribe newsletter or RSS feed"
           size={compact ? "icon" : "sm"}
         >
           {compact ? <Icons.rss size={15} /> : "Subscribe"}
