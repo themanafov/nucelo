@@ -50,7 +50,7 @@ export default function BarList({ data, title, loading }: Props) {
           </EmptyPlaceholder>
         )}
       </div>
-      {data && data.length > 2 && <ViewAllBarlist title={title} data={data} />}
+      {data && data.length > 3 && <ViewAllBarlist title={title} data={data} />}
     </div>
   );
 }
