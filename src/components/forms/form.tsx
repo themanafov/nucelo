@@ -135,13 +135,13 @@ export default function Form({
                 />
                 {inputData?.type === "password" && (
                   <span
-                    className="text-gray-4 cursor-pointer absolute right-2.5"
+                    className="text-gray-4 cursor-pointer absolute right-3"
                     onClick={() => setShowPassword((prev) => !prev)}
                   >
                     {showPassword ? (
-                      <Icons.eye size={20} />
+                      <Icons.eye size={18} />
                     ) : (
-                      <Icons.eyeOff size={20} />
+                      <Icons.eyeOff size={18} />
                     )}
                   </span>
                 )}
