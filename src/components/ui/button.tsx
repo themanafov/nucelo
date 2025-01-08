@@ -13,11 +13,11 @@ const buttonVariants = cva(
         destructive:
           "border border-gray-2  text-danger enabled:hover:border-danger enabled:hover:bg-danger enabled:hover:text-primary",
         secondary:
-          "bg-gray-3 enabled:hover:bg-gray-2 border border-gray-2 text-gray-4 enabled:hover:text-secondary",
+          "bg-gray-3 enabled:hover:bg-gray-2 border border-gray-2 text-gray-4 enabled:hover:text-secondary ",
         ghost:
-          "enabled:hover:!bg-gray-2 text-gray-4 enabled:hover:!text-secondary",
+          "enabled:hover:!bg-gray-2 text-gray-4 enabled:hover:!text-secondary data-[state=open]:bg-gray-2 data-[state=open]:text-secondary",
         primary:
-          "bg-secondary text-primary opacity-100 hover:opacity-80 transition-opacity",
+          "bg-secondary text-primary opacity-100 hover:opacity-80 transition-opacity ",
       },
       size: {
         sm: "h-4.5 text-xs",

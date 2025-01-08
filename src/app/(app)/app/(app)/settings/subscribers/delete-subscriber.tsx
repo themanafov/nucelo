@@ -18,14 +18,14 @@ export default function DeleteSubscriber({ id }: { id: string }) {
     }
   }, [state]);
   return (
-    <form action={formAction} className="flex justify-right self-end">
+    <form action={formAction}>
       <input type="hidden" name="subId" value={id} />
       <Button
         type="submit"
-        size="icon"
+        size="sm"
         variant="destructive"
         disabled={isPending}
-        className="border-none"
+        className="w-full justify-start gap-2 border-none"
         aria-label="Subscriber Delete Button"
       >
         {isPending ? (
@@ -33,6 +33,7 @@ export default function DeleteSubscriber({ id }: { id: string }) {
         ) : (
           <Icons.trash size={15} />
         )}
+        Delete
       </Button>
     </form>
   );
