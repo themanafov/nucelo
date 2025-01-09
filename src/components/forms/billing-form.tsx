@@ -133,7 +133,12 @@ export default function BillingForm({ subscriptionPlan }: Props) {
         )}
 
         <form onSubmit={billing} className="flex flex-col gap-2 ">
-          <Button type="submit" variant="secondary" isPending={isLoading} size="sm">
+          <Button
+            type="submit"
+            variant="secondary"
+            isPending={isLoading}
+            size="sm"
+          >
             {subscriptionPlan.isPro ? "Manage" : "Upgrade"}
           </Button>
         </form>

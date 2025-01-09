@@ -24,15 +24,11 @@ export default function DeleteSubscriber({ id }: { id: string }) {
         type="submit"
         size="sm"
         variant="destructive"
-        disabled={isPending}
-        className="w-full justify-start gap-2 border-none"
-        aria-label="Subscriber Delete Button"
+        isPending={isPending}
+        className="w-full justify-start gap-2 border-none bg-transparent text-gray-4 hover:bg-danger  hover:text-primary"
+        aria-label="Delete subscriber"
       >
-        {isPending ? (
-          <Icons.spinner size={15} className="animate-spin text-danger" />
-        ) : (
-          <Icons.trash size={15} />
-        )}
+        <Icons.trash size={15} />
         Delete
       </Button>
     </form>

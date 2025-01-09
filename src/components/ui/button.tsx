@@ -11,8 +11,7 @@ const buttonVariants = cva(
       variant: {
         default:
           "border border-gray-2 bg-inherit text-gray-4 text-sm enabled:hover:bg-gray-2",
-        destructive:
-          "bg-danger text-primary",
+        destructive: "bg-danger text-primary",
         secondary:
           "bg-gray-3 enabled:hover:bg-gray-2 border border-gray-2 text-gray-4 enabled:hover:text-secondary ",
         ghost:
@@ -65,7 +64,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {title ?? children}
         {isPending && (
-          <span className={cn("size-full flex gap-1 bg-inherit justify-center items-center absolute")}>
+          <span
+            className={cn(
+              "size-full flex gap-1 bg-inherit justify-center items-center absolute",
+            )}
+          >
             <Icons.spinner
               size={size === "wide" ? 18 : 15}
               className="left-0 top-0 animate-spin"

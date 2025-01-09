@@ -158,7 +158,7 @@ export default function Subscribe({
               )}
             </form>
 
-            <DialogFooter>
+            <DialogFooter className="bg-inherit">
               <Button
                 variant="ghost"
                 size="sm"
