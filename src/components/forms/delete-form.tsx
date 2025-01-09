@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Icons } from "../shared/icons";
 import Button from "../ui/button";
 import {
   Dialog,
@@ -120,19 +119,13 @@ export default function DeleteForm({
                 disabled={isDeleting}
               />
               <Button
-                disabled={!isValid || isDeleting}
+                disabled={!isValid}
                 form="delete-form"
                 size="sm"
                 variant="destructive"
+                isPending={isDeleting}
               >
-                {isDeleting ? (
-                  <>
-                    <Icons.spinner size={18} className="animate-spin" />{" "}
-                    Deleting
-                  </>
-                ) : (
-                  <>Delete</>
-                )}
+                Delete
               </Button>
             </DialogFooter>
           </DialogContent>

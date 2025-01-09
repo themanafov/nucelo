@@ -133,8 +133,7 @@ export default function BillingForm({ subscriptionPlan }: Props) {
         )}
 
         <form onSubmit={billing} className="flex flex-col gap-2">
-          <Button type="submit" disabled={isLoading} size="sm">
-            {isLoading && <Icons.spinner size={15} className="animate-spin" />}
+          <Button type="submit" isPending={isLoading} size="sm">
             {subscriptionPlan.isPro ? "Manage" : "Upgrade"}
           </Button>
         </form>

@@ -170,10 +170,12 @@ export default function AuthForm() {
                 {errors?.email && (
                   <b className="text-xs text-danger">{errors.email.message}</b>
                 )}
-                <Button size="wide" type="submit" disabled={!!isLoading}>
-                  {isLoading === "email" && (
-                    <Icons.spinner size={18} className="animate-spin" />
-                  )}
+                <Button
+                  size="wide"
+                  type="submit"
+                  disabled={!!isLoading}
+                  isPending={isLoading === "email"}
+                >
                   Continue
                 </Button>
               </form>

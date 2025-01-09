@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { Icons } from "../shared/icons";
 import Button from "../ui/button";
 import { toast } from "../ui/use-toast";
 
@@ -24,11 +23,10 @@ export default function NewArticle() {
       onClick={onClick}
       size="sm"
       variant="secondary"
-      disabled={isLoading}
+      isPending={isLoading}
       aria-label="Write new Article"
     >
-      {isLoading && <Icons.spinner size={15} className="animate-spin" />} New
-      article
+      New article
     </Button>
   );
 }

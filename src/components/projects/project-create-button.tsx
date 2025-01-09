@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { Icons } from "../shared/icons";
 import Button from "../ui/button";
 import { toast } from "../ui/use-toast";
 
@@ -24,11 +23,10 @@ export default function CreateProject() {
       size="sm"
       variant="secondary"
       onClick={onClick}
-      disabled={isLoading}
+      isPending={isLoading}
       aria-label="New project"
     >
-      {isLoading && <Icons.spinner className="animate-spin" size={15} />} New
-      project
+      New project
     </Button>
   );
 }

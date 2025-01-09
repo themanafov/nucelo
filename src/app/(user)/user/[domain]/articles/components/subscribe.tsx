@@ -160,21 +160,18 @@ export default function Subscribe({
 
             <DialogFooter>
               <Button
-                disabled={isLoading}
                 variant="ghost"
                 size="sm"
+                disabled={isLoading}
                 onClick={() => setIsOpen(false)}
               >
                 Cancel
               </Button>
               <Button
-                disabled={isLoading}
+                isPending={isLoading}
                 size="sm"
                 form="subscribe-newsletter"
               >
-                {isLoading && (
-                  <Icons.spinner size={18} className="animate-spin" />
-                )}
                 Subscribe
               </Button>
             </DialogFooter>

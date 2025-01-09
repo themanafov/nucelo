@@ -174,15 +174,9 @@ export default function Form({
           type="submit"
           size="sm"
           disabled={disabledButton}
-          className={cn(asChild && "invisible")}
+          isPending={saving}
         >
-          {saving ? (
-            <>
-              <Icons.spinner size={18} className="animate-spin" /> Saving
-            </>
-          ) : (
-            <>Save</>
-          )}
+          Save
         </Button>
       </footer>
     </form>

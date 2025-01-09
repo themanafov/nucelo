@@ -152,10 +152,9 @@ export default function AddEditCollectionModal({
             form="add-edit-collection-form"
             type="submit"
             size="sm"
-            disabled={isLoading}
+            isPending={isLoading}
           >
-            {isLoading && <Icons.spinner size={15} className="animate-spin" />}
-            {isLoading ? buttonText.loading : buttonText.default}
+            {buttonText.default}
           </Button>
         </DialogFooter>
       </DialogContent>

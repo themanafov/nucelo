@@ -2,9 +2,10 @@ import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
+import { Icons } from "../shared/icons";
 
 const buttonVariants = cva(
-  "flex h-5 cursor-pointer flex-row items-center justify-center gap-1  px-2 rounded-md text-gray-1 outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-[.5]",
+  "flex h-5 cursor-pointer relative overflow-hidden    flex-row items-center justify-center gap-1  px-2 rounded-md text-gray-1 outline-none transition-colors disabled:cursor-not-allowed disabled:opacity-70",
   {
     variants: {
       variant: {
@@ -36,11 +37,21 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   title?: string;
+  isPending?: boolean | string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, variant, asChild = false, children, size, title, ...props },
+    {
+      className,
+      variant,
+      asChild = false,
+      children,
+      size,
+      title,
+      isPending,
+      ...props
+    },
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
@@ -48,10 +59,22 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        disabled={!!isPending}
         {...props}
       >
-        {children}
-        {title}
+        <span className={cn("flex gap-1", isPending && "invisible")}>
+          {children}
+          {title}
+        </span>
+        {isPending && (
+          <span className="size-full flex bg-inherit gap-1 justify-center items-center absolute">
+            <Icons.spinner
+              size={size === "wide" ? 18 : 15}
+              className="left-0 top-0 animate-spin"
+            />
+            {typeof isPending === "string" ? isPending : null}
+          </span>
+        )}
       </Comp>
     );
   },

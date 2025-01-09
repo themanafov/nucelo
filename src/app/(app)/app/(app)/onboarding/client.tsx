@@ -1,6 +1,5 @@
 "use client";
 
-import { Icons } from "@/components/shared/icons";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
@@ -79,8 +78,7 @@ export default function Onboarding() {
         {errors?.username && (
           <b className="text-xs text-danger">{errors.username.message}</b>
         )}
-        <Button disabled={isLoading || !isValid}>
-          {isLoading && <Icons.spinner size={18} className="animate-spin" />}
+        <Button disabled={!isValid} isPending={isLoading}>
           Start writing
         </Button>
       </form>

@@ -197,15 +197,9 @@ export default function AddEditBookmarkModal({
             form="add-edit-bookmark-form"
             type="submit"
             size="sm"
-            disabled={isLoading}
+            isPending={isLoading}
           >
-            {isLoading ? (
-              <>
-                <Icons.spinner size={18} className="animate-spin" /> Saving
-              </>
-            ) : (
-              <>Save</>
-            )}
+            Save
           </Button>
         </DialogFooter>
       </DialogContent>

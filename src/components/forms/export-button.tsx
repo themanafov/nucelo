@@ -50,16 +50,12 @@ export default function ExportButton({
     <Button
       type="button"
       size="sm"
-      disabled={pending}
+      isPending={pending && "Exporting"}
       variant={buttonVariant}
       className="w-max"
       onClick={onClick}
     >
-      {pending ? (
-        <Icons.spinner size={16} className="animate-spin" />
-      ) : (
-        <Icon size={16} />
-      )}{" "}
+      <Icon size={16} />
       {text}
     </Button>
   );

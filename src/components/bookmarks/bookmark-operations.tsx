@@ -107,18 +107,9 @@ export default function BookmarkOperations({ bookmark, collections }: Props) {
                 }
                 setIsDeleteLoading(false);
               }}
-              disabled={isDeleteLoading}
+              isPending={isDeleteLoading}
             >
-              {isDeleteLoading ? (
-                <>
-                  <Icons.spinner size={15} className="animate-spin" />{" "}
-                  Deleting...
-                </>
-              ) : (
-                <>
-                  <Icons.trash size={15} /> Delete
-                </>
-              )}
+              <Icons.trash size={15} /> Delete
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
