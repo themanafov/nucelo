@@ -20,7 +20,7 @@ const config: Config = {
         secondary: "var(--foreground)",
         blue: "var(--blue)",
         grass: "var(--grass)",
-        danger: "red",
+        danger: "var(--danger)",
         "gray-1": "var(--gray-1)",
         "gray-2": "var(--gray-2)",
         "gray-3": "var(--gray-3)",

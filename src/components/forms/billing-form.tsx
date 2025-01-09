@@ -110,7 +110,7 @@ export default function BillingForm({ subscriptionPlan }: Props) {
           </div>
         ))}
       </div>
-      <div className="flex max-md:flex-col max-md:items-stretch gap-3  justify-between items-center p-3 text-xs text-gray-4">
+      <div className="flex max-md:flex-col max-md:items-stretch gap-3   justify-between items-center p-3 text-xs text-gray-4">
         {subscriptionPlan.isPro ? (
           <p className="max-md:text-center">
             {subscriptionPlan.status === "cancelled" &&
@@ -132,8 +132,8 @@ export default function BillingForm({ subscriptionPlan }: Props) {
           </p>
         )}
 
-        <form onSubmit={billing} className="flex flex-col gap-2">
-          <Button type="submit" isPending={isLoading} size="sm">
+        <form onSubmit={billing} className="flex flex-col gap-2 ">
+          <Button type="submit" variant="secondary" isPending={isLoading} size="sm">
             {subscriptionPlan.isPro ? "Manage" : "Upgrade"}
           </Button>
         </form>

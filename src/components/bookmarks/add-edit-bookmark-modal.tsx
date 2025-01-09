@@ -192,7 +192,7 @@ export default function AddEditBookmarkModal({
             )}
           />
         </form>
-        <DialogFooter>
+        <DialogFooter className="bg-inherit">
           <Button
             form="add-edit-bookmark-form"
             type="submit"

@@ -67,7 +67,7 @@ export default function BookmarkOperations({ bookmark, collections }: Props) {
           <Button
             size="sm"
             variant="destructive"
-            className="justify-start gap-2 border-0"
+            className="justify-start gap-2 border-0 bg-transparent text-gray-4 hover:bg-danger hover:text-primary"
             onClick={() => setShowDeleteAlert(true)}
           >
             <Icons.trash size={15} /> Delete

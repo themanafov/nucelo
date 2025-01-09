@@ -173,6 +173,7 @@ export default function AuthForm() {
                 <Button
                   size="wide"
                   type="submit"
+                  variant="secondary"
                   disabled={!!isLoading}
                   isPending={isLoading === "email"}
                 >
