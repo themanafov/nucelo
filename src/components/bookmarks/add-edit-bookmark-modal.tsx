@@ -192,10 +192,11 @@ export default function AddEditBookmarkModal({
             )}
           />
         </form>
-        <DialogFooter className="bg-inherit">
+        <DialogFooter>
           <Button
             form="add-edit-bookmark-form"
             type="submit"
+            variant="default"
             size="sm"
             isPending={isLoading}
           >

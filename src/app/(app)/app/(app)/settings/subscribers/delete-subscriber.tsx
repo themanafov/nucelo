@@ -25,7 +25,7 @@ export default function DeleteSubscriber({ id }: { id: string }) {
         size="sm"
         variant="destructive"
         isPending={isPending}
-        className="w-full justify-start gap-2 border-none bg-transparent text-gray-4 hover:bg-danger  hover:text-primary"
+        className="w-full"
         aria-label="Delete subscriber"
       >
         <Icons.trash size={15} />
