@@ -67,7 +67,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <span
             className={cn(
               "size-full flex gap-1 bg-inherit justify-center items-center absolute",
-              variant === "default" && "!bg-gray-2"
+              variant === "default" && "!bg-gray-2",
             )}
           >
             <Icons.spinner
