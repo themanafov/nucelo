@@ -8,17 +8,7 @@ const AlertDialog = AlertDialogPrimitive.Root;
 
 const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
 
-const AlertDialogPortal = ({
-  children,
-  ...props
-}: AlertDialogPrimitive.AlertDialogPortalProps) => (
-  <AlertDialogPrimitive.Portal {...props}>
-    <div className="fixed inset-0 z-50 flex items-end justify-center md:items-center">
-      {children}
-    </div>
-  </AlertDialogPrimitive.Portal>
-);
-AlertDialogPortal.displayName = AlertDialogPrimitive.Portal.displayName;
+const AlertDialogPortal = AlertDialogPrimitive.Portal
 
 const AlertDialogOverlay = React.forwardRef<
   React.ComponentRef<typeof AlertDialogPrimitive.Overlay>,
@@ -26,7 +16,7 @@ const AlertDialogOverlay = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <AlertDialogPrimitive.Overlay
     className={cn(
-      "fixed inset-0 z-50 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "fixed inset-0 z-50 bg-overlay backdrop-blur-sm  data-[state=open]:multi-[animate-in;fade-in-0] data-[state=closed]:multi-[animate-out;fade-out-0]",
       className,
     )}
     {...props}
@@ -44,7 +34,7 @@ const AlertDialogContent = React.forwardRef<
     <AlertDialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed z-50  flex  w-full max-w-lg scale-100 flex-col gap-4 rounded-md bg-gray-3 p-4 duration-100 animate-in zoom-in-95",
+        "fixed z-50 max-h-[600px] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]   flex w-full max-w-lg flex-col outline-0 justify-center gap-4  rounded-md  bg-primary border border-gray-2   p-4  outline-none max-md:rounded-b-none data-[state=open]:multi-[animate-in;fade-in-0;slide-in-from-left-1/2;slide-in-from-bottom-[-48%]] data-[state=closed]:multi-[animate-out;fade-out-0;slide-out-to-left-1/2;slide-out-to-bottom-[-48%]] ",
         className,
       )}
       {...props}
