@@ -1,6 +1,7 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  devIndicators: {appIsrStatus: false},
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  devIndicators: { appIsrStatus: false },
   async redirects() {
     return [
       {
