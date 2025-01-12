@@ -37,7 +37,6 @@ export default function LinkSelector({
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(linkSchema),
-    defaultValues: { link: editor.getAttributes("link").href },
   });
 
   const onSubmit = (data: FormData) => {
@@ -65,6 +64,7 @@ export default function LinkSelector({
           <Input
             type="url"
             placeholder="url"
+            defaultValue={editor.getAttributes("link").href}
             className={cn("h-4.5", errors?.link ? "border-danger" : "")}
             {...register("link")}
           />
