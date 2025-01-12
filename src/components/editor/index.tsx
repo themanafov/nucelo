@@ -28,6 +28,7 @@ export default function Editor({
   const editor = useEditor({
     extensions: TiptapExtensions,
     content,
+    immediatelyRender: false,
     editorProps: {
       handlePaste: (view, event) => handleImagePaste(view, event),
     },
