@@ -90,12 +90,17 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         {article?.previousArticle && (
           <NavButton
             variant="text"
-            className="flex-row-reverse"
+            className="flex-row-reverse gap-2 items-start"
             href={`/articles/${article.previousArticle.slug}`}
             icon="arrowLeft"
             aria-label="Read previous article"
           >
-            Previous
+            <div>
+              Previous
+              <p className="text-secondary mt-1">
+                {article.previousArticle.title}
+              </p>
+            </div>
           </NavButton>
         )}
         {article?.nextArticle && (
@@ -103,9 +108,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             variant="text"
             href={`/articles/${article.nextArticle.slug}`}
             icon="arrowRight"
+            className="gap-2 items-start"
             aria-label="Read next article"
           >
-            Next
+            <div>
+              Next
+              <p className="text-secondary mt-1">{article.nextArticle.title}</p>
+            </div>
           </NavButton>
         )}
       </div>
