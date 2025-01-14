@@ -11,4 +11,4 @@ updates:
     registries:
       - tiptap-pro
     schedule:
-      interval: "daily"
+      interval: "weekly"
