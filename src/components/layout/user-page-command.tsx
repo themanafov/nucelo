@@ -18,9 +18,10 @@ import {
   CommandList,
 } from "../ui/command";
 import NavButton from "./nav-button";
+import { useShallow } from "zustand/react/shallow";
 
 export default function UserPageCommand({ user }: { user: User }) {
-  const { isOpen, toggle, setOpen } = useNavigation();
+  const { isOpen, toggle, setOpen } = useNavigation(useShallow(state => state));
   const router = useRouter();
   const pathname = usePathname();
   const { setTheme, theme } = useTheme();

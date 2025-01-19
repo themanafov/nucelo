@@ -16,6 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { useShallow } from "zustand/react/shallow";
 
 interface Props {
   user: Pick<User, "name" | "email" | "image" | "username" | "domain"> | null;
@@ -23,7 +24,7 @@ interface Props {
 }
 
 export default function UserNav({ user, segment }: Props) {
-  const setOpen = useAppCommand((state) => state.setOpen);
+  const setOpen = useAppCommand(useShallow(state => state.setOpen));
   return (
     <DropdownMenu>
       <DropdownMenuTrigger

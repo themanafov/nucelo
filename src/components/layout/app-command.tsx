@@ -18,6 +18,7 @@ import {
   CommandItem,
   CommandList,
 } from "../ui/command";
+import { useShallow } from "zustand/react/shallow";
 
 type Group = {
   heading: string;
@@ -32,7 +33,7 @@ type Item = {
 };
 
 export default function AppCommand({ user }: { user: User }) {
-  const { isOpen, toggle, setOpen } = useAppCommand();
+  const { isOpen, toggle, setOpen } = useAppCommand(useShallow(state => state));
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<"article" | "project" | null>(
     null,
