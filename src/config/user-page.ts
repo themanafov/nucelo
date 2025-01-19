@@ -34,8 +34,6 @@ export const getLinks = (
     | "dribbble"
     | "linkedin"
     | "contactEmail"
-    | "readcv"
-    | "postscv"
   >,
 ) => {
   return [
@@ -46,22 +44,10 @@ export const getLinks = (
       icon: "twitter",
     },
     {
-      platform: "Posts",
-      username: user.postscv,
-      url: "https://posts.cv/",
-      icon: "postscv",
-    },
-    {
       platform: "Linkedin",
       username: user.linkedin,
       url: "https://linkedin.com/in/",
       icon: "linkedin",
-    },
-    {
-      platform: "CV",
-      username: user.readcv,
-      url: "https://read.cv/",
-      icon: "readcv",
     },
     {
       platform: "Dribbble",

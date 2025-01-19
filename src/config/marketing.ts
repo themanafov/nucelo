@@ -61,11 +61,6 @@ export const marketingConfig: MarketingConfig = {
       href: siteConfig.links.twitter,
       icon: "twitter",
     },
-    {
-      name: "Posts",
-      href: siteConfig.links.posts,
-      icon: "postscv",
-    },
   ],
   previews: [
     {

@@ -24,11 +24,9 @@ export const updateUserSchema = z
     seoDescription: z.string().max(160).nullable(),
     ogImage: z.string().url().nullable(),
     twitter: z.string().trim().nullable(),
-    postscv: z.string().trim().nullable(),
     dribbble: z.string().trim().nullable(),
     github: z.string().trim().nullable(),
     linkedin: z.string().trim().nullable(),
-    readcv: z.string().trim().nullable(),
     contactEmail: z.string().trim().nullable(),
     password: z.string().nullable(),
   })

@@ -57,8 +57,6 @@ model User {
   seoDescription     String?
   ogImage            String?
   twitter            String?
-  postscv            String?
-  readcv             String?
   github             String?
   linkedin           String?
   dribbble           String?

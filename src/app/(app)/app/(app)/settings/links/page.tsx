@@ -24,18 +24,6 @@ export default async function Links() {
         required={false}
       />
       <Form
-        title="Posts"
-        description="This link will appear on your page."
-        prefix="posts.cv/"
-        inputData={{
-          name: "postscv",
-          placeholder: "your_username",
-          defaultValue: user?.postscv ?? "",
-        }}
-        endpoint={endpoint}
-        required={false}
-      />
-      <Form
         title="Dribbble"
         description="This link will appear on your page."
         prefix="dribbble.com/"
@@ -67,18 +55,6 @@ export default async function Links() {
           name: "linkedin",
           placeholder: "your_username",
           defaultValue: user?.linkedin ?? "",
-        }}
-        endpoint={endpoint}
-        required={false}
-      />
-      <Form
-        title="CV"
-        description="This link will appear on your page."
-        prefix="read.cv/"
-        inputData={{
-          name: "readcv",
-          placeholder: "your_username",
-          defaultValue: user?.readcv ?? "",
         }}
         endpoint={endpoint}
         required={false}
