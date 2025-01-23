@@ -6,6 +6,7 @@ import { User } from "@/types";
 import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
+import { useShallow } from "zustand/react/shallow";
 import ClientOnly from "../shared/client-only";
 import { Icons } from "../shared/icons";
 import Button from "../ui/button";
@@ -18,10 +19,11 @@ import {
   CommandList,
 } from "../ui/command";
 import NavButton from "./nav-button";
-import { useShallow } from "zustand/react/shallow";
 
 export default function UserPageCommand({ user }: { user: User }) {
-  const { isOpen, toggle, setOpen } = useNavigation(useShallow(state => state));
+  const { isOpen, toggle, setOpen } = useNavigation(
+    useShallow((state) => state),
+  );
   const router = useRouter();
   const pathname = usePathname();
   const { setTheme, theme } = useTheme();

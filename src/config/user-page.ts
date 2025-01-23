@@ -29,11 +29,7 @@ export const userPageConfig: UserPageConfig = {
 export const getLinks = (
   user: Pick<
     User,
-    | "github"
-    | "twitter"
-    | "dribbble"
-    | "linkedin"
-    | "contactEmail"
+    "github" | "twitter" | "dribbble" | "linkedin" | "contactEmail"
   >,
 ) => {
   return [

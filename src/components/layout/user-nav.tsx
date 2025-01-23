@@ -6,6 +6,7 @@ import { getInitials } from "@/lib/utils";
 import type { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import { useShallow } from "zustand/react/shallow";
 import ThemeToggle from "../layout/theme-toggle";
 import { Icons } from "../shared/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -16,7 +17,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { useShallow } from "zustand/react/shallow";
 
 interface Props {
   user: Pick<User, "name" | "email" | "image" | "username" | "domain"> | null;
@@ -24,7 +24,7 @@ interface Props {
 }
 
 export default function UserNav({ user, segment }: Props) {
-  const setOpen = useAppCommand(useShallow(state => state.setOpen));
+  const setOpen = useAppCommand(useShallow((state) => state.setOpen));
   return (
     <DropdownMenu>
       <DropdownMenuTrigger

@@ -7,6 +7,7 @@ import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { type ReactNode, useCallback, useEffect, useState } from "react";
+import { useShallow } from "zustand/react/shallow";
 import { createArticle } from "../articles/article-create-button";
 import { createProject } from "../projects/project-create-button";
 import { Icons } from "../shared/icons";
@@ -18,7 +19,6 @@ import {
   CommandItem,
   CommandList,
 } from "../ui/command";
-import { useShallow } from "zustand/react/shallow";
 
 type Group = {
   heading: string;
@@ -33,7 +33,9 @@ type Item = {
 };
 
 export default function AppCommand({ user }: { user: User }) {
-  const { isOpen, toggle, setOpen } = useAppCommand(useShallow(state => state));
+  const { isOpen, toggle, setOpen } = useAppCommand(
+    useShallow((state) => state),
+  );
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<"article" | "project" | null>(
     null,
