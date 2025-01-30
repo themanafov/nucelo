@@ -14,4 +14,4 @@ We use your information to provide our Services, to improve our Platform, to und
 
 ## **Contact Us**
 
-For privacy-related questions, please contact us at [support@nucelo.com](mailto:support@nucelo.com).
+For privacy-related questions, please contact us at [help@nucelo.com](mailto:help@nucelo.com).

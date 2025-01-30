@@ -30,4 +30,4 @@ These Terms and all agreements related to the services provided by Nucelo are go
 
 ## **Contact Us**
 
-If you have any questions regarding these Terms, you can contact us at [support@nucelo.com](mailto:support@nucelo.com).
+If you have any questions regarding these Terms, you can contact us at [help@nucelo.com](mailto:help@nucelo.com).

@@ -10,7 +10,7 @@ export const metadata = generateSEO({
 });
 
 export default function TOS() {
-  const source = readMarkdownFile("legal/terms.md");
+  const source = readMarkdownFile("docs/legal/terms.md");
   return (
     <div className="pt-4 flex flex-col gap-3">
       <div className="flex items-center gap-2">

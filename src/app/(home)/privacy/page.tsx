@@ -10,7 +10,7 @@ export const metadata = generateSEO({
 });
 
 export default function Privacy() {
-  const source = readMarkdownFile("legal/privacy.md");
+  const source = readMarkdownFile("docs/legal/privacy.md");
   return (
     <div className="pt-4 flex flex-col gap-3">
       <div className="flex items-center gap-2">
