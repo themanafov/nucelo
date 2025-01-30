@@ -9,6 +9,7 @@ import slug from "slugify";
 import { twMerge } from "tailwind-merge";
 import type { PropertyProps } from "./analytics";
 import { URLRegex, analyticsEndpoint } from "./constants";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

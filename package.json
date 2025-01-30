@@ -12,7 +12,7 @@
     "lint": "next lint",
     "email": "email dev --port 7777",
     "studio": "drizzle-kit studio --port 5555",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,mdx}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx}\"",
     "postinstall": "prisma generate"
   },
   "dependencies": {
