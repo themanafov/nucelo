@@ -1,7 +1,6 @@
 import { siteConfig } from "@/config/site";
 import { generateSEO } from "@/lib/utils";
 import Features from "../components/features";
-import Footer from "../components/footer";
 import Hero from "../components/hero";
 import Preview from "../components/preview";
 import Pricing from "../components/pricing";
@@ -23,7 +22,6 @@ export default function Home() {
         <hr />
         <Pricing />
         <hr />
-        <Footer />
       </div>
     </>
   );

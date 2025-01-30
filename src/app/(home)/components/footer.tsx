@@ -30,7 +30,7 @@ export default function Footer() {
             target={link.href.startsWith("https://") ? "_blank" : "_parent"}
             aria-label={link.name}
             className={cn(
-              link.href === "/privacy" && "border-r border-gray-1 pr-3",
+              link.href === "/terms" && "border-r border-gray-1 pr-3",
             )}
             key={link.name}
           >

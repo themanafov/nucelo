@@ -52,6 +52,11 @@ export const marketingConfig: MarketingConfig = {
       icon: "logo",
     },
     {
+      name: "Terms of Service",
+      href: "/terms",
+      icon: "logo",
+    },
+    {
       name: "Github",
       href: siteConfig.links.github,
       icon: "github",
