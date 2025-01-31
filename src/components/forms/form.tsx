@@ -173,6 +173,7 @@ export default function Form({
         <Button
           type="submit"
           size="sm"
+          className={cn(asChild && "invisible")}
           disabled={disabledButton}
           isPending={saving}
         >
