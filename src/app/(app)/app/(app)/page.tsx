@@ -8,9 +8,5 @@ export default async function Page() {
     return notFound();
   }
 
-  if (!user.name) {
-    redirect("/onboarding");
-  }
-
   return redirect("/articles");
 }

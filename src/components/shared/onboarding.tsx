@@ -3,9 +3,10 @@
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
+import { slugify } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { useEffect, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -22,11 +23,14 @@ export default function Onboarding() {
   const {
     handleSubmit,
     register,
+    setValue,
+    watch,
     formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
+  const name = watch("name");
   const onSubmit = async (data: FormData) => {
     startTransition(async () => {
       const res = await fetch("/api/user", {
@@ -37,18 +41,21 @@ export default function Onboarding() {
         }),
       });
       if (!res.ok) {
-        const err = await res.text();
         toast({
-          title: "Something went wrong",
-          description: err,
+          title: "Username already in use",
         });
       } else {
-        router.push("/");
+        router.push("/articles");
+        router.refresh();
       }
     });
   };
+
+  useEffect(() => {
+    setValue("username", slugify(name) ?? "");
+  }, [name]);
   return (
-    <div className="w-[400px] mx-auto p-10 flex flex-col items-center ">
+    <div className="w-[400px] mx-auto p-10 flex flex-col items-center justify-center min-h-screen ">
       <div>
         <h2 className="text-xl">Welcome to Nucelo</h2>
         <p className="text-gray-1 text-sm mt-2">
@@ -64,7 +71,7 @@ export default function Onboarding() {
           placeholder="Enter your name"
           {...register("name")}
           disabled={isLoading}
-          autoComplete="off"
+          autoFocus
         />
         {errors?.name && (
           <b className="text-xs text-danger">{errors.name.message}</b>
@@ -73,7 +80,6 @@ export default function Onboarding() {
           placeholder="Enter your username"
           {...register("username")}
           disabled={isLoading}
-          autoComplete="off"
         />
         {errors?.username && (
           <b className="text-xs text-danger">{errors.username.message}</b>

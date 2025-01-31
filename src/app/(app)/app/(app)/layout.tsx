@@ -1,5 +1,6 @@
 import AppCommand from "@/components/layout/app-command";
 import AppNav from "@/components/layout/app-nav";
+import Onboarding from "@/components/shared/onboarding";
 import { appConfig } from "@/config/app";
 import { getUser } from "@/lib/fetchers/users";
 import { generateSEO } from "@/lib/utils";
@@ -19,6 +20,9 @@ export default async function AppLayout({
   const user = await getUser();
   if (!user) {
     return notFound();
+  }
+  if (!user.name) {
+    return <Onboarding />;
   }
   return (
     <div className="mx-auto flex min-h-screen w-[700px] flex-col  max-md:px-4  pb-10 max-md:w-full">

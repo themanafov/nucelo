@@ -16,5 +16,5 @@ export const siteConfig: SiteConfig = {
     github: "https://github.com/themanafov/nucelo",
     help: "mailto:help@nucelo.com",
     demo: "https://demo.nucelo.co",
-  }
+  },
 } as const;
