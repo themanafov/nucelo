@@ -37,10 +37,14 @@ export async function generateMetadata({
   const path = `/articles/${article.slug}`;
   return generateSEO({
     title: article.title,
+    seoTitle: article.seoTitle ?? article.title,
     description: article.seoDescription || undefined,
     image:
       article.ogImage ||
       `https://nucelo.com/api/og/post?title=${article.title}&username=${user.username || user.name}`,
+    icons: [
+      `${process.env.NEXT_PUBLIC_URL}/api/og/favicon?username=${user.username}`,
+    ],
     canonicalURL: article.canonicalURL || undefined,
     url: user.domain
       ? `https://${user.domain}${path}`

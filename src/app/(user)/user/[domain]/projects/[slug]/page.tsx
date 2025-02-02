@@ -42,9 +42,13 @@ export async function generateMetadata({
     ...(!project.isProtected && {
       description: project.seoDescription || project.description || undefined,
     }),
+    seoTitle: project.seoTitle ?? project.title,
     image:
       project.ogImage ||
       `https://nucelo.com/api/og/post?title=${project.title}&username=${user.username || user.name}${project.isProtected ? "&locked=true" : ""}`,
+    icons: [
+      `${process.env.NEXT_PUBLIC_URL}/api/og/favicon?username=${user.username}`,
+    ],
     url: user.domain
       ? `https://${user.domain}${path}`
       : `https://${user.username}.${process.env.NEXT_PUBLIC_USER_DOMAIN}${path}`,
