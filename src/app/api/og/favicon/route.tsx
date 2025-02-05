@@ -13,13 +13,10 @@ export async function GET(req: NextRequest) {
 
   const avatar = await getUserAvatarViaEdge(username);
   if (avatar) {
-    return new ImageResponse(
-      <img src={avatar} width={size} height={size} />,
-      {
-        width: size,
-        height: size,
-      },
-    );
+    return new ImageResponse(<img src={avatar} width={size} height={size} />, {
+      width: size,
+      height: size,
+    });
   }
 
   const ubuntuMedium = fetch(new URL("/fonts/ubuntu-medium.ttf", req.url)).then(
