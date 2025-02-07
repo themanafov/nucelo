@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import {
   Body,
   Container,
@@ -11,7 +12,11 @@ import {
 } from "@react-email/components";
 import Footer from "./components/footer";
 
-const MagicLinkEmail = ({ url = "https://nucelo.com" }: { url: string }) => (
+const NewSubscriber = ({
+  name = "John Doe ( john@doe.com )",
+}: {
+  name: string;
+}) => (
   <Html>
     <Head>
       <Font
@@ -25,25 +30,28 @@ const MagicLinkEmail = ({ url = "https://nucelo.com" }: { url: string }) => (
         fontStyle="normal"
       />
     </Head>
-    <Preview>Log in with this magic link</Preview>
+    <Preview>New subscriber</Preview>
     <Body style={{ ...main, fontFamily: "Ubuntu" }}>
       <Container style={container}>
         <Heading className="text-2xl my-12  text-secondary" style={h1}>
-          Login
+          New subscriber
         </Heading>
-        <Link href={url} target="_blank" style={link}>
-          Click here to log in with this magic link
+        <Text style={{ fontWeight: "bold" }}>{name}</Text>
+        <Text style={{ fontSize: 14 }}>subscribed to your newsletter</Text>
+        <Link
+          href={`${siteConfig.links.app}/settings/subscribers`}
+          target="_blank"
+          style={link}
+        >
+          Click here to see all your subscribers
         </Link>
-        <Text style={{ ...text, color: "#606060" }}>
-          If you didn&apos;t try to login, you can safely ignore this email.
-        </Text>
         <Footer />
       </Container>
     </Body>
   </Html>
 );
 
-export default MagicLinkEmail;
+export default NewSubscriber;
 
 const main = {
   backgroundColor: "#ffffff",
@@ -67,10 +75,4 @@ const link = {
   color: "#606060",
   fontSize: "14px",
   textDecoration: "underline",
-};
-
-const text = {
-  color: "#333",
-  fontSize: "14px",
-  margin: "24px 0",
 };

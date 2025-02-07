@@ -1,7 +1,10 @@
+import NewSubscriber from "@/emails/new-subscriber";
 import { createSubscriber, isSubscriberExist } from "@/lib/actions/subscribers";
 import { getUserById } from "@/lib/fetchers/users";
 import { rateLimit } from "@/lib/ratelimit";
+import { resend } from "@/lib/resend";
 import { getUserSubscription } from "@/lib/subscription";
+import { nanoid } from "nanoid";
 import type { NextRequest } from "next/server";
 import * as z from "zod";
 
@@ -57,7 +60,20 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    await createSubscriber(user.id, body.data);
+    await Promise.all([
+      createSubscriber(user.id, body.data),
+      resend.emails.send({
+        from: "Nucelo Notify <notify@nucelo.com>",
+        to: user.email,
+        subject: "New Subscriber",
+        react: NewSubscriber({
+          name: `${body.data.name} ( ${body.data.email} )`,
+        }),
+        headers: {
+          "X-Entity-Ref-ID": nanoid(),
+        },
+      }),
+    ]);
 
     return new Response(null, { status: 200 });
   } catch (err) {

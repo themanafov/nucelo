@@ -45,7 +45,7 @@ model User {
   name               String?
   username           String       @unique @default(cuid())
   title              String?
-  email              String?      @unique
+  email              String       @unique
   domain             String?      @unique
   emailVerified      DateTime?
   image              String?

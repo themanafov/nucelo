@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site";
 import type { NewsletterProps } from "@/types";
 import {
   Body,
@@ -36,7 +37,6 @@ export default function Newsletter({
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>{author} published an article</Heading>
-
           <Link
             href={articleURL}
             style={{
@@ -60,13 +60,12 @@ export default function Newsletter({
           <Link href={articleURL} style={button}>
             Read on web
           </Link>
-
           <Text style={footer}>
-            <Link href="https://nucelo.com" target="_blank" style={link}>
+            <Link href={siteConfig.url} target="_blank" style={link}>
               nucelo.com
             </Link>
             <Link
-              href={`https://nucelo.com/unsubscribe?subId=${subId}`}
+              href={`${siteConfig.url}/unsubscribe?subId=${subId}`}
               target="_blank"
               style={{
                 ...link,
