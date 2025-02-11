@@ -74,7 +74,6 @@ function More({
   interval?: Interval;
   basePath: string;
 }) {
-  console.log(basePath)
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
