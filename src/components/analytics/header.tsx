@@ -74,6 +74,7 @@ function More({
   interval?: Interval;
   basePath: string;
 }) {
+  console.log(basePath)
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -89,7 +90,7 @@ function More({
         <ExportButton
           text="Export analytics as CSV"
           buttonVariant="ghost"
-          endpoint={`${basePath.split("/api/")[1]}/analytics/export${interval ? `?interval=${interval}` : ""}`}
+          endpoint={`${basePath !== "/api" ? `${basePath.split("/api/")[1]}/` : ""}analytics/export${interval ? `?interval=${interval}` : ""}`}
         />
       </DropdownMenuContent>
     </DropdownMenu>
