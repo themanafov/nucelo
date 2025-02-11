@@ -31,8 +31,10 @@ export const GET = guard(
         return new Response(null, { status: 403 });
       }
 
+      const filteredProperties = analyticsProperties.filter(p => p !== "page")
+
       const allData = await Promise.all(
-        analyticsProperties.map((property) =>
+        filteredProperties.map((property) =>
           getBookmarkAnalytics({
             id: bookmarkId,
             property,
@@ -43,7 +45,7 @@ export const GET = guard(
 
       const zip = new JSZip();
 
-      analyticsProperties.map((property, i) => {
+      filteredProperties.map((property, i) => {
         zip.file(`${property}.csv`, json2csv(allData[i]));
       });
 
