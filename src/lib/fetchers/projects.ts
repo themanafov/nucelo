@@ -68,6 +68,15 @@ export async function getProjects({
   });
 }
 
+export async function getProjectByAuthor(projectId: string, authorId: string) {
+  return await db.project.findUnique({
+    where: {
+      id: projectId,
+      authorId,
+    },
+  });
+}
+
 export async function getProjectsByAuthor(
   authorId: string,
   limit?: number,

@@ -5,6 +5,18 @@ import { db } from "../db";
 import getCurrentUser from "../session";
 import { formatVerboseDate } from "../utils";
 
+export async function getBookmarkByAuthor(
+  bookmarkId: string,
+  authorId: string,
+) {
+  return await db.bookmark.findUnique({
+    where: {
+      id: bookmarkId,
+      authorId,
+    },
+  });
+}
+
 export async function getBookmarksByAuthor(author: string, limit?: number) {
   return await db.bookmark.findMany({
     where: {

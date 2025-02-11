@@ -1,7 +1,7 @@
 import { INTERVALS } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
-import { useContext } from "react";
+import { use } from "react";
 import { AnalyticsContext, Interval } from ".";
 import ExportButton from "../forms/export-button";
 import AppHeader from "../layout/header";
@@ -21,7 +21,7 @@ export default function StatsHeader({
   title?: string;
   className?: string;
 }) {
-  const { interval } = useContext(AnalyticsContext);
+  const { interval, basePath } = use(AnalyticsContext);
   const router = useRouter();
   const pathname = usePathname();
   return (
@@ -61,13 +61,19 @@ export default function StatsHeader({
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
-        <More interval={interval} />
+        <More interval={interval} basePath={basePath} />
       </div>
     </AppHeader>
   );
 }
 
-function More({ interval }: { interval?: Interval }) {
+function More({
+  interval,
+  basePath,
+}: {
+  interval?: Interval;
+  basePath: string;
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -83,7 +89,7 @@ function More({ interval }: { interval?: Interval }) {
         <ExportButton
           text="Export analytics as CSV"
           buttonVariant="ghost"
-          endpoint={`analytics/export${interval ? `?interval=${interval}` : ""}`}
+          endpoint={`${basePath.split("/api/")[1]}/analytics/export${interval ? `?interval=${interval}` : ""}`}
         />
       </DropdownMenuContent>
     </DropdownMenu>

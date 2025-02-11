@@ -1,30 +1,26 @@
 import { verifyArticleAccess } from "@/lib/actions/articles";
 import {
-  ZodAnalyticsProperty,
+  analyticsProperties,
   analyticsSearchParamsSchema,
   getAnalytics,
 } from "@/lib/analytics";
 import { guard } from "@/lib/auth";
 import { getArticleByAuthor } from "@/lib/fetchers/articles";
-import { NextResponse } from "next/server";
+import { json2csv } from "json-2-csv";
+import JSZip from "jszip";
 import * as z from "zod";
 
 const routeContextSchema = z.object({
   params: z.object({
     articleId: z.string().min(1),
-    property: ZodAnalyticsProperty,
   }),
 });
 
 export const GET = guard(
-  async ({
-    user,
-    ctx: {
-      params: { articleId, property },
-    },
-    searchParams: { interval },
-  }) => {
+  async ({ user, ctx, searchParams: { interval } }) => {
     try {
+      const { articleId } = ctx.params;
+
       const article = await getArticleByAuthor(articleId, user.id);
 
       if (!article) {
@@ -32,19 +28,35 @@ export const GET = guard(
           status: 404,
         });
       }
-
       if (!(await verifyArticleAccess(article.id, user.id))) {
         return new Response(null, { status: 403 });
       }
 
-      const data = await getAnalytics({
-        property,
-        interval,
-        page: `/articles/${article.slug}`,
-        userId: user.id,
+      const allData = await Promise.all(
+        analyticsProperties.map((property) =>
+          getAnalytics({
+            property,
+            interval,
+            page: `/articles/${article.slug}`,
+            userId: user.id,
+          }),
+        ),
+      );
+
+      const zip = new JSZip();
+
+      analyticsProperties.map((property, i) => {
+        zip.file(`${property}.csv`, json2csv(allData[i]));
       });
 
-      return NextResponse.json(data);
+      const buffer = await zip.generateAsync({ type: "nodebuffer" });
+
+      return new Response(buffer, {
+        headers: {
+          "Content-Type": "application/zip",
+          "Content-Disposition": `attachment; filename=nucelo_article_analytics_export.zip`,
+        },
+      });
     } catch (err) {
       return new Response(JSON.stringify(err), { status: 500 });
     }
