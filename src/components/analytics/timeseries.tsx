@@ -1,6 +1,6 @@
 import { swrOptions } from "@/lib/constants";
 import { fetcher } from "@/lib/utils";
-import { useCallback, useContext } from "react";
+import { useCallback, use } from "react";
 import useSWR from "swr";
 import { AnalyticsContext } from ".";
 import { Icons } from "../shared/icons";
@@ -8,7 +8,7 @@ import Card from "./card";
 import AreaChart from "./charts/area";
 
 export default function Timeseries() {
-  const { interval, basePath, index } = useContext(AnalyticsContext);
+  const { interval, basePath, index } = use(AnalyticsContext);
 
   const { data: total, isLoading } = useSWR<any>(
     `${basePath}/analytics/total?interval=${interval}`,

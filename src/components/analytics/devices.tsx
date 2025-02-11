@@ -1,6 +1,6 @@
 import { swrOptions } from "@/lib/constants";
 import { fetcher } from "@/lib/utils";
-import { useContext, useState } from "react";
+import { use, useState } from "react";
 import useSWR from "swr";
 import { AnalyticsContext } from ".";
 import BarList from "./bar-list";
@@ -10,7 +10,7 @@ export type DevicesTabs = "device" | "OS" | "browser";
 
 export default function Devices() {
   const [tab, setTab] = useState<DevicesTabs>("device");
-  const { basePath, interval } = useContext(AnalyticsContext);
+  const { basePath, interval } = use(AnalyticsContext);
 
   const { data, isLoading } = useSWR<
     {

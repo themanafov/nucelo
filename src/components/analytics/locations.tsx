@@ -1,7 +1,7 @@
 import { swrOptions } from "@/lib/constants";
 import { countries } from "@/lib/constants/countries";
 import { fetcher } from "@/lib/utils";
-import { useContext, useState } from "react";
+import { use, useState } from "react";
 import useSWR from "swr";
 import { AnalyticsContext } from ".";
 import BarList from "./bar-list";
@@ -11,7 +11,7 @@ export type LocationsTabs = "country" | "city";
 
 export default function Locations() {
   const [tab, setTab] = useState<LocationsTabs>("country");
-  const { basePath, interval } = useContext(AnalyticsContext);
+  const { basePath, interval } = use(AnalyticsContext);
 
   const { data, isLoading } = useSWR<
     {

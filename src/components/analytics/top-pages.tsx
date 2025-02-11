@@ -1,13 +1,13 @@
 import { swrOptions } from "@/lib/constants";
 import { fetcher } from "@/lib/utils";
-import { useContext } from "react";
+import { use } from "react";
 import useSWR from "swr";
 import { AnalyticsContext } from ".";
 import BarList from "./bar-list";
 import Card from "./card";
 
 export default function Pages() {
-  const { basePath, interval } = useContext(AnalyticsContext);
+  const { basePath, interval } = use(AnalyticsContext);
 
   const { data, isLoading } = useSWR<{ page: string; value: number }[]>(
     `${basePath}/analytics/page?interval=${interval}`,
