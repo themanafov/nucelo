@@ -31,4 +31,4 @@ Open source minimal blogging platform.
 
 ## License
 
-Nucelo is open source under the [GNU Affero General Public License](https://github.com/themanafov/nucelo/blob/main/LICENSE) Version 3 (AGPLv3) or any later version.
+Nucelo is open source under the [GNU Affero General Public License](https://github.com/ArianAdeli/nucelo/blob/main/LICENSE) Version 3 (AGPLv3) or any later version.

@@ -1,10 +1,6 @@
 {
   "name": "nucelo",
   "private": true,
-  "author": {
-    "name": "manafov",
-    "url": "https://x.com/themanafov"
-  },
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
