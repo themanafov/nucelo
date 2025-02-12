@@ -41,7 +41,6 @@ export type SiteConfig = {
   links: {
     home: string;
     twitter: string;
-    posts: string;
     login: string;
     signup: string;
     app: string;
